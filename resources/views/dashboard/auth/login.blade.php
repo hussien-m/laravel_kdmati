@@ -48,13 +48,13 @@
                                     <div class="auth-logo">
                                         <a href="index.html" class="logo logo-dark text-center">
                                             <span class="logo-lg">
-                                                <img src="{{asset('dashboard/assets/images/logo-dark.png')}}" alt="" height="22">
+                                                <img src="{{asset('dashboard/assets/login_logo.png')}}" alt="" height="70">
                                             </span>
                                         </a>
 
                                         <a href="#" class="logo logo-light text-center">
                                             <span class="logo-lg">
-                                                <img src="{{asset('dashboard/assets/images/logo-light.png')}}" alt="" height="22">
+                                                <img src="{{asset('dashboard/assets/login_logo.png')}}" alt="" height="70">
                                             </span>
                                         </a>
                                     </div>
@@ -104,8 +104,7 @@
 
                         <div class="row mt-3">
                             <div class="col-12 text-center">
-                                <p> <a href="auth-recoverpw.html" class="text-white-50 ms-1">نسيت كلمة المرور?</a></p>
-                                <p class="text-white-50">لايوجد لديك حساب? <a href="auth-register.html" class="text-white ms-1"><b>سجل الان</b></a></p>
+                                <p> <a href="auth-recoverpw.html" class="text-white-50 ms-1">هل نسيت كلمة المرور ؟</a></p>
                             </div> <!-- end col -->
                         </div>
                         <!-- end row -->

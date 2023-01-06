@@ -1,33 +1,66 @@
-<div class="left-side-menu">
-    <div class="h-100" data-simplebar>
+            <div class="vertical-menu">
 
-        <!-- User box -->
-        <div class="user-box text-center">
-            <img src="{{ asset('dashboard/assets/images/users/user-1.jpg') }}" alt="user-img" title="Mat Helme" class="rounded-circle avatar-md">
+                <div data-simplebar class="h-100">
 
-            <p class="text-muted">Admin Head</p>
-        </div>
+                    <!--- Sidemenu -->
+                    <div id="sidebar-menu">
+                        <!-- Left Menu Start -->
+                        <ul class="metismenu list-unstyled" id="side-menu">
+                            <li class="menu-title">Main</li>
 
-        <!--- Sidemenu -->
-        <div id="sidebar-menu">
+                            <li>
+                                <a href="pages-starter.html" class="waves-effect">
+                                    <i class="ti-home"></i><span class="badge rounded-pill bg-primary float-end">2</span>
+                                    <span>Starter Pages</span>
+                                </a>
+                            </li>
 
-            <ul id="side-menu">
+                
+                            <li>
+                                <a href="layouts-horizontal.html" class="waves-effect">
+                                    <i class="ti-layout"></i>
+                                    <span>Horizontal</span>
+                                </a>
+                            </li>
 
-                <li class="menu-title">القائمة</li>
-                <li class=@if(Request::is('admin/dashboard')) menuitem-active @endif>
-                    <a href="{{ route('admin.dashboard') }}">
-                        <i class="mdi mdi mdi-view-dashboard-outline"></i>
-                        <span> الرئيسية </span>
-                    </a>
-                </li>
-            </ul>
+                            <li class="menu-title">Pages</li>
 
-        </div>
-        <!-- End Sidebar -->
+                            <li>
+                                <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                    <i class="ti-archive"></i>
+                                    <span> Authentication </span>
+                                </a>
+                                <ul class="sub-menu" aria-expanded="false">
+                                    <li><a href="pages-login.html">Login 1</a></li>
+                                    <li><a href="pages-login-2.html">Login 2</a></li>
+                                    <li><a href="pages-register.html">Register 1</a></li>
+                                    <li><a href="pages-register-2.html">Register 2</a></li>
+                                    <li><a href="pages-recoverpw.html">Recover Password 1</a></li>
+                                    <li><a href="pages-recoverpw-2.html">Recover Password 2</a></li>
+                                    <li><a href="pages-lock-screen.html">Lock Screen 1</a></li>
+                                    <li><a href="pages-lock-screen-2.html">Lock Screen 2</a></li>
+                                </ul>
+                            </li>
 
-        <div class="clearfix"></div>
 
-    </div>
-    <!-- Sidebar -left -->
+                            <li>
+                                <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                    <i class="ti-more"></i>
+                                    <span>Multi Level</span>
+                                </a>
+                                <ul class="sub-menu" aria-expanded="true">
+                                    <li><a href="javascript: void(0);">Level 1.1</a></li>
+                                    <li><a href="javascript: void(0);" class="has-arrow">Level 1.2</a>
+                                        <ul class="sub-menu" aria-expanded="true">
+                                            <li><a href="javascript: void(0);">Level 2.1</a></li>
+                                            <li><a href="javascript: void(0);">Level 2.2</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
 
-</div>
+                        </ul>
+                    </div>
+                    <!-- Sidebar -->
+                </div>
+            </div>

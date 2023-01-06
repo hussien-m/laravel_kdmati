@@ -1,137 +1,117 @@
-<!DOCTYPE html>
-<html lang="en">
+
+<!doctype html>
+<html lang="en" dir="rtl">
+
     <head>
-        <meta charset="utf-8" />
-        <title>{{ $option->site_name ?? 'site_name' }} | تسجيل دخول الادارة</title>
+
+        <meta charset="utf-8">
+        <title>Login 2 | Veltrix - Admin & Dashboard Template</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
-        <meta content="Coderthemes" name="author" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta content="Premium Multipurpose Admin & Dashboard Template" name="description">
+        <meta content="Themesbrand" name="author">
         <!-- App favicon -->
-        <link rel="shortcut icon" href="/assets/images/favicon.ico">
+        <link rel="shortcut icon" href="{{ asset('dashboard/assets/images/favicon.ico') }}">
 
-		<!-- App css -->
-        <link href="{{ asset('dashboard/assets/css/config/material/bootstrap-rtl.min.css') }}" rel="stylesheet" type="text/css" id="bs-default-stylesheet" />
-        <link href="{{ asset('dashboard/assets/css/config/material/app-rtl.min.css') }}" rel="stylesheet" type="text/css" id="app-default-stylesheet" />
+        <!-- Bootstrap Css -->
+        <link href="{{ asset('dashboard/assets/css/bootstrap-rtl.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css">
+        <!-- Icons Css -->
+        <link href="{{ asset('dashboard/assets/css/icons-rtl.min.css') }}" rel="stylesheet" type="text/css">
+        <!-- App Css-->
+        <link href="{{ asset('dashboard/assets/css/app-dark-rtl.min.css') }}" id="app-style" rel="stylesheet" type="text/css">
 
-		<link href="{{asset('dashboard/assets/css/config/modern/bootstrap-dark.min.css')}}" rel="stylesheet" type="text/css" id="bs-dark-stylesheet" />
-		<link href="{{asset('dashboard/assets/css/config/modern/app-dark.min.css')}}" rel="stylesheet" type="text/css" id="app-dark-stylesheet" />
-
-		<!-- icons -->
-		<link href="{{asset('dashboard/assets/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600&display=swap" rel="stylesheet">
-        <link href="{{asset('dashboard/assets/libs/sweetalert2/sweetalert2.min.css')}}" rel="stylesheet" type="text/css" />
+
         <style>
             *,h1,h2,h3,h4,h5,h6,span,a,p{
-                font-family: 'Cairo', sans-serif;
-
-            }
-            .form-control {
-             text-align: right;
+            font-family: 'Cairo', sans-serif;
             }
         </style>
+
     </head>
 
-    <body class="authentication-bg authentication-bg-pattern">
-
-        <div class="account-pages mt-5 mb-5">
+    <body class="account-pages">
+        <div class="home-btn d-none d-sm-block">
+            <a href="index.html" class="text-dark"><i class="fas fa-home h2"></i></a>
+        </div>
+        <div class="account-pages my-5 pt-5">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-md-8 col-lg-6 col-xl-4">
-                        <div class="card bg-pattern">
+                        <div class="card overflow-hidden">
+                            <div class="bg-primary">
+                                <div class="text-primary text-center p-4">
+                                    <h5 class="text-white font-size-20">أهلا بك</h5>
+                                    <p class="text-white-50">سجل الدخول للوصول للوحة التحكم !</p>
+                                    <a href="index.html" class="logo logo-admin">
+                                        <img src="{{ asset('dashboard/assets/logo-sm.ico') }}" height="24" alt="logo">
+                                    </a>
+                                </div>
+                            </div>
 
                             <div class="card-body p-4">
-
-                                <div class="text-center w-75 m-auto">
-                                    <div class="auth-logo">
-                                        <a href="index.html" class="logo logo-dark text-center">
-                                            <span class="logo-lg">
-                                                <img src="{{asset('dashboard/assets/login_logo.png')}}" alt="" height="70">
-                                            </span>
-                                        </a>
-
-                                        <a href="#" class="logo logo-light text-center">
-                                            <span class="logo-lg">
-                                                <img src="{{asset('dashboard/assets/login_logo.png')}}" alt="" height="70">
-                                            </span>
-                                        </a>
-                                    </div>
-                                    <p class="text-muted mb-4 mt-3">قم بإدخال بريدك الالكتروني وكلمة المرور للوصول الى لوحة التحكم الخاصة بك.</p>
-                                </div>
                                 @if (session()->has('message'))
-                                    <div class="card text-white bg-{{ session()->get('type') }} mb-3">
-                                        <div class="card-body">
-                                            <h6 class="card-title text-white">تسجيل دخول خاطئ</h6>
-                                            <p class="card-text">{{ session()->get('message') }}.</p>
-                                        </div>
-                                    </div>
+                                <div class="mt-5 alert alert-danger  alert-dismissible fade show mb-0" role="alert">
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    <strong>دخول خاطئ : </strong> {{ session()->get('message') }}.
+                                </div>
                                 @endif
-                                <form action="{{ route('admin.loginPost') }}" method="post">
-                                    @csrf
-                                    <div class="mb-3">
-                                        <label for="emailaddress" class="form-label">البريد الالكتروني</label>
-                                        <input class="form-control" type="email" name="email" id="emailaddress" required="" value="admin@app.com" placeholder="البريد الألكتروني">
-                                    </div>
+                                <div class="p-3">
+                                    <form class="mt-4" action="{{ route('admin.loginPost') }}" method="POST">
+                                        @csrf
+                                        <div class="mb-3">
+                                            <label class="form-label" for="username">اسم المستخدم أو البريد الالكتروني</label>
+                                            <input type="text" name="email" class="form-control" id="username" placeholder="اسم المستخدم أو البريد الالكتروني">
+                                        </div>
 
-                                    <div class="mb-3">
-                                        <label for="password" class="form-label">كلمة المرور</label>
-                                        <div class="input-group input-group-merge">
-                                            <input type="password" id="password" name="password" class="form-control" value="password" placeholder="كلمةالمرور">
-                                            <div class="input-group-text" data-password="false">
-                                                <span class="password-eye"></span>
+                                        <div class="mb-3">
+                                            <label class="form-label" for="userpassword">كلمة المرور</label>
+                                            <input type="password" name="password" class="form-control" id="userpassword" placeholder="كلمة المرور">
+                                        </div>
+
+                                        <div class="mb-3 row">
+                                            <div class="col-sm-6">
+                                                <div class="form-check">
+                                                    <input type="checkbox" class="form-check-input" id="customControlInline">
+                                                    <label class="form-check-label" for="customControlInline">تذكرني</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 text-end">
+                                                <button class="btn btn-primary w-md waves-effect waves-light" type="submit">تسجيل الدخول</button>
                                             </div>
                                         </div>
-                                    </div>
 
-                                    <div class="mb-3">
-                                        <div class="form-check">
-                                            <input type="checkbox" class="form-check-input" id="checkbox-signin" checked>
-                                            <label class="form-check-label" for="checkbox-signin">تذكرني</label>
+                                        <div class="mt-2 mb-0 row">
+                                            <div class="col-12 mt-4">
+                                                <a href="pages-recoverpw.html"><i class="mdi mdi-lock"></i> هل نسيت كلمة المرور ؟</a>
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <div class="text-center d-grid">
-                                        <button class="btn btn-primary" type="submit"> تسجيل الدخول</button>
-                                    </div>
+                                    </form>
 
-                                </form>
+                                </div>
+                            </div>
 
-                            </div> <!-- end card-body -->
                         </div>
-                        <!-- end card -->
 
-                        <div class="row mt-3">
-                            <div class="col-12 text-center">
-                                <p> <a href="auth-recoverpw.html" class="text-white-50 ms-1">هل نسيت كلمة المرور ؟</a></p>
-                            </div> <!-- end col -->
+                        <div class="mt-5 text-center">
+                            <p class="mb-0">© <script>document.write(new Date().getFullYear())</script>2023 منصة خدماتي <i class="mdi mdi-heart text-danger"></i> خدماتي</p>
                         </div>
-                        <!-- end row -->
 
-                    </div> <!-- end col -->
+
+                    </div>
                 </div>
-                <!-- end row -->
             </div>
-            <!-- end container -->
         </div>
-        <!-- end page -->
 
-
-        <footer class="footer footer-alt text-white-50">
-            2015 - <script>document.write(new Date().getFullYear())</script> &copy;  حسين  محمد<a href="" class="text-white-50">مطور تطبيقات  الويب  </a>
-        </footer>
-
-        <!-- Vendor js -->
-        <script src="{{asset('dashboard/assets/js/vendor.min.js')}}"></script>
-
-        <!-- App js -->
-        <script src="{{asset('dashboard/assets/js/app.min.js')}}"></script>
-
-        <script src="{{asset('dashboard/assets/libs/sweetalert2/sweetalert2.all.min.js')}}"></script>
-
-        <!-- Sweet alert init js-->
-        <script src="{{asset('dashboard/assets/js/pages/sweet-alerts.init.js')}}"></script>
+    <!-- JAVASCRIPT -->
+    <script src="{{ asset('dashboard/assets/libs/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('dashboard/assets/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('dashboard/assets/libs/metismenu/metisMenu.min.js') }}"></script>
+    <script src="{{ asset('dashboard/assets/libs/simplebar/simplebar.min.js') }}"></script>
+    <script src="{{ asset('dashboard/assets/libs/node-waves/waves.min.js') }}"></script>
+    <script src="{{ asset('dashboard/assets/js/app.js') }}"></script>
 
     </body>
 </html>

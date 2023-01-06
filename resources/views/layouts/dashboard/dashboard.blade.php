@@ -23,7 +23,7 @@
     <body data-sidebar="dark">
 
         <div id="layout-wrapper">
-            
+
             @include('layouts.dashboard.navbar')
 
             @include('layouts.dashboard.sidebar')
@@ -63,7 +63,7 @@
                     </div>
                 </footer>
 
-                
+
             </div>
             <!-- end main content-->
 
@@ -77,6 +77,42 @@
         <script src="{{asset('dashboard/assets/libs/simplebar/simplebar.min.js')}}"></script>
         <script src="{{asset('dashboard/assets/libs/node-waves/waves.min.js')}}"></script>
         <script src="{{asset('dashboard/assets/js/app.js')}}"></script>
+        <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+        <script>
+            @if (Session::has('message'))
 
+                toastr.options = {
+                    "closeButton": true,
+                    "debug": false,
+                    "progressBar": true,
+                    "positionClass": "toast-top-right",
+                    "showDuration": "300",
+                    "hideDuration": "1000",
+                    "timeOut": "5000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                    }
+                    var type = "{{ Session::get('type', 'info') }}";
+                    switch (type) {
+                        case 'info':
+                            toastr.info("{{ Session::get('message') }}");
+                            break;
+                        case 'warning':
+                            toastr.warning("{{ Session::get('message') }}");
+                            break;
+                        case 'success':
+                            toastr.success("{{ Session::get('message') }}");
+                            break;
+                        case 'error':
+                            toastr.error("{{ Session::get('message') }}");
+                            break;
+                    }
+                @endif
+        </script>
     </body>
 </html>

@@ -165,7 +165,7 @@
                                 <a href="javascript:void(0);" class="dropdown-item notify-item" href="{{ route('admin.logout') }}"
                                 onclick="event.preventDefault();
                                               document.getElementById('logout-form').submit();">
-                                    <i class="fe-log-out"></i>
+                                    <i class="fas fa-sign-out-alt"></i>
                                     <span>تسجيل الخروج</span>
                                 </a>
 

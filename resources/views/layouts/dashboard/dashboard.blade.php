@@ -18,6 +18,21 @@
         <!-- App Css-->
         <link href="{{asset('dashboard/assets/css/app-rtl.min.css')}}" id="app-style" rel="stylesheet" type="text/css">
 
+        @if(app()->getLocale()=='ar')
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600&display=swap" rel="stylesheet">
+
+        <style>
+            *,h1,h2,h3,h4,h5,h6,span,a,p,li,#sidebar-menu ul li a {
+            font-family: 'Cairo', sans-serif;
+
+            }
+        </style>
+
+        @endif
+
     </head>
 
     <body data-sidebar="dark">
@@ -33,18 +48,10 @@
                     <div class="container-fluid">
 
                         <!-- start page title -->
-                        <div class="page-title-box">
-                            <div class="row align-items-center">
-                                <div class="col-md-8">
-                                    <h6 class="page-title">Starter Page</h6>
-                                    <ol class="breadcrumb m-0">
-                                        <li class="breadcrumb-item"><a href="#">Veltrix</a></li>
-                                        <li class="breadcrumb-item"><a href="#">Pages</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">Starter Page</li>
-                                    </ol>
-                                </div>
-                            </div>
-                        </div>
+
+                        @if(!Request::is('admin/dashboard'))
+                           @include('layouts.dashboard.crumb')
+                        @endif
                         <!-- end page title -->
 
                         <!-- Start Your Main Content Here-->
@@ -57,7 +64,7 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-12">
-                                © <script>document.write(new Date().getFullYear())</script> Veltrix<span class="d-none d-sm-inline-block"> - Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesbrand.</span>
+                                © <script>document.write(new Date().getFullYear())</script> خدماتي<span class="d-none d-sm-inline-block"> - مشغل بواسطة <i class="mdi mdi-heart text-danger"></i> فريق خدماتي للتطوير.</span>
                             </div>
                         </div>
                     </div>

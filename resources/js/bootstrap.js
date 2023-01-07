@@ -23,7 +23,8 @@ window.Echo = new Echo({
     broadcaster: 'pusher',
     key: 'hussienkey',
     cluster:"mt1",
-    forceTLS: false,
+    forceTLS: true,
+    disableStats: true,
     wsHost: window.location.hostname,
-    wsPort: 6001,
+    wssPort: 6001,
 });

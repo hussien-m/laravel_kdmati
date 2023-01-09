@@ -78,11 +78,25 @@
         <main class="py-4">
             @yield('content')
         </main>
+        <audio id="notification" src="{{ asset('notification.mp3') }}" muted></audio>
     </div>
 <script src="{{ asset('js/app.js') }}"></script>
     <script type="module">
-        Echo.channel('events').listen('RealTimeMessageEvent', (e) => console.log("RealTimeMessageEvent: "+e.message));
-        console.log();
+        Echo.channel('events')
+            .listen('RealTimeMessageEvent', (e) => {
+
+                console.log("RealTimeMessageEvent: "+e.message);
+                document.getElementById('notification').muted = false;
+                document.getElementById('notification').play();
+
+            });
+
+
+
+
+        //document.getElementById('notification').muted = false;
+        //document.getElementById('notification').play();
+        //console.log("RealTimeMessageEvent: "+e.message)
     </script>
 </body>
 </html>

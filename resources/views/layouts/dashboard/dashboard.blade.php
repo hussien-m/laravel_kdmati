@@ -5,6 +5,7 @@
 
         <meta charset="utf-8">
         <title>Starter Page | Veltrix - Admin & Dashboard Template</title>
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta content="Premium Multipurpose Admin & Dashboard Template" name="description">
         <meta content="Themesbrand" name="author">
@@ -78,15 +79,15 @@
         <div class="rightbar-overlay"></div>
 
         <!-- JAVASCRIPT -->
+
         <script src="{{asset('dashboard/assets/libs/jquery/jquery.min.js')}}"></script>
         <script src="{{asset('dashboard/assets/libs/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
         <script src="{{asset('dashboard/assets/libs/metismenu/metisMenu.min.js')}}"></script>
         <script src="{{asset('dashboard/assets/libs/simplebar/simplebar.min.js')}}"></script>
         <script src="{{asset('dashboard/assets/libs/node-waves/waves.min.js')}}"></script>
         <script src="{{asset('dashboard/assets/js/app.js')}}"></script>
-        <link rel="stylesheet" type="text/css"
-        href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
         <script>
             @if (Session::has('message'))
 
@@ -120,6 +121,10 @@
                             break;
                     }
                 @endif
+        </script>
+        <script type="module">
+            Echo.channel('events').listen('RealTimeMessageEvent', (e) => console.log("RealTimeMessageEvent: "+e.message));
+            console.log();
         </script>
     </body>
 </html>

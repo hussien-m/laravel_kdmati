@@ -122,7 +122,7 @@
                     }
                 @endif
         </script>
-        <script type="module">
+        <script type="module" defer>
             Echo.channel('events').listen('RealTimeMessageEvent', (e) => console.log("RealTimeMessageEvent: "+e.message));
             console.log();
         </script>

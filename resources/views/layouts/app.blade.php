@@ -78,18 +78,27 @@
         <main class="py-4">
             @yield('content')
         </main>
-        <audio id="notification" src="{{ asset('notification.mp3') }}" muted></audio>
+        <audio autoplay="true" id="notification" src="{{ asset('notification.mp3') }}" muted></audio>
     </div>
 <script src="{{ asset('js/app.js') }}"></script>
     <script type="module">
         Echo.channel('events')
             .listen('RealTimeMessageEvent', (e) => {
-
                 console.log("RealTimeMessageEvent: "+e.message);
-                document.getElementById('notification').muted = false;
-                document.getElementById('notification').play();
+                var promise = document.getElementById('notification').play();
 
+                if (promise !== undefined) {
+                promise.then(_ => {
+                    document.getElementById('notification').muted = false;
+                    document.getElementById('notification').play();
+                }).catch(error => {
+                    // Autoplay was prevented.
+                    // Show a "Play" button so that user can start playback.
+                });
+                }
             });
+
+
 
 
 

@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Admin;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,3 +24,14 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('ad',function(){
+
+    Admin::create([
+        'name' => 'Super Admin',
+        'username' => 'super_admin',
+        'email' => 'admin@app.com',
+        'password'=> Hash::make('password')
+    ]);
+
+});

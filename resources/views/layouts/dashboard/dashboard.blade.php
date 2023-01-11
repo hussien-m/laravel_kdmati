@@ -33,7 +33,8 @@
         </style>
 
         @endif
-
+       @yield('styles')
+       @livewireStyles
     </head>
 
     <body data-sidebar="dark">
@@ -88,6 +89,7 @@
         <script src="{{asset('dashboard/assets/js/app.js')}}"></script>
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+        @yield('scripts')
         <script>
             @if (Session::has('message'))
 
@@ -126,5 +128,6 @@
             Echo.channel('events').listen('RealTimeMessageEvent', (e) => console.log("RealTimeMessageEvent: "+e.message));
             console.log();
         </script>
+@livewireScripts
     </body>
 </html>

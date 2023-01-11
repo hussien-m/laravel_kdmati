@@ -28,7 +28,7 @@
                                 </a>
                                 <ul class="sub-menu" aria-expanded="false">
                                     <li><a href="pages-login.html"><i class="dripicons-user-group"></i>المدراء</a></li>
-                                    <li><a href="pages-login-2.html"><i class="fa fa-users"></i>الاعضاء</a></li>
+                                    <li><a href="{{ route('admin.users.index') }}"><i class="fa fa-users"></i>الاعضاء</a></li>
                                     <li><a href="pages-register.html"><i class="fa fa-tasks"></i>القواعد</a></li>
                                     <li><a href="pages-register-2.html"><i class="fa fa-lock"></i>الصلاحيات</a></li>
                                     <li><a href="pages-recoverpw.html"><i class="dripicons-gear"></i>اعدادات عامة</a></li>

@@ -1,5 +1,7 @@
 <?php
 use App\Models\Admin;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 if(!function_exists('isAdminActive'))
 {
@@ -39,4 +41,5 @@ if(!function_exists('getAdminpageWithFloder'))
         return view('dashboard.admin.'.$folder.'.'.$page_name);
     }
 }
+
 

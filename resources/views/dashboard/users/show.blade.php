@@ -3,9 +3,7 @@
 @section('styles')@endsection
 
 @section('content')
-
-    ششسيشسي
-
+عرض
 @stop
 
 @section('scripts')@endsection

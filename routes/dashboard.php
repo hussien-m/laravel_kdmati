@@ -4,6 +4,7 @@ use App\Events\RealTimeMessageEvent;
 use App\Http\Controllers\Dashboard\AdminController;
 use App\Http\Controllers\Dashboard\AdminLoginController;
 use App\Http\Controllers\Dashboard\DashboardController;
+use App\Http\Controllers\Dashboard\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('noti',function(){
@@ -32,6 +33,10 @@ Route::name('admin.')->prefix('admin')->group(function(){
         Route::get('dashboard',[DashboardController::class,'index'])->name('dashboard');
 
         Route::get('admins',[AdminController::class,'index'])->name('admins');
+
+        Route::resource('users',UserController::class);
+        Route::get('pagination/fetch_data',[UserController::class,'fetch_data'])->name('user.paginate');
+        Route::get('search/fetch_data',[UserController::class,'search_fetch_data'])->name('user.paginate');
 
     });
 

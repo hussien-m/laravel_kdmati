@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\NewUserRegister;
 use App\Events\RealTimeMessageEvent;
 use App\Http\Controllers\Dashboard\AdminController;
 use App\Http\Controllers\Dashboard\AdminLoginController;
@@ -7,12 +8,17 @@ use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\GeneralSettingController;
 use App\Http\Controllers\Dashboard\UserController;
+use App\Models\Admin;
+use App\Notifications\RegisterNewNotification;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Route;
 
 Route::get('noti',function(){
 
-    event(new RealTimeMessageEvent('Hello'));
-    echo "message Sent";
+    $user = Admin::first();
+
+    $user->notify(new RegisterNewNotification('Hello World'));
+
 });
 
 Route::name('admin.')->prefix('admin')->group(function(){

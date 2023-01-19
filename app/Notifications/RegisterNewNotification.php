@@ -35,7 +35,7 @@ class RegisterNewNotification extends Notification implements ShouldBroadcast
      */
     public function via($notifiable)
     {
-        return ['database','broadcast'];
+        return ['broadcast'];
     }
 
     /**
@@ -69,7 +69,8 @@ class RegisterNewNotification extends Notification implements ShouldBroadcast
     public function toBroadcast($notifiable)
     {
         return new BroadcastMessage([
-            'message' => "$this->message (Admin $notifiable)"
+            'message' => $this->message,
+            'type' => 'broadcast',
         ]);
     }
 

@@ -10,7 +10,7 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class RealTimeMessageEvent implements ShouldBroadcast
+class NewUserRegister implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -20,11 +20,10 @@ class RealTimeMessageEvent implements ShouldBroadcast
      * @return void
      */
 
-    public $message;
-
+     public $message;
     public function __construct($message)
     {
-        $this->message=$message;
+        $this->message = $message;
     }
 
     /**

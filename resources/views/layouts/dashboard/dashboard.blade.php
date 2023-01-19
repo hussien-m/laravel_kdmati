@@ -124,18 +124,13 @@
                     }
                 @endif
         </script>
-        <script type="module">
-            //Echo.channel('events').listen('RealTimeMessageEvent', (e) => console.log("RealTimeMessageEvent: "+e.message));
-            //console.log();
+        <script >
 
-           // Echo.private('events')
-             //   .listen('RealTimeMessageEvent',(e) => console.log('RealTimeMessageEvent: '+e.message));
+        Echo.private('App.Models.Admin.1')
+            .notification((notification) => {
+                console.log(notification.type);
+            });
 
-
-             Echo.private('App.Models.Admin.1')
-                 .notification((notification) => {
-                    console.log(notification.message);
-                });
         </script>
 @livewireScripts
     </body>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\RealTimeMessageEvent;
 use App\Models\Admin;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
@@ -44,27 +45,10 @@ Route::get('ad',function(){
 Route::get('/new',function(){
 
 
-    $admins = Admin::all();
-
-    DB::beginTransaction();
-     try{
-
-
-             User::create([
-                'first_name' => "hyy",
-                'last_name' => "asashudas",
-                'email' => "hsd@lph.hsjkd",
-                'password' => Hash::make('password'),
-            ]);
-
-            Notification::send($admins , new RegisterNewNotification("تم تسجيل مستخدم جديد"));
-
-            DB::commit();
+    //$admins = Admin::all();
+    //Notification::send($admins , new RegisterNewNotification("تم تسجيل مستخدم جديد"));
+    event( new RealTimeMessageEvent("asdsd"));
 
 
-    } catch (Exception $ex){
-        DB::rollBack();
-        return $ex->getMessage();
-    }
-
+    return "Noti Sent";
 });

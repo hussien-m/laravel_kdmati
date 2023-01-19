@@ -71,10 +71,6 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        dd($data);
-        $admins = Admin::all();
-        Notification::send($admins , new RegisterNewNotification("تم تسجيل مستخدم جديد"));
-
         return User::create([
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],

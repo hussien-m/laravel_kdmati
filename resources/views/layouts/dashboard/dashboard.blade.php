@@ -125,8 +125,8 @@
                 @endif
         </script>
         <script type="module">
-            Echo.channel('events').listen('RealTimeMessageEvent', (e) => console.log("RealTimeMessageEvent: "+e.message));
-            console.log();
+            //Echo.channel('events').listen('RealTimeMessageEvent', (e) => console.log("RealTimeMessageEvent: "+e.message));
+            //console.log();
 
            // Echo.private('events')
              //   .listen('RealTimeMessageEvent',(e) => console.log('RealTimeMessageEvent: '+e.message));

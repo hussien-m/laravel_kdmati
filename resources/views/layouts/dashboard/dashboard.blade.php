@@ -11,6 +11,7 @@
         <meta content="Themesbrand" name="author">
         <!-- App favicon -->
         <link rel="shortcut icon" href="{{asset('dashboard/assets/images/favicon.ico')}}">
+        @yield('styles')
 
         <!-- Bootstrap Css -->
         <link href="{{asset('dashboard/assets/css/bootstrap-rtl.min.css')}}" id="bootstrap-style" rel="stylesheet" type="text/css">
@@ -33,7 +34,6 @@
         </style>
 
         @endif
-       @yield('styles')
        @livewireStyles
     </head>
 
@@ -127,6 +127,15 @@
         <script type="module">
             Echo.channel('events').listen('RealTimeMessageEvent', (e) => console.log("RealTimeMessageEvent: "+e.message));
             console.log();
+
+           // Echo.private('events')
+             //   .listen('RealTimeMessageEvent',(e) => console.log('RealTimeMessageEvent: '+e.message));
+
+
+             Echo.private('App.Models.Admin.1')
+                 .notification((notification) => {
+                    console.log(notification.message);
+                });
         </script>
 @livewireScripts
     </body>

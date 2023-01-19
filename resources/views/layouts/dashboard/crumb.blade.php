@@ -10,9 +10,9 @@
         <div class="col-md-4">
             <div class="float-end d-none d-md-block">
                 <div class="dropdown">
-                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a onclick="window.history.back();" class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                        رجوع للخلف <i class="dripicons-arrow-right me-2"></i>
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>

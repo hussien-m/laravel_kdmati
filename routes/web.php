@@ -1,8 +1,12 @@
 <?php
 
 use App\Models\Admin;
+use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\RegisterNewNotification;
+use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,5 +37,34 @@ Route::get('ad',function(){
         'email' => 'admin@app.com',
         'password'=> Hash::make('password')
     ]);
+
+});
+
+
+Route::get('/new',function(){
+
+
+    $admins = Admin::all();
+
+    DB::beginTransaction();
+     try{
+
+
+             User::create([
+                'first_name' => "hyy",
+                'last_name' => "asashudas",
+                'email' => "hsd@lph.hsjkd",
+                'password' => Hash::make('password'),
+            ]);
+
+            Notification::send($admins , new RegisterNewNotification("تم تسجيل مستخدم جديد"));
+
+            DB::commit();
+
+
+    } catch (Exception $ex){
+        DB::rollBack();
+        return $ex->getMessage();
+    }
 
 });

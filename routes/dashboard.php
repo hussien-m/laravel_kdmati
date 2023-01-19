@@ -3,7 +3,9 @@
 use App\Events\RealTimeMessageEvent;
 use App\Http\Controllers\Dashboard\AdminController;
 use App\Http\Controllers\Dashboard\AdminLoginController;
+use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\DashboardController;
+use App\Http\Controllers\Dashboard\GeneralSettingController;
 use App\Http\Controllers\Dashboard\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,6 +32,9 @@ Route::name('admin.')->prefix('admin')->group(function(){
 
         Route::post('/logout',[AdminLoginController::class,'destroy'])->name('logout');
 
+        Route::get('settings',[GeneralSettingController::class,'index'])->name('settings');
+        Route::post('settings/save',[GeneralSettingController::class,'save'])->name('setting.save');
+
         Route::get('dashboard',[DashboardController::class,'index'])->name('dashboard');
 
         Route::get('admins',[AdminController::class,'index'])->name('admins');
@@ -37,6 +42,13 @@ Route::name('admin.')->prefix('admin')->group(function(){
         Route::resource('users',UserController::class);
         Route::get('pagination/fetch_data',[UserController::class,'fetch_data'])->name('user.paginate');
         Route::get('search/fetch_data',[UserController::class,'search_fetch_data'])->name('user.paginate');
+        Route::get('user/activate/{id}',[UserController::class,'activate'])->name('user.activate');
+        Route::get('user/deActivate/{id}',[UserController::class,'deActivate'])->name('user.deActivate');
+
+
+
+        Route::resource('categories',CategoryController::class);
+        Route::get('sub/category/{slug}',[CategoryController::class,'subCategory'])->name('sub.category');
 
     });
 

@@ -28,10 +28,9 @@
                                 </a>
                                 <ul class="sub-menu" aria-expanded="false">
                                     <li><a href="pages-login.html"><i class="dripicons-user-group"></i>المدراء</a></li>
-                                    <li><a href="{{ route('admin.users.index') }}"><i class="fa fa-users"></i>الاعضاء</a></li>
                                     <li><a href="pages-register.html"><i class="fa fa-tasks"></i>القواعد</a></li>
                                     <li><a href="pages-register-2.html"><i class="fa fa-lock"></i>الصلاحيات</a></li>
-                                    <li><a href="pages-recoverpw.html"><i class="dripicons-gear"></i>اعدادات عامة</a></li>
+                                    <li><a href="{{ route('admin.settings') }}"><i class="dripicons-gear"></i>اعدادات عامة</a></li>
                                     <li><a href="pages-recoverpw-2.html"><i class="fa fa-cog"></i> الواجهة الرئيسية</a></li>
                                     <li><a href="pages-recoverpw-2.html"><i class="dripicons-list"></i>سجل الاحدات </a></li>
                                 </ul>
@@ -53,12 +52,24 @@
                             <li class="menu-title">منصة خدماتي</li>
                             <li class="mm-active">
                                 <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                    <i class="fa fa-users"></i>
+
+                                    <span>الاعضاء</span>
+                                </a>
+                                <ul class="sub-menu" aria-expanded="false">
+                                    <li><a href="pages-login.html"><i class="dripicons-checkmark"></i>بانتظار التفعيل <span class="badge badge-info badge-pill float-right">{{ $deactive ?? "0" }}</span></a></li>
+                                    <li><a href="{{ route('admin.users.index') }}"><i class="dripicons-view-list-large"></i>الجميع</a></li>
+                                    <li><a href="pages-login.html"><i class="dripicons-plus"></i>أضافة عضو</a></li>
+                                </ul>
+                            </li>
+                            <li class="mm-active">
+                                <a href="javascript: void(0);" class="has-arrow waves-effect">
                                     <i class="dripicons-swap"></i>
 
                                     <span>التصنيفات</span>
                                 </a>
                                 <ul class="sub-menu" aria-expanded="false">
-                                    <li><a href="pages-login-2.html"><i class="dripicons-view-list-large"></i>الجميع</a></li>
+                                    <li><a href="{{ route('admin.categories.index') }}"><i class="dripicons-view-list-large"></i>الجميع</a></li>
                                     <li><a href="pages-login.html"><i class="dripicons-plus"></i>أضافة تصنيف</a></li>
                                 </ul>
                             </li>

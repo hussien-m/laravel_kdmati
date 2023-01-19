@@ -34,6 +34,6 @@ class RealTimeMessageEvent implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new Channel('events');
+        return new PrivateChannel('events');
     }
 }

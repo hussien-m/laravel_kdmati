@@ -52,7 +52,9 @@
                         $('tbody').html('');
                         $('tbody').html(data);
                     }
-                })
+                }).done(function( msg ) {
+                    $('[data-bs-toggle="tooltip"]').tooltip();
+                });
             }
 
             $(document).on('keyup', '#serach', function() {

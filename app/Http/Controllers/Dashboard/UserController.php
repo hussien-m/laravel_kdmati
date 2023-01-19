@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -32,6 +33,28 @@ class UserController extends Controller
                             ->paginate(10);
             return view('dashboard.users.pagination_data',$data)->render();
         }
+    }
+
+    public function user($id)
+    {
+       return User::findOrFail($id);
+    }
+    public function activate($id)
+    {
+        $user = $this->user($id);
+        $user->status = 1;
+        $user->save();
+        toast("تم تفعيل المستخدم",'success');
+        return back();
+
+    }
+    public function deActivate($id)
+    {
+        $user = $this->user($id);
+        $user->status = 0;
+        $user->save();
+        toast("تم تعطيل المستخدم",'success');
+        return back();
     }
 
     public function create()
@@ -65,6 +88,9 @@ class UserController extends Controller
 
     public function destroy($id)
     {
-
+        $user = User::findOrFail($id);
+        $user->delete();
+        toast("تم حذف المستخدم",'success');
+        return back();
     }
 }

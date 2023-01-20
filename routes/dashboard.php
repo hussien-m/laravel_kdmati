@@ -1,7 +1,5 @@
 <?php
 
-use App\Events\NewUserRegister;
-use App\Events\RealTimeMessageEvent;
 use App\Http\Controllers\Dashboard\AdminController;
 use App\Http\Controllers\Dashboard\AdminLoginController;
 use App\Http\Controllers\Dashboard\CategoryController;
@@ -9,17 +7,21 @@ use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\GeneralSettingController;
 use App\Http\Controllers\Dashboard\UserController;
 use App\Models\Admin;
-use App\Notifications\RegisterNewNotification;
+use App\Models\User;
+use App\Notifications\NewUserRegister;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Route;
 
-Route::get('noti',function(){
 
-    $user = Admin::first();
+Route::get('n',function(){
 
-    $user->notify(new RegisterNewNotification('Hello World'));
+    Notification::send(\App\Models\Admin::all(),new NewUserRegister('تم تسجيل مستخدم جديد'));
 
 });
+
+
+
 
 Route::name('admin.')->prefix('admin')->group(function(){
 
@@ -35,6 +37,7 @@ Route::name('admin.')->prefix('admin')->group(function(){
 
 
     Route::middleware(['auth:admin','admin_active'])->group(function(){
+
 
         Route::post('/logout',[AdminLoginController::class,'destroy'])->name('logout');
 

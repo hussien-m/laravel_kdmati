@@ -128,5 +128,13 @@
                 </div>
             </div>
         </div>
+        <script src="{{asset('js/app.js')}}"></script>
+
+        <script type="module">
+                    Echo.private('App.Models.User.1')
+                    .notification((notification) => {
+                    console.log(notification.message);
+                });
+        </script>
     </body>
 </html>

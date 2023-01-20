@@ -4,8 +4,7 @@
 
 @section('content')
 
-    ششسيشسي
-
+{{ $c }}
 @stop
 
 @section('scripts')@endsection

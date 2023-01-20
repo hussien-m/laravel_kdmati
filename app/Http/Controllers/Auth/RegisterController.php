@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Admin;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Notifications\NewUserRegister;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\RegisterNewNotification;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -71,6 +72,9 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $admin = Admin::first();
+        $admin->notify(new NewUserRegister(" تم تسجيل مستخدم جديد"  .$data['first_name']));
+
         return User::create([
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],

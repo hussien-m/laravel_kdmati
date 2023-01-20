@@ -2,7 +2,6 @@
 
 namespace App\Notifications;
 
-use App\Models\Admin;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -10,7 +9,7 @@ use Illuminate\Notifications\Messages\BroadcastMessage;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class RegisterNewNotification extends Notification implements ShouldBroadcast
+class NewUserRegister extends Notification implements ShouldBroadcast
 {
     use Queueable;
 
@@ -21,7 +20,6 @@ class RegisterNewNotification extends Notification implements ShouldBroadcast
      */
 
     public $message;
-
     public function __construct($message)
     {
         $this->message = $message;
@@ -35,7 +33,7 @@ class RegisterNewNotification extends Notification implements ShouldBroadcast
      */
     public function via($notifiable)
     {
-        return ['broadcast'];
+        return ['database','broadcast'];
     }
 
     /**
@@ -58,26 +56,24 @@ class RegisterNewNotification extends Notification implements ShouldBroadcast
      * @param  mixed  $notifiable
      * @return array
      */
-
-    public function toDatabase($notifiable)
-    {
-        return [
-                'message' => $this->message,
-            ];
-    }
-
-    public function toBroadcast($notifiable)
-    {
-        return new BroadcastMessage([
-            'message' => $this->message,
-            'type' => 'broadcast',
-        ]);
-    }
-
     public function toArray($notifiable)
     {
         return [
             //
         ];
+    }
+    public function toDatabase($notifiable)
+    {
+        return [
+            'message' => $this->message
+        ];
+    }
+    public function toBroadcast($notifiable)
+    {
+        return new BroadcastMessage([
+            'message' => "$this->message",
+        ]);
+
+
     }
 }

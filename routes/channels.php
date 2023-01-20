@@ -19,14 +19,8 @@ Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
     return (int) $user->id === (int) $id;
 });
 
-
-Broadcast::routes(['middleware' => 'auth:admin']);
-
-
-Broadcast::channel('App.Models.Admin.{userId}', function ($user, $userId) {
-    return auth()->guard('admin')->user()->id === $userId;
+Broadcast::channel('App.Models.Admin.{id}', function ($user, $id) {
+    return (int) $user->id === (int) $id;
 });
 
-Broadcast::channel('events', function ($user) {
-    return true;
-});
+

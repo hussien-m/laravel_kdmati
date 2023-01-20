@@ -81,7 +81,9 @@
         <audio autoplay="true" id="notification" src="{{ asset('notification.mp3') }}" muted></audio>
     </div>
 <script src="{{ asset('js/app.js') }}"></script>
+
     <script type="module">
+        /*
         Echo.channel('events')
             .listen('RealTimeMessageEvent', (e) => {
                 console.log("RealTimeMessageEvent: "+e.message);
@@ -106,6 +108,17 @@
         //document.getElementById('notification').muted = false;
         //document.getElementById('notification').play();
         //console.log("RealTimeMessageEvent: "+e.message)
+        */
+
+
+        Echo.private('App.Models.User.1')
+                .notification((notification) => {
+                    console.log(notification.message);
+                });
+
+
+
+          //Echo.channel('events').listen('NewUserRegister', (e) => console.log("RealTimeEventMessage: "+e.message));
     </script>
 </body>
 </html>

@@ -33,6 +33,6 @@ class NewUserRegister implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('events');
+        return new Channel('events');
     }
 }

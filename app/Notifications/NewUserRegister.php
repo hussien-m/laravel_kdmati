@@ -2,6 +2,7 @@
 
 namespace App\Notifications;
 
+use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -72,6 +73,7 @@ class NewUserRegister extends Notification implements ShouldBroadcast
     {
         return new BroadcastMessage([
             'message' => "$this->message",
+            'time'    => date("H:i:s"),
         ]);
 
 

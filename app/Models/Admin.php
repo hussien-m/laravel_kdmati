@@ -35,4 +35,9 @@ class Admin extends Authenticatable
     public function scopeisActive($query){
         return $query->where('is_active',1);
     }
+
+    public function receivesBroadcastNotificationsOn():string
+    {
+        return "App.Models.Admin.".$this->id;
+    }
 }

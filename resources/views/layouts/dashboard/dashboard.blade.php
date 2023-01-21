@@ -26,7 +26,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600&display=swap" rel="stylesheet">
-
     <style>
         *,
         h1,
@@ -157,11 +156,12 @@
                                 });
                             }
 
-                    var html= '<a href="#" class="text-reset notification-item"><div class="d-flex"><div class="flex-shrink-0 me-3"><div class="avatar-xs"><span class="avatar-title bg-warning rounded-circle font-size-13"><i class="mdi mdi-message-text-outline"></i></span></div></div><div class="flex-grow-1"><div class="text-muted"><p class="mb-1">'+notification.message+'</p></div></div></div></a>';
-                    var count_noti = $("#noti-count").text();
-                    var count = parseInt(count_noti)+1;
-                    $("#msg-noti").append(html);
-                    $("#noti-count").html(count);
+                    var html= '<a href="#" class="text-reset notification-item"><div class="d-flex"><div class="flex-shrink-0 me-3"><div class="avatar-xs"><span class="avatar-title bg-warning rounded-circle font-size-13"><i class="mdi mdi-message-text-outline"></i></span></div></div><div class="flex-grow-1"><div class="text-muted"><p class="mb-1">'+notification.message+'</p></div><b style="font-size: 10px">'+notification.time+'</b></div></div></a>';
+
+                    //var count_noti = $("#noti-count").text();
+                    //var count = parseInt(count_noti)+1;
+                    //$("#msg-noti").prepend(html);
+                    //$("#noti-count").html(count);
                     console.log(notification.message);
                 });
     </script>

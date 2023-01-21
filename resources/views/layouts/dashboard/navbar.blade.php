@@ -34,7 +34,8 @@
                             </button>
                         </div>
 
-                        @include('layouts.dashboard.notifications')
+                        <livewire:dashboard.notifications/>
+
 
                         <div class="dropdown d-inline-block">
                             <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"

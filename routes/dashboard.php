@@ -5,6 +5,7 @@ use App\Http\Controllers\Dashboard\AdminLoginController;
 use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\GeneralSettingController;
+use App\Http\Controllers\Dashboard\NotificationsController;
 use App\Http\Controllers\Dashboard\UserController;
 use App\Models\Admin;
 use App\Models\User;
@@ -58,6 +59,8 @@ Route::name('admin.')->prefix('admin')->group(function(){
 
         Route::resource('categories',CategoryController::class);
         Route::get('sub/category/{slug}',[CategoryController::class,'subCategory'])->name('sub.category');
+
+        Route::get('notifications',[NotificationsController::class,'index']);
 
     });
 

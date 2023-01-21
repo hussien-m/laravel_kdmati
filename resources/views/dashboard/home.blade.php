@@ -4,7 +4,6 @@
 
 @section('content')
 
-{{ $c }}
 @stop
 
 @section('scripts')@endsection

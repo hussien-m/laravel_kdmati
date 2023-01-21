@@ -10,12 +10,10 @@ class DashboardController extends Controller
 {
     public function __construct()
     {
-        //$this->middleware('auth:admin');
+        $this->middleware('auth:admin');
     }
     public function index()
     {
-        $data['notis'] =Auth::user()->unReadNotifications;
-        $data['c']     =$data['notis']->count();
-        return view('dashboard.home',$data);
+        return view('dashboard.home');
     }
 }

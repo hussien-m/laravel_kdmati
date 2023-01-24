@@ -13,7 +13,7 @@
 
     <div class="userlistacount" id="item1">
         <ul id="item1">
-            <li id="item1"><a href="#" id="item1"><i class="bi bi-person-fill" id="item1"></i>Hashem</a></li>
+            <li id="item1"><a href="#" id="item1"><i class="bi bi-person-fill" id="item1"></i>{{ Auth::user()->first_name.' '.Auth::user()->last_name }}</a></li>
             <li id="item1"><a href="#" id="item1"><i class="bi bi-bookmark-check-fill" id="item1"></i>مجموعاتى</a></li>
             <li id="item1"><a href="#" id="item1"><i class="bi bi-currency-dollar" id="item1"></i>الرصيد</a></li>
             <li id="item1"><a href="#" id="item1"><i class="bi bi-sliders" id="item1"></i>الأعدادت</a></li>

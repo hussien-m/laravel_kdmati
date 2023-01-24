@@ -49,6 +49,5 @@ Route::get('/new',function(){
     //Notification::send($admins , new RegisterNewNotification("تم تسجيل مستخدم جديد"));
     event( new RealTimeMessageEvent("asdsd"));
 
-
     return "Noti Sent";
 });

@@ -1,0 +1,41 @@
+@media only screen and (max-width: 340px) {
+    a.massege {
+        display: none;
+    }
+   .tow-item div{
+    gap: 0.1rem !important;   
+}
+.massege-div{
+    display: none;
+}
+.alaret-item {
+    width: 100%;
+}
+.form-serch{
+    width: 100%;
+    padding: 0.2rem;
+}
+input[type="text"] {
+    font-size: 0.5rem;
+}
+.row-item h2{
+    font-size: 1rem;
+}
+
+.jops-url a {
+    font-size: 0.6rem;
+}
+
+
+}
+
+@media only screen and (max-width: 460px) {
+    .item-cat-section{
+        width: 99% !important;
+    }
+    .item-jop{
+
+        max-width: 100% !important;
+    }
+
+}

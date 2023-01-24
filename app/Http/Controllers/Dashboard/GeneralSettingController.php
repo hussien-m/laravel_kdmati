@@ -10,7 +10,7 @@ class GeneralSettingController extends DashboardController
 {
     public function index()
     {
-        return view('dashboard.settings.index',['setting' => DB::table('settings')->select('*')->get()]);
+        return view('dashboard.settings.index',['setting' => DB::table('settings')->select('*')->get(), 'pagename'=>"الاعدادات"]);
     }
 
     public function save(Request $request)

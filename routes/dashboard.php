@@ -50,8 +50,18 @@ Route::name('admin.')->prefix('admin')->group(function(){
         Route::get('admins',[AdminController::class,'index'])->name('admins');
 
         Route::resource('users',UserController::class);
+
         Route::get('pagination/fetch_data',[UserController::class,'fetch_data'])->name('user.paginate');
-        Route::get('search/fetch_data',[UserController::class,'search_fetch_data'])->name('user.paginate');
+       // Route::get('search/fetch_data',[UserController::class,'search_fetch_data'])->name('user.paginate');
+
+
+
+        Route::get('wait/active',[UserController::class,'unActiveUser'])->name('unactive.users');
+
+        Route::get('wait/active/user',[UserController::class,'fetch_data_unactive'])->name('unactive.user.paginate');
+
+
+
         Route::get('user/activate/{id}',[UserController::class,'activate'])->name('user.activate');
         Route::get('user/deActivate/{id}',[UserController::class,'deActivate'])->name('user.deActivate');
 

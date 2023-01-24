@@ -12,9 +12,18 @@ class UserController extends Controller
 
     public function index()
     {
+
         $data['pagename'] = 'اعضاء المنصة';
         $data['users'] = DB::table('users')->latest()->paginate(10);
         return view('dashboard.users.index',$data);
+    }
+
+
+    public function unActiveUser()
+    {
+        $data['pagename'] = 'اعضاء المنصة غير المفعلين';
+        $data['users'] = DB::table('users')->where('status',0)->latest()->paginate(10);
+        return view('dashboard.users.unactive',$data);
     }
 
     function fetch_data(Request $request)
@@ -26,6 +35,27 @@ class UserController extends Controller
                     $query = str_replace(" ", "%", $query);
             $data['users'] = DB::table('users')
                             ->where('id', 'like', '%'.$query.'%')
+                            ->orWhere('email', 'like', '%'.$query.'%')
+                            ->orWhere('first_name', 'like', '%'.$query.'%')
+                            ->orWhere('last_name', 'like', '%'.$query.'%')
+                            ->latest()
+                            ->paginate(10);
+            return view('dashboard.users.pagination_data',$data)->render();
+        }
+    }
+
+    function fetch_data_unactive(Request $request)
+    {
+        if($request->ajax()){
+            $sort_by = $request->get('sortby');
+            $sort_type = $request->get('sorttype');
+                    $query = $request->get('query');
+                    $query = str_replace(" ", "%", $query);
+
+
+
+                  $data['users'] = DB::table('users')
+                            ->orWhere('id', 'like', '%'.$query.'%')
                             ->orWhere('email', 'like', '%'.$query.'%')
                             ->orWhere('first_name', 'like', '%'.$query.'%')
                             ->orWhere('last_name', 'like', '%'.$query.'%')
@@ -90,7 +120,7 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
         $user->delete();
-        toast("تم حذف المستخدم",'success');
-        return back();
+        //toast("تم حذف المستخدم",'success');
+        //return back();
     }
 }

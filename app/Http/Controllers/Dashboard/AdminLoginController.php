@@ -35,10 +35,10 @@ class AdminLoginController extends Controller
         ]);
 
     }
-    
     public function destroy(Request $request)
     {
         Auth::guard('admin')->logout();
         return redirect()->route('admin.login');
     }
+
 }

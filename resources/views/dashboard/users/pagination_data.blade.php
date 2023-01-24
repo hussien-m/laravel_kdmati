@@ -1,6 +1,6 @@
 @if ($users->count() > 0)
     @foreach ($users as $key => $row)
-        <tr>
+        <tr id="{{$row->id}}">
 
             <td>{{ $users->firstItem() + $key }}</td>
             <td>{{ $row->first_name . ' ' . $row->last_name }}</td>
@@ -35,11 +35,11 @@
                         @endif
 
 
-                        <a href="javascript:void(0);" onclick="if (confirm('Are you sure to delete this record?')) { document.getElementById('delete-customer-{{ $row->id }}').submit(); } else { return false; }"class="btn btn-dark"  data-bs-container="#tooltip-container" data-bs-toggle="tooltip" data-bs-placement="top" title="حذف">
+                        <a href="javascript:void(0);" data-id="{{ $row->id }}" data-name="{{$row->first_name}}" class="btn btn-dark del"  data-bs-container="#tooltip-container" data-bs-toggle="tooltip" data-bs-placement="top" title="حذف">
                             <i class="fa fa-trash"></i>
                         </a>
                 </div>
-                <form action="{{ route('admin.users.destroy',$row->id) }}" method="post" id="delete-customer-{{ $row->id }}" class="d-none">
+                <form action="javascript:void(0)" method="post" id="delete-customer-{{ $row->id }}" class="d-none">
                     @csrf
                     @method('DELETE')
                 </form>
@@ -55,4 +55,6 @@
         <td colspan="3" align="center"> {!! $users->links() !!}</td>
     @endif
 </tr>
+
+
 

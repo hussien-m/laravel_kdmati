@@ -8,7 +8,7 @@
                                     <img src="{{asset('dashboard/assets/logo-sm.ico')}}" alt="" height="30">
                                 </span>
                                 <span class="logo-lg">
-                                    <img src="{{asset('dashboard/assets/logo.png')}}" alt="" height="50">
+                                    <img src="{{asset('dashboard/assets/logo.png')}}" alt="" height="40">
                                 </span>
                             </a>
 
@@ -17,7 +17,7 @@
                                     <img src="{{asset('dashboard/assets/logo-sm.ico')}}" alt="" height="30">
                                 </span>
                                 <span class="logo-lg">
-                                    <img src="{{asset('dashboard/assets/logo.png')}}" alt="" height="50">
+                                    <img src="{{asset('dashboard/assets/logo.png')}}" alt="" height="40">
                                 </span>
                             </a>
                         </div>

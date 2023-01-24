@@ -7,15 +7,17 @@
                         <!-- Left Menu Start -->
                         <ul class="metismenu list-unstyled" id="side-menu">
                             <li class="menu-title">القائمة الرئيسية</li>
-                            <li>
-                                <a href="pages-starter.html" class="waves-effect">
-                                    <span><i class="dripicons-meter"></i>الرئيسية</span>
+                            <li class="mm-active">
+                                <a href="{{ route('admin.dashboard') }}" class="waves-effect">
+                                    <i class="ti-home"></i>
+                                    <span>الرئيسية</span>
                                 </a>
                             </li>
 
-                            <li>
-                                <a href="pages-starter.html" class="waves-effect">
-                                    <span><i class="dripicons-graph-bar"></i>احصائيات عامة</span>
+                            <li class="mm-active">
+                                <a href="{{ route('admin.dashboard') }}" class="waves-effect">
+                                    <i class="dripicons-graph-bar"></i>
+                                    <span>إحصائيات عامة</span>
                                 </a>
                             </li>
 
@@ -57,7 +59,7 @@
                                     <span>الاعضاء</span>
                                 </a>
                                 <ul class="sub-menu" aria-expanded="false">
-                                    <li><a href="pages-login.html"><i class="dripicons-checkmark"></i>بانتظار التفعيل <span class="badge badge-info badge-pill float-right">{{ $deactive ?? "0" }}</span></a></li>
+                                    <li><a href="{{ route('admin.unactive.users') }}"><i class="dripicons-checkmark"></i>بانتظار التفعيل <span class="badge badge-info badge-pill float-right">{{ $deactive ?? "0" }}</span></a></li>
                                     <li><a href="{{ route('admin.users.index') }}"><i class="dripicons-view-list-large"></i>الجميع</a></li>
                                     <li><a href="pages-login.html"><i class="dripicons-plus"></i>أضافة عضو</a></li>
                                 </ul>

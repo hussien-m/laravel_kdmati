@@ -4,7 +4,7 @@
 <head>
 
     <meta charset="utf-8">
-    <title>Starter Page | Veltrix - Admin & Dashboard Template</title>
+    <title>{{ $option->site_name ??  " | ". 'لوحة التحكم' }}</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description">
@@ -105,6 +105,8 @@
     <link rel="stylesheet" type="text/css"
         href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     @yield('scripts')
     <script>
         @if (Session::has('message'))
@@ -140,6 +142,7 @@
                     }
                 @endif
     </script>
+
     <script type="module">
         Echo.private('App.Models.Admin.1')
                     .notification((notification) => {

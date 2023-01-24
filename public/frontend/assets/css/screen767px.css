@@ -1,0 +1,51 @@
+@media only screen and (max-width: 767px)  {
+    header{
+        padding: 0.6rem;
+    }
+    .item-nav{
+        display: none !important;
+    }
+    .pc-logo{
+        display: none;
+    }
+    .pc-mobile{
+        display: inline;
+    }
+    .search-link{
+        display: none !important;
+    }
+    .tow-item{
+        gap: 0;
+    }
+    .v-list{
+        width: 100%;
+    }
+    .alaret-item {
+        width: 100%;
+    }
+    .cataogre-center{
+        display: inline-flex !important; 
+    }
+    .item-logo-btn-nav {
+        justify-content: flex-start !important;
+    }
+    .catogre{
+        display: none !important;
+    }
+    .item-cat-section{
+        min-width: 49% !important;
+    }
+    .item-jop{
+        min-width: 45% !important;
+       
+    }
+  
+  
+   
+    }
+
+    @media only screen and (max-width: 912px)  {
+        .item-cat-section{
+            min-width: 49% !important;
+        }
+    }

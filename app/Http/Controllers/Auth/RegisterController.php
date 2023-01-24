@@ -72,14 +72,15 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $admin = Admin::first();
-        $admin->notify(new NewUserRegister(" تم تسجيل مستخدم جديد"  .$data['first_name']));
-
-        return User::create([
+        $user =User::create([
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+        $admin = Admin::first();
+        $admin->notify(new NewUserRegister(" تم تسجيل مستخدم جديد"  .$data['first_name']));
+
+        return $user;
     }
 }

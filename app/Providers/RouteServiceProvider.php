@@ -8,6 +8,7 @@ use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
 
@@ -52,6 +53,7 @@ class RouteServiceProvider extends ServiceProvider
                 ->group(base_path('routes/frontend.php'));
         });
 
+        $settings = DB::table('settings')->select('*')->get();
 
         $deactive = User::DeactiveCountUser();
         view()->composer('*', function ($view) use($deactive) {
@@ -59,6 +61,8 @@ class RouteServiceProvider extends ServiceProvider
                 'deactive'     => $deactive,
             ]);
         });
+
+
     }
 
     /**

@@ -1,0 +1,35 @@
+@media only screen and (max-width: 720px)  {
+    .v-list{
+        width: 100%;
+    }
+    .massege-div{
+        display: none !important;
+    }
+    .m-v{
+        display: inline-flex !important;
+    }
+    .form-serch{
+        width: 80%;
+        padding: 0.2rem;
+    }
+    .row-item{
+        gap: 0;
+    }
+    .cat-section {
+        padding: 0.5rem !important;
+    }
+    .row-item h2{
+        padding: 0.5rem;
+        line-height: 70px;
+        font-size: 2rem;
+    }
+    .row-item h5{
+        padding: 0.5rem;
+        line-height: 40px;
+        font-size: 1rem;
+    }
+    .form-serch input[type=text]{
+        font-size:1rem;
+    }
+   
+}

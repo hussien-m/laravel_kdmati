@@ -19,11 +19,6 @@
                     <a href="" class="btn btn-success" data-bs-container="#tooltip-container" data-bs-toggle="tooltip" data-bs-placement="top" title="عرض">
                         <i class="fa fa-eye"></i>
                     </a>
-                    <a href="javascript:void(0);" onclick="" class="btn btn-info"  data-bs-container="#tooltip-container" data-bs-toggle="tooltip" data-bs-placement="top" title="التصنيفات الفرعية">
-                        <i class="fa fa-list"></i>
-                    </a>
-
-
                         @if($row->status == 0)
                             <a href="{{ route('admin.user.activate',$row->id) }}" onclick="" class="btn btn-primary"  data-bs-container="#tooltip-container" data-bs-toggle="tooltip" data-bs-placement="top" title="تفعيل">
                                 <i class="mdi mdi-thumb-up font-20"></i>

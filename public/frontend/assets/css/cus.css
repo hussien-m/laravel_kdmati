@@ -4,7 +4,8 @@
       color:#ffffff;
   }
   .dz-upload {
-    background-color: #cdcdcd;
+    display: block;
+    background-color: red;
     height: 10px;
     width: 0%;
 }

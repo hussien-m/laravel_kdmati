@@ -12,7 +12,7 @@ class FrontendController extends Controller
     {
         if(Auth::guard('web')->check()){
 
-            return view('layouts.frontend.frontend');
+            return view('layouts.frontend.front');
 
         }
 

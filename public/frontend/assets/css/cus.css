@@ -8,4 +8,5 @@
     background-color: red;
     height: 10px;
     width: 0%;
+    transition:width 300ms ease-in-out
 }

@@ -46,7 +46,7 @@
                 previewNode.parentNode.removeChild(previewNode);
 
                 var onyxDropzone = new Dropzone(target, {
-                    url: $(target).attr('action') ? $(target).attr('action') : '/post/service/upload', // Check that our form has an action attr and if not, set one here
+                    url: $(target).attr('action') ? $(target).attr('action') : '../../file-upload.php', // Check that our form has an action attr and if not, set one here
                     maxFiles: 5,
                     maxFilesize: 20,
                     acceptedFiles:
@@ -56,7 +56,6 @@
                     clickable: true,
 
                     createImageThumbnails: true,
-                    headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
 
                     /**
                      * The text used before any files are dropped.
@@ -152,29 +151,29 @@
 
 
                 onyxDropzone.on('removedfile', function (file) {
-                    var c = confirm("هل انت متاكد من حذف هذا العنصر ؟");
-                    if (c) {
+                              var c = confirm("هل انت متاكد من حذف هذا العنصر ؟");
+    if(c){
 
-                        $.ajax({
-                            type: 'POST',
-                            url: $(target).attr('action') ? $(target).attr('action') : '../../file-upload.php',
-                            data: {
-                                target_file: file.upload_ticket,
-                                delete_file: 1
-                            }, success: function (result) {
+                    $.ajax({
+                        type: 'POST',
+                        url: $(target).attr('action') ? $(target).attr('action') : '../../file-upload.php',
+                        data: {
+                            target_file: file.upload_ticket,
+                            delete_file: 1
+                        },success: function(result) {
                                 var files = $("#files").val();
 
-                                var fileText = files.replace(file.upload_ticket + ',', '');
-                                fileText = fileText.replace(file.upload_ticket, '');
-                                $("#files").val(fileText);
+                                var fileText = files.replace(file.upload_ticket+',','');
+                                 fileText = fileText.replace(file.upload_ticket,'');
+                                 $("#files").val(fileText);
 
 
-                            }
+                        }
 
 
 
-                        });
-                    }
+                    });
+    }
 
 
                 });
@@ -187,16 +186,17 @@
                     console.log(parsedResponse.status);
 
                     var files = $("#files").val();
-                    if (parsedResponse.status == 'error') {
-                        $(".preview-container").append("<div class='alert alert-danger' id='error'>" + parsedResponse.info + "</div>");
+                    if(parsedResponse.status == 'error'){
+                        $(".preview-container").append("<div class='alert alert-danger' id='error'>"+parsedResponse.info+"</div>");
                         $('div.dz-processing:last').remove();
-                    } else {
+                    }else{
                         $("#error").remove();
                     }
-                    if (files == '' || files == null) {
-                        $("#files").val(parsedResponse.file_link);
-                    } else {
-                        $("#files").val(files + ',' + parsedResponse.file_link);
+                    if(files == '' || files == null)
+                    {
+                      $("#files").val(parsedResponse.file_link);
+                    }else{
+                        $("#files").val(files+','+parsedResponse.file_link);
                     }
 
 
@@ -206,7 +206,7 @@
                         console.log('Files count: ' + base.dropzoneCount());
                     }, 350);
 
-                    $(".fa-check-circle").css('color', 'green');
+                    $(".fa-check-circle").css('color','green');
 
                     // Something to happen when file is uploaded, like showing a message
                 });
@@ -229,66 +229,66 @@
 
 if ($('div.plyr').length) {
 
-    const players = {};
-    Array.from(document.querySelectorAll('.audio-player')).forEach(video => {
-        players[video.id] = new Plyr(video);
+      const players = {};
+Array.from(document.querySelectorAll('.audio-player')).forEach(video => {
+    players[video.id] = new Plyr(video);
 
-    });
+});
 
 
 }
 
-jQuery.fn.clickToggle = function (a, b) {
-    return this.on("click", function (ev) { [b, a][this.$_io ^= 1].call(this, ev) })
+jQuery.fn.clickToggle = function(a, b) {
+  return this.on("click", function(ev) { [b, a][this.$_io ^= 1].call(this, ev) })
 };
 
 // TEST:
-$('#side-btn').clickToggle(function (ev) {
-    openNav();
-}, function (ev) {
-    closeNav();
+$('#side-btn').clickToggle(function(ev) {
+  openNav();
+}, function(ev) {
+  closeNav();
 });
 
 
-$('#record-btn').clickToggle(function (ev) {
-    $("#recordingsList").html("");
-    $("#record-input").val("");
-    $("#delete-record").hide();
-    $("#title-inner").html("جارى التسجيل ");
-    startRecording();
-    $("#record-btn .fa").addClass("recording");
-    $("#record-btn .fa").addClass("fa-stop");
-    $("#record-btn .fa").removeClass("fa-microphone");
+$('#record-btn').clickToggle(function(ev) {
+  $("#recordingsList").html("");
+  $("#record-input").val("");
+  $("#delete-record").hide();
+  $("#title-inner").html("جارى التسجيل ");
+  startRecording();
+  $("#record-btn .fa").addClass("recording");
+  $("#record-btn .fa").addClass("fa-stop");
+  $("#record-btn .fa").removeClass("fa-microphone");
 
-}, function (ev) {
+}, function(ev) {
 
-    stopRecording();
-    $("#title-inner").html("استمع للرسالة");
-    $("#record-btn .fa").removeClass("recording");
-    $("#record-btn .fa").removeClass("fa-stop");
-    $("#record-btn .fa").addClass("fa-microphone");
-    $("#delete-record").show();
+  stopRecording();
+  $("#title-inner").html("استمع للرسالة");
+  $("#record-btn .fa").removeClass("recording");
+  $("#record-btn .fa").removeClass("fa-stop");
+  $("#record-btn .fa").addClass("fa-microphone");
+  $("#delete-record").show();
 
 
 });
 
-$(document.body).on('click', '#delete-record', function () {
-    var c = confirm("هل انت متاكد من حذف هذا العنصر ؟");
-    if (c) { //you can just return c because it will be true or false
+  $(document.body).on('click', '#delete-record' ,function(){
+          var c = confirm("هل انت متاكد من حذف هذا العنصر ؟");
+    if(c){ //you can just return c because it will be true or false
 
         $("#delete-record").hide();
-        $("#recordingsList").html("");
-        $("#record-input").val("");
-        $("#title-inner").html("اضغط على الميكروفون لتبدأ التسجيل ");
-    }
+  $("#recordingsList").html("");
+  $("#record-input").val("");
+    $("#title-inner").html("اضغط على الميكروفون لتبدأ التسجيل ");
+}
 
-});
+  });
 
-$(document.body).on('click', '#paypal-button', function () {
+  $(document.body).on('click', '#paypal-button' ,function(){
 });
-$(document.body).on('click', '.delete-file', function () {
-    var c = confirm("هل انت متاكد من حذف هذا العنصر ؟");
-    return c;
+  $(document.body).on('click', '.delete-file' ,function(){
+          var c = confirm("هل انت متاكد من حذف هذا العنصر ؟");
+        return c;
 });
 
 
@@ -298,10 +298,10 @@ function openNav() {
     document.getElementById("header-nav").style.marginRight = "250px";
     document.getElementById("header-nav").style.marginLeft = "-250px";
 
-}
+  }
 
-/* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
-function closeNav() {
+  /* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
+  function closeNav() {
     document.getElementById("sidenav").style.width = "0";
     document.getElementById("main").style.marginRight = "0";
     document.getElementById("main").style.marginLeft = "0";
@@ -309,14 +309,16 @@ function closeNav() {
     document.getElementById("header-nav").style.marginLeft = "0";
 
 
-}
-$(document.body).on('click', '#main', function () {
-    closeNav();
-});
-$(document.body).on('click', '#sidbar-btn', function () {
-    $(".messages-sidebar").toggle();
-});
-function readURL(e) {
+  }
+  $(document.body).on('click', '#main' ,function(){
+      closeNav();
+  });
+
+  $(document.body).on('click', '#sidbar-btn' ,function(){
+      $(".messages-sidebar").toggle();
+  });
+  
+    function readURL(e) {
     if (e.files && e.files[0]) {
         var t = new FileReader;
         t.onload = function (e) {
@@ -348,23 +350,23 @@ window.onload = function () {
 
     $('body').show();
 
-    if ($('.popup').length) {
-        $('.popup').magnificPopup({ type: 'image' });
+    if($('.popup').length) {
+        $('.popup').magnificPopup({type:'image'});
     }
-    if ($('.iframe-popup').length) {
+    if($('.iframe-popup').length) {
 
-        $('.iframe-popup').magnificPopup({
-            type: 'iframe'
-        });
+    $('.iframe-popup').magnificPopup({
+        type: 'iframe'
+    });
 
-    }
-    if ($('.gallery').length) {
+}
+    if($('.gallery').length) {
 
-        $('.gallery').magnificPopup({
-            delegate: 'a', // child items selector, by clicking on it popup will open
-            type: 'image'
-            // other options
-        });
+    $('.gallery').magnificPopup({
+        delegate: 'a', // child items selector, by clicking on it popup will open
+        type: 'image'
+        // other options
+      });
     }
 
     $("input.phone").length && ($("input.phone").intlTelInput({
@@ -372,7 +374,7 @@ window.onload = function () {
         initialCountry: "auto",
         utilsScript: "/danpenstudio/assets/js/intlTelInput.utils.js",
         geoIpLookup: function (e) {
-            $.get("https://ipinfo.io/json", function () { }, "jsonp").always(function (t) {
+            $.get("https://ipinfo.io/json", function () {}, "jsonp").always(function (t) {
                 var n = t && t.country ? t.country : "";
                 e(n)
             })
@@ -406,20 +408,20 @@ window.onload = function () {
 };
 
 
-$('.confirm').submit(function () {
+$('.confirm').submit(function() {
     var c = confirm("هل انت متاكد من حذف هذا العنصر ؟");
     return c; //you can just return c because it will be true or false
 });
-$(document.body).on('click', '.confirm4', function () {
+$(document.body).on('click', '.confirm4' ,function(){
     var c = confirm("هل انت متاكد من حذف هذا العنصر ؟");
     return c; //you can just return c because it will be true or false
 });
 
-$('.confirm2').submit(function () {
+$('.confirm2').submit(function() {
     var c = confirm("هل انت متاكد من هذا الاجراء ؟");
     return c; //you can just return c because it will be true or false
 });
-$('.confirm3').submit(function () {
+$('.confirm3').submit(function() {
     var c = confirm("هل انت متاكد من اختيارك ؟");
     return c; //you can just return c because it will be true or false
 });

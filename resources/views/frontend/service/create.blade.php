@@ -29,7 +29,7 @@
                 <h1 class="page-title2">أضف خدمة جديدة <a href="#" type="button" class="text-primary btn btn-primary btn-outline " data-toggle="modal" data-target="#youtube-modal">نصائح لقبول الخدمة</a> </h1>
                 <div class="card  new-card">
                     <div class="card-body ">
-                        <form id="edit_user_register" class="login-form" name="registerform" action="" method="post" enctype="multipart/form-data">
+                        <form id="edit_user_register" class="login-form" name="registerform" action="{{ route("post-service") }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group ">
                                 <label class="mb-1">أضف عنوان مناسب:</label>
@@ -40,21 +40,19 @@
                                 <div class="form-group col-md-6">
                                     <label>التصنيف:</label>
                                     <select class="form-control" name="category_id" id="category_id" required="required">
-                                        <option value="">القسم</option>
-                                        <option value="30">أعمال</option>
-                                        <option value="22">برمجة وتطوير</option>
-                                        <option value="23">تسويق إلكتروني</option>
-                                        <option value="24">تدريب عن بعد</option>
-                                        <option value="25">تصميم فيديو</option>
-                                        <option value="26">تصميم</option>
-                                        <option value="27">صوتيات</option>
-                                        <option value="28">كتابة وترجمة</option>
+                                        <option selected disabled>القسم</option>
+                                        @forelse ($categories as $cat )
+                                        <option value="{{ $cat->id }}">{{ $cat->name }}</option>
+
+                                        @empty
+
+                                        @endforelse
                                     </select>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label>قسم فرعي</label>
                                     <div id="subcategory-container">
-                                        <select class="form-control" name="subcategory_id" >
+                                        <select class="form-control" name="sub_cat_id" id="sub_cat_id">
                                             <option value="">اختر التصنيف الفرعى</option>
                                         </select>
                                     </div>
@@ -73,8 +71,10 @@
 
                                 <label>ارفع صور لأعمالك :</label>
                                 <p class="c-form__hb about-text">يمكنك رفع اكتر من صوره لنفس العمل .</p>
-                                <p class="c-form__hb about-text">القياس: (800x470) بكسل · الحجم الأقصى: 5MB. العدد المسموح: 10 ملفات.</p>
-                                <p class="c-form__hb about-text">اختيار فيديو أو صورة مصممة بشكل جيد ستظهر خدمتك بشكل احترافي وتزيد من مبيعاتك.</p>
+                                <p class="c-form__hb about-text">القياس: (800x470) بكسل · الحجم الأقصى: 5MB. العدد
+                                    المسموح: 10 ملفات.</p>
+                                <p class="c-form__hb about-text">اختيار فيديو أو صورة مصممة بشكل جيد ستظهر خدمتك بشكل
+                                    احترافي وتزيد من مبيعاتك.</p>
 
 
                                 <div class="collapse multi-collapse show" id="fileAccordion">
@@ -155,24 +155,19 @@
                             </div>
                             <div class="form-group ">
                                 <label>مدة التسليم:</label>
-                                <p class="c-form__hb about-text">حدد مدة تسليم مناسبة لك. يستطيع المشتري إلغاء الخدمة مباشرة في حال التأخر بتسليم الخدمة في الموعد المحدد.</p>
+                                <p class="c-form__hb about-text">حدد مدة تسليم مناسبة لك. يستطيع المشتري إلغاء الخدمة
+                                    مباشرة في حال التأخر بتسليم الخدمة في الموعد المحدد.</p>
                                 <select class="form-control" name="duration" required="required">
-                                    <option value="1">يوم واحد</option>
-                                    <option value="2">يومين</option>
-                                    <option value="3">ثلاثة أيام</option>
-                                    <option value="4">أربعة أيام</option>
-                                    <option value="5">خمسة أيام</option>
-                                    <option value="6">ستة أيام</option>
-                                    <option value="7">أسبوع</option>
-                                    <option value="14">أسبوعين</option>
-                                    <option value="21">ثلاثة أسابيع</option>
-                                    <option value="30">شهر</option>
+                                    @foreach (config('duration') as $key => $duration)
+                                    <option value="{{ $key }}">{{ $duration }}</option>
+                                    @endforeach
                                 </select>
 
                             </div>
                             <div class="form-group  ">
                                 <label>تعليمات للمشتري: </label>
-                                <p class="c-form__hb about-text">المعلومات التي تحتاجها من المشتري لتنفيذ الخدمة. تظهر هذه المعلومات بعد شراء الخدمة فقط.</p>
+                                <p class="c-form__hb about-text">المعلومات التي تحتاجها من المشتري لتنفيذ الخدمة. تظهر
+                                    هذه المعلومات بعد شراء الخدمة فقط.</p>
                                 <textarea class="form-control" rows="5" required="required" name="instructions" placeholder="ادخل هنا"></textarea>
                             </div>
 
@@ -189,7 +184,8 @@
                                 </button>
                             </div>
                             <div class="form-group text-left">
-                                <button type="submit" class="text-center btn btn-primary btn-inline mr-2 btn-custom">أضف الخدمة</button>
+                                <button type="submit" class="text-center btn btn-primary btn-inline mr-2 btn-custom">أضف
+                                    الخدمة</button>
                             </div>
                         </form>
                     </div>
@@ -231,6 +227,31 @@
     });
 
     //categoryAJax
+
+    $('#category_id').on("change", function() {
+
+        var category_id = $('#category_id').val();
+
+        $("#sub_cat_id").html(" ");
+
+        $.ajax({
+
+            type: 'get',
+             url: "{{ route('get-sub-category') }}",
+              data: {
+                'category_id': category_id
+            }
+            , success: function(data) {
+                document.getElementById('sub_cat_id').innerHTML += '<option value="0" disabled="true" selected="true">اختر التصنيف الفرعي</option>';
+
+                for (var i = 0; i < data.length; i++) {
+                    document.getElementById('sub_cat_id').innerHTML += '<option value="' + data[i].id + '">' + data[i]['name'] + '</option>';
+                }
+            }
+            , error: function() {}
+        });
+
+    });
 
 </script>
 @endsection

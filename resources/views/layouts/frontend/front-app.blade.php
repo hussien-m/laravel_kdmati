@@ -1,5 +1,5 @@
 @include('layouts.frontend.head')
-<body>
+<body style="overflow-y: scroll;">
     @include('layouts.frontend.navbar')
     @include('layouts.frontend.sidebar')
     <!--top-header-->

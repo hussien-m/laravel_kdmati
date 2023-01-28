@@ -47,4 +47,17 @@
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/cus.css') }}" />
 
     @yield('styles')
+
+    <style>
+        .navbar-nav .categories-dropdown  .dropdown-menu
+        {
+            left: 0;
+            right: 0;
+            margin: auto;
+        }
+        .navbar-light .navbar-nav.mr-auto .nav-link,.navbar-light .navbar-nav.ml-auto .nav-link
+        {
+            color:#ffffff;
+        }
+    </style>
 </head>

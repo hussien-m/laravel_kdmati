@@ -3,8 +3,12 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
+use App\Models\Service;
+use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Facade;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Intervention\Image\ImageManagerStatic as Image;
 
@@ -12,15 +16,65 @@ class ServicesController extends Controller
 {
     public function create()
     {
-        return view('frontend.service.create');
+        $data['categories']= Category::whereHas('parent')->latest()->get();
+        return view('frontend.service.create',$data);
     }
 
     public function post(Request $request)
     {
+        $request->validate([
+            'images' => 'required',
+        ]);
+
+        DB::beginTransaction();
+
+        try{
+
+        //insert to service table
+        $new_service = Service::create([
+
+            'title'        => $request->title,
+            'category_id'  => $request->category_id,
+            'sub_category_id'   => $request->sub_cat_id,
+            'user_id'      => Auth::user()->id,
+            'description'  => $request->description,
+            'images'       => $request->images,
+            'youtube'      => $request->youtube,
+            'tags'         => $request->tags,
+            'duration'     => $request->duration,
+            'instructions' => $request->instructions,
+
+            ]);
+
+            //insert to AddonsService table
+
+            if($request->addon_title != null){
+
+                for ($i = 0; $i < count($request->addon_title); $i++) {
+
+                    $new_service->addons()->create([
+                        'title'      => $request->addon_title[$i],
+                        'price'      => $request->addon_price[$i],
+                        'duration'   => $request->addon_duration[$i],
+                        'service_id' => $new_service->service_id
+                    ]);
+
+                }
+
+            }
+
+
+            DB::commit();
+
+        } catch(Exception $ex) {
+            DB::rollBack();
+            return $ex->getMessage();
+        }
+
 
     }
 
-    public function upload(Request $request)
+    public function upload()
     {
         $delete_file = 0;
         if (isset($_POST['delete_file'])) {
@@ -77,7 +131,7 @@ class ServicesController extends Controller
                                     $response = array(
                                         'status'    => 'success',
                                         'info'      => 'Your file has been uploaded successfully.',
-                                        'file_link' => $target_path
+                                        'file_link' =>  $newfilename, //$target_path
                                     );
                                 } else {
                                     $response = array(
@@ -159,12 +213,14 @@ class ServicesController extends Controller
             exit;
         }
         if ($delete_file == 1) {
+            $del_file=public_path("upload".DIRECTORY_SEPARATOR.'images'.DIRECTORY_SEPARATOR.$file_path);
+            if(File::exists($del_file)){
 
-            if(File::exists($file_path)){
+               File::delete($del_file);
 
-                File::delete($file_path);
+               echo "Founded". $file_path."<br>";
 
-            }
+            } else{ echo "no file <br>";}
 
             $response = array(
                 'status' => 'success',
@@ -175,5 +231,11 @@ class ServicesController extends Controller
             echo json_encode($response);
             exit;
         }
+    }
+
+    public function categorySlug($sulg)
+    {
+      $data['categories'] = Category::with('parent')->whereHas('parent')->latest()->get();
+      return view('frontend.categories.cat_slug',$data);
     }
 }

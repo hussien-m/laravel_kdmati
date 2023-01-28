@@ -7,10 +7,12 @@
 
 
       <x-frontend.main-category-component />
+      
+      <x-frontend.service-component/>
 
 
 
-      @include('layouts.frontend.main-service')
+
 
 
 

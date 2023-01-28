@@ -53,8 +53,15 @@ class User extends Authenticatable
     {
         return $query->where('status',0)->count();
     }
+
     public function scopeDeactiveUser($query)
     {
         return $query->where('status',0)->get();
     }
+
+    public function services()
+    {
+        return $this->hasMany(Service::class,'user_id');
+    }
+
 }

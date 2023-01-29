@@ -233,9 +233,29 @@ class ServicesController extends Controller
         }
     }
 
-    public function categorySlug($sulg)
+    public function categorySlug(Request $request,$slug)
     {
-      $data['categories'] = Category::with('parent')->whereHas('parent')->latest()->get();
-      return view('frontend.categories.cat_slug',$data);
+      if($request->ajax()){
+
+        $slug_id            = Category::whereSlug($slug)->select('id','slug')->firstOrFail();
+
+        $data['categories'] = Category::with('parent')->whereHas('parent')->latest()->get();
+
+        $data['services']   = Service::where('sub_category_id',$slug_id->id)->get();
+
+        return view('frontend.categories._row_serives',$data);
+
+      } else {
+
+        $slug_id            = Category::whereSlug($slug)->select('id','slug')->firstOrFail();
+        $data['categories'] = Category::with('parent')->whereHas('parent')->latest()->get();
+        $data['services']   = Service::where('category_id',$slug_id->id)->get();
+        return view('frontend.categories.cat_slug',$data);
+
+      }
     }
+
+
+
+
 }

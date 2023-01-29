@@ -15,7 +15,7 @@
 }
 #main
 {
-    width: 100vw;
+    width: 100%;
     overflow-x: hidden;
 }
 #main #subject-body.login
@@ -37,7 +37,7 @@
     .mobile-logo {
         display: block;
     }
-    
+
     .sub-footer .subfooter-list-item
     {
         margin: 0 10px 10px;
@@ -211,7 +211,7 @@
     {
         height: 37px;
     }
-    
+
     #subject-header .btn {
         margin-top: 15px;
     }
@@ -394,7 +394,7 @@
         font-weight: 500;
         text-align: center !important;
     }
-  
+
     .payment-image {
         width: 100%;
     }
@@ -507,7 +507,7 @@
     .home-footer {
         padding: 38px 20px 0;
         background-size: auto;
-    }   
+    }
     .faqs-item-body {
     padding: 9px;
     white-space: pre-line;
@@ -591,7 +591,7 @@
     }
     .search-button
     {
-        right: 0;   
+        right: 0;
     }
     .search__box input
     {
@@ -627,7 +627,7 @@
     .main-category
     {
         padding: 0;
-    } 
+    }
     .contest-item-meta .text-left
     {
         text-align: center !important;
@@ -660,7 +660,7 @@
     }
     .footer-title
     {
-        margin-bottom: 15px;    
+        margin-bottom: 15px;
     }
     .copyright {
         font-size: 15px;
@@ -680,7 +680,7 @@
         padding-top: 20px;
     }
     .inner-logo {
-        margin: 42px 18px;      
+        margin: 42px 18px;
         display: block;
     }
     .inner-text {
@@ -715,7 +715,7 @@
     }
     .subject-card,.card-footer
     {
-        overflow: hidden;   
+        overflow: hidden;
     }
     .new-card
     {
@@ -728,10 +728,10 @@
     .contest-ago,.service-item-price {
         text-align: center;
     }
-    .contests2 .contest-ago,.contests2 .service-item-price 
+    .contests2 .contest-ago,.contests2 .service-item-price
     {
         text-align: right;
-        
+
     }
     .title3
     {
@@ -802,4 +802,4 @@
         height: 0;
         width: 0;
     }
-}   
+}

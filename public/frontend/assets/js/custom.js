@@ -317,7 +317,7 @@ function openNav() {
   $(document.body).on('click', '#sidbar-btn' ,function(){
       $(".messages-sidebar").toggle();
   });
-  
+
     function readURL(e) {
     if (e.files && e.files[0]) {
         var t = new FileReader;

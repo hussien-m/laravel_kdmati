@@ -52,7 +52,7 @@
                             <ul class="c-list c-list--vert c-list--sub u-hidden">
                                 @foreach($category->parent as $parent)
                                 <li data-filter-id="3" data-sub-filter-id="20" class="c-list__item ">
-                                    <a href="#" class="menu-item c-list__link filter closeLink" data-deselect-others="">
+                                    <a href="{{ $parent->slug }}" class="menu-item c-list__link filter closeLink" data-deselect-others="">
                                         <span>{{ $parent->name }}</span>
                                         <span class="c-badge u-pull--left">1</span>
                                     </a>
@@ -177,38 +177,18 @@
 
 
             <div class="col-md-9 messages-body mobile-services ">
-                <div class="row row-eq-height services-row read-more-services">
-                    <div class="service-item-container col-md-4  ">
-                        <div class="card service-item  ">
-                            <a class="service-item-link" href="https://kdmati.com/service/1038-افحص-موقعك-أو-متجرك-الالكتروني-بشكل-كامل-وحلول-لتحسينه">
-                                <img loading="lazy" src="https://kdmati.com/admin/uploads/12952265911641170946.png" width="340" height="190" class=" service-item-image" alt="افحص موقعك أو متجرك الالكتروني بشكل كامل وحلول لتحسينه"></a>
-                            <div class="card-body service-item-body">
-                                <div class="media service-item-user align-self-center align-items-center">
-                                    <a class="service-avatar-link" href="https://kdmati.com/user/Khaled-fozan"><img loading="lazy" width="38" height="38" class="service-item-avatar rounded-circle align-self-center mr-2" src="https://kdmati.com/admin/avatars/18799420301655485487.png" alt="Khaled Fozan"></a>
-                                    <div class="media-body">
-                                        <h5 class="mt-0"><a class="service-item-userlink " href="https://kdmati.com/user/Khaled-fozan">Khaled Fozan</a></h5>
-                                    </div>
-                                </div>
-
-                                <h5 class="card-title service-item-title"><a class="service-item-link" href="https://kdmati.com/service/1038-افحص-موقعك-أو-متجرك-الالكتروني-بشكل-كامل-وحلول-لتحسينه">افحص
-                                        موقعك أو متجرك الالكتروني بشكل كامل وحلول لتحسينه</a></h5>
-                            </div>
-                            <div class="card-footer service-item-footer row align-items-baseline">
-                                <div class="col-6  text-left">
-                                    <h5 class="service-item-price"><i class="fal fa-usd-circle"></i> 5 دولار</h5>
-                                </div>
-                                <div class="col-6 text-right">
-                                    <h5 class="service-item-rate text-primary"><i class="fas fa-star"></i> 5 <span class="text-gray">( 4 )</span></h5>
-                                </div>
-
-                            </div>
-
-                        </div>
-                    </div>
-
+                <div id='loader' style='display:none' class="text-center">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="sr-only">Loading...</span>
+                      </div>
+                </div>
+                <div class="row row-eq-height services-row read-more-services" id="table_data">
+                     @include('frontend.categories._row_serives')
+                    @if($services->count() > 9)
                     <div class="text-center col-md-12 clearfix cleax-fix my-3">
                         <button type="button" class="btn btn-primary btn-custom " id="read-more">عرض المزيد</button>
                     </div>
+                    @endif
                     <div class="clearfix"></div>
                 </div>
 
@@ -230,6 +210,71 @@
         $(this).parent().find('.c-list--sub').toggleClass('u-hidden')
         e.preventDefault();
     })
+
+</script>
+
+
+
+<script>
+    $(document).ready(function(){
+
+    $(document).on('click', '.menu-item', function(event){
+
+    event.preventDefault();
+
+    var target = $(this).attr('href');
+
+    var url = "{{ route('categorySlug','') }}"+"/"+target ;
+
+
+
+   // window.history.replaceState({urlPath:url}, "Title", url);
+
+    $.ajax({
+        url:url,
+
+        beforeSend: function(){
+            // Show image container
+            $("#loader").show();
+            $("#table_data").hide();
+        },
+
+        success:function(data) {
+            $('#table_data').empty();
+            $('#table_data').html(data);
+             //scroll back up
+
+
+        },
+
+        complete:function(data){
+            $("html, body").animate({
+                scrollTop: 0
+            }, 500);
+            $("#loader").hide();
+            if($(window).width() <= 1024) {
+                $(".messages-sidebar").toggle();
+            }
+
+            if($(window).width() > 1024) {
+                $(".messages-sidebar").css('desplay','block')
+            }
+
+            $("#table_data").show();
+
+
+
+        }
+
+
+    });
+
+});
+
+
+
+});
+
 
 </script>
 

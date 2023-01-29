@@ -27,4 +27,6 @@ Route::middleware(['auth'])->group(function(){
     })->name('get-sub-category');
 
     Route::get('category/{slug}',[ServicesController::class,'categorySlug'])->name('categorySlug');
+
+    //Route::get('category/target/app/{slug}',[ServicesController::class,'categoryTargetSlug'])->name('categoryTagetSlug');
 });

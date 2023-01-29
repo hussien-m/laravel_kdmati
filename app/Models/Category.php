@@ -25,4 +25,9 @@ class Category extends Model
     {
         return $this->hasMany(Service::class,'category_id');
     }
+
+    public function servicesSub()
+    {
+       return $this->hasMany(Service::class,'sub_category_id');
+    }
 }

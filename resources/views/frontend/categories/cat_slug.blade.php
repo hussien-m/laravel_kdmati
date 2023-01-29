@@ -34,27 +34,23 @@
                     <h4 class="messages-sidebar-widget-title">الأقسام </h4>
 
                     <ul class="c-list c-list--vert c-list--filter filters-list">
-                        <li class="c-list__item " data-filter-id="" data-sub-filter-id="" data-clear-filters="true">
-                            <a href="#" class="c-list__link filter closeLink is-active" data-deselect-others="">
-                                <span>جميع الاقسام</span>
-                                <span class="c-badge u-pull--left">326</span>
-                            </a>
-                        </li>
-
 
                        @foreach ( $categories as $category )
 
                        <li class="c-list__item" data-filter-id="3" data-sub-filter-id="">
                            <a href="#" class="c-list__link filter closeLink" data-deselect-others="">
                                <span>{{ $category->name }}</span>
-                               <span class="c-badge u-pull--left">66</span>
+                               <span class="c-badge u-pull--left">{{ $category->services->count() }}</span>
                             </a>
                             <ul class="c-list c-list--vert c-list--sub u-hidden">
                                 @foreach($category->parent as $parent)
                                 <li data-filter-id="3" data-sub-filter-id="20" class="c-list__item ">
                                     <a href="{{ $parent->slug }}" class="menu-item c-list__link filter closeLink" data-deselect-others="">
                                         <span>{{ $parent->name }}</span>
-                                        <span class="c-badge u-pull--left">1</span>
+
+                                        <span class="c-badge u-pull--left">
+                                            {{ ($parent->servicesSub->count()) }}
+                                        </span>
                                     </a>
                                 </li>
                                 @endforeach

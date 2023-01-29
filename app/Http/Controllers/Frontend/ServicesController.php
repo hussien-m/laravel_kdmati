@@ -248,14 +248,14 @@ class ServicesController extends Controller
       } else {
 
         $slug_id            = Category::whereSlug($slug)->select('id','slug')->firstOrFail();
-        $data['categories'] = Category::with('parent')->whereHas('parent')->latest()->get();
+
+        $data['categories'] = Category::with('parent','services')->whereHas('parent')->latest()->get();
+
         $data['services']   = Service::where('category_id',$slug_id->id)->get();
         return view('frontend.categories.cat_slug',$data);
 
       }
     }
-
-
 
 
 }

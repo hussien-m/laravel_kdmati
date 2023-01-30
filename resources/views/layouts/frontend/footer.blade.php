@@ -147,7 +147,7 @@
 
 <script type="module">
     var user_id = {{ Auth::user()->id }}
-    Echo.private('App.Models.Admin.'+user_id)
+    Echo.private('App.Models.User.4214')
                 .notification((notification) => {
 
                     var promise = document.getElementById('notificationSound').play();

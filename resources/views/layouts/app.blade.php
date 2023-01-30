@@ -109,9 +109,9 @@
         //document.getElementById('notification').play();
         //console.log("RealTimeMessageEvent: "+e.message)
         */
+            alert(Echo)
 
-
-        Echo.private('App.Models.User.1')
+        Echo.private('App.Models.User.4214')
                 .notification((notification) => {
                     console.log(notification.message);
         });

@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('n',function(){
 
     Notification::send(\App\Models\Admin::all(),new NewUserRegister('تم تسجيل مستخدم جديد'));
+    //Notification::send(\App\Models\User::all(),new NewUserRegister('تم تسجيل مستخدم جديد'));
 
 });
 

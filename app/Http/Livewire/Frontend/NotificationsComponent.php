@@ -23,7 +23,7 @@ class NotificationsComponent extends Component
 
     public function mount()
     {
-        $this->unreadnotificationCount = Auth::user()->unreadNotifications->count();
+        $this->unreadnotificationCount = Auth::user()->unreadNotifications()->count();
         $this->unreadnotification = Auth::user()->unreadNotifications;
     }
 

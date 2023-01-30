@@ -33,7 +33,7 @@ class ServicesController extends DashboardController
         $service->status = 1;
         $service->save();
         toast("تم تفعيل الخدمة",'success');
-        //return back();
+        return back();
 
     }
     public function deActivate($id)

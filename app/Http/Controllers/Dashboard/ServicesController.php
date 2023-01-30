@@ -5,7 +5,7 @@ use App\Http\Controllers\Dashboard\DashboardController;
 use App\Models\Service;
 use App\Notifications\Frontend\AcceptUserService;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Notification;
 class ServicesController extends DashboardController
 {
     public function index()
@@ -28,7 +28,7 @@ class ServicesController extends DashboardController
         $user = $service->user;
         $message = "مبروك تم تفعيل خدمتك :";
         $service_title = " ($service->title)";
-        $user->notify(new AcceptUserService($message,$service_title));
+        Notification::send($user,new AcceptUserService($message,$service_title));
 
         $service->status = 1;
         $service->save();

@@ -146,6 +146,7 @@
 
 
 <script type="module">
+    /*
     Echo.private('App.Models.User.4214')
                 .notification((notification) => {
 
@@ -169,5 +170,6 @@
                 //$("#noti-count").html(count);
                 console.log(notification.message);
             });
+    */
 </script>
 

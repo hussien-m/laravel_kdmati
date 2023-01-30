@@ -144,6 +144,7 @@
     </script>
 
     <script type="module">
+        /*
         Echo.private('App.Models.Admin.1')
                     .notification((notification) => {
 
@@ -167,6 +168,7 @@
                     //$("#noti-count").html(count);
                     console.log(notification.message);
                 });
+            */
     </script>
     @livewireScripts
 </body>

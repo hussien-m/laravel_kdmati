@@ -1,8 +1,18 @@
 @extends('layouts.frontend.front-app')
 
 @section('styles') @endsection
+<style>
 
+
+
+</style>
 @section('content')
+<div id="sidebar500">
+
+    <div class="text-center">حسين</div>
+
+  </div>
+
 <section id="page" class="page">
     <div class="container">
         <div class="row commnunity-row">
@@ -13,7 +23,10 @@
                             <option value="p2.total DESC">خدمات مميزة</option>
                             <option value="service.id DESC">أضيفت حديثاً</option>
                             <option value="p2.total ASC">خدمات صاعدة</option>
-                        </select> <button class="btn btn-primary btn-outline float-right sidebar-btn" id="sidbar-btn" type="button"><i class="fa fa-sliders-h"></i></button>
+                        </select>
+                         <button class="btn btn-primary btn-outline float-right sidebar-btn" id="sidbar-btn" type="button">
+                            <i class="fa fa-sliders-h"></i>
+                        </button>
                     </h1>
                 </form>
 
@@ -270,7 +283,6 @@
 
 
 });
-
 
 </script>
 

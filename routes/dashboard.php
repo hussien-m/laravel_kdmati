@@ -6,6 +6,7 @@ use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\GeneralSettingController;
 use App\Http\Controllers\Dashboard\NotificationsController;
+use App\Http\Controllers\Dashboard\ServicesController;
 use App\Http\Controllers\Dashboard\UserController;
 use App\Models\Admin;
 use App\Models\User;
@@ -71,6 +72,10 @@ Route::name('admin.')->prefix('admin')->group(function(){
         Route::get('sub/category/{slug}',[CategoryController::class,'subCategory'])->name('sub.category');
 
         Route::get('notifications',[NotificationsController::class,'index']);
+
+        Route::get('services',[ServicesController::class,'index'])->name('services.index');
+        Route::get('service/activate/{id}',[ServicesController::class,'activate'])->name('service.activate');
+        Route::get('service/deActivate/{id}',[ServicesController::class,'deActivate'])->name('service.deActivate');
 
     });
 

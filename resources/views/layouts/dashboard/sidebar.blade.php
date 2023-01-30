@@ -83,9 +83,8 @@
                                     <span>الخدمات</span>
                                 </a>
                                 <ul class="sub-menu" aria-expanded="false">
-                                    <li><a href="pages-login.html"><i class="dripicons-checkmark"></i>بانتظار التفعيل <span class="badge badge-info badge-pill float-right">0</span></a></li>
-                                    <li><a href="pages-login-2.html"><i class="dripicons-list"></i>الجميع</a></li>
-                                    <li><a href="pages-login.html"><i class="dripicons-plus"></i>أضافة خدمة</a></li>
+                                    <li><a href="#"><i class="dripicons-checkmark"></i>بانتظار التفعيل <span class="badge badge-info badge-pill float-right">0</span></a></li>
+                                    <li><a href="{{ route('admin.services.index') }}"><i class="dripicons-list"></i>الجميع</a></li>
                                 </ul>
                             </li>
 

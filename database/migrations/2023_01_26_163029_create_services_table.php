@@ -34,6 +34,7 @@ return new class extends Migration
                   ->cascadeOnUpdate();
 
 
+
             $table->text('description');
 
             $table->text('images');
@@ -43,7 +44,11 @@ return new class extends Migration
             $table->string('tags');
 
             $table->integer('duration');
+
             $table->text('instructions');
+
+            
+
             $table->timestamps();
         });
     }

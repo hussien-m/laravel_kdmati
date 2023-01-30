@@ -142,4 +142,33 @@
 <script src="{{ asset('frontend/assets/js/app.js') }}" defer></script>
 @yield('scripts')
 <script src="{{ asset('frontend/assets/js/custom.js') }}" defer></script>
+<script src="{{ asset('js/app.js') }}"></script>
+
+
+<script type="module">
+    var user_id = {{ Auth::user()->id }}
+    Echo.private('App.Models.Admin.'+user_id)
+                .notification((notification) => {
+
+                    var promise = document.getElementById('notificationSound').play();
+
+                        if (promise !== undefined) {
+                            promise.then(_ => {
+                                document.getElementById('notificationSound').muted = false;
+                                document.getElementById('notificationSound').play();
+                            }).catch(error => {
+                                console.log("Erro Sound "+ error.message);
+
+                            });
+                        }
+
+                var html= '<a href="#" class="text-reset notification-item"><div class="d-flex"><div class="flex-shrink-0 me-3"><div class="avatar-xs"><span class="avatar-title bg-warning rounded-circle font-size-13"><i class="mdi mdi-message-text-outline"></i></span></div></div><div class="flex-grow-1"><div class="text-muted"><p class="mb-1">'+notification.message+'</p></div><b style="font-size: 10px">'+notification.time+'</b></div></div></a>';
+
+                //var count_noti = $("#noti-count").text();
+                //var count = parseInt(count_noti)+1;
+                //$("#msg-noti").prepend(html);
+                //$("#noti-count").html(count);
+                console.log(notification.message);
+            });
+</script>
 

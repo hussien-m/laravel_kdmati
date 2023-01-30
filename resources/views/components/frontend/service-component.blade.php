@@ -1,17 +1,17 @@
 <section class="main-services">
     <div class="container">
-        <div class="row service-items-row mobile-services">
+        <div class="row">
             <div class="col-md-12">
                 <h2 class="home-category-title"><a href="{{ route('categorySlug',$slug) }}"
                         class="home-category-link">أعمال</a> <a href="{{ route('categorySlug',$slug) }}"
                         class="btn btn-primary btn-outline float-right">عرض الجميع</a></h2>
-                <div class="row row-eq-height services-row">
+                <div class="row">
 
                     @forelse($business_service as  $business)
                     @php
                        $image =explode(',',$business->images);
                     @endphp
-                    <div class="service-item-container col-md-3  ">
+                    <div class="service-item-container col-md-3">
                         <div class="card service-item  ">
                             <a class="service-item-link"
                                 href="#">

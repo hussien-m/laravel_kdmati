@@ -69,7 +69,7 @@ class Handler extends ExceptionHandler
         //Session::forget('url.intented');
         return redirect()->route($login);
     }
-    
+
 
     public function render($request, Throwable $e)
     {

@@ -17,10 +17,11 @@ use Illuminate\Support\Facades\Broadcast;
 
 Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
     return (int) $user->id === (int) $id;
-},['guards' => ['web']]);
+});
 
-Broadcast::channel('App.Models.Admin.{id}', function ($user, $id) {
-    return (int) $user->id === (int) $id;
-},['guards' => ['admin']]);
-
+/*
+Broadcast::channel('App.Models.Admin.{id}', function ($model, $id) {
+    return $model->id === $id && get_class($model) === 'App\Models\Admin';
+},['guard' => ['admin']]);
+*/
 

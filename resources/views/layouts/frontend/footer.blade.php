@@ -135,7 +135,7 @@
 <audio autoplay="true" id="notification" src="{{ asset('notification.mp3') }}" muted></audio>
 <!--Top Arrow area End-->
 <!-- Jquery.min.js-->
-<script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ asset('build/assets/app-e11ae48c.js') }}"></script>
 
 <script src="{{ asset('frontend/assets/js/jquery-3.5.1.slim.min.js') }}"></script>
 <!--bootstrap.min.js-->
@@ -148,12 +148,6 @@
 <script src="{{ asset('frontend/assets/js/custom.js') }}" defer></script>
 
 
-<script type="module">
-    var user_id = "{{ Auth::guard('web')->user()->id }}";
-Echo.private('App.Models.User.'+user_id)
-            .notification((notification) => {
-            console.log(notification.message);
-        });
-</script>
+
 
 

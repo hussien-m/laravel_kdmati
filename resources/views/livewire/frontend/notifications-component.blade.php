@@ -36,6 +36,7 @@
 </div>
 
 <script type="module">
+    /*
     var user_id = "{{ Auth::user()->id }}";
     Echo.private('App.Models.User.'+user_id)
                 .notification((notification) => {
@@ -65,4 +66,5 @@
 
                 `);
             });
+            */
 </script>

@@ -148,5 +148,12 @@
 <script src="{{ asset('frontend/assets/js/custom.js') }}" defer></script>
 
 
+<script type="module">
+    var user_id = "{{ Auth::user()->id }}";
+Echo.private('App.Models.User.'+user_id)
+            .notification((notification) => {
+            console.log(notification.message);
+        });
+<script>
 
 

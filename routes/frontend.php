@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\ServicesController;
 use Illuminate\Support\Facades\Route;
@@ -14,6 +15,7 @@ Route::name('user.')->group(function(){
 
 Route::middleware(['auth'])->group(function(){
 
+    Route::post('logout',[LoginController::class,'destroy'])->name('user.logout');
     Route::get('new/service',[ServicesController::class,'create'])->name('add-service');
     Route::post('post/service',[ServicesController::class,'post'])->name('post-service');
 
@@ -30,5 +32,5 @@ Route::middleware(['auth'])->group(function(){
 
     //Route::get('category/target/app/{slug}',[ServicesController::class,'categoryTargetSlug'])->name('categoryTagetSlug');
 
-    
+
 });

@@ -1,7 +1,7 @@
 import _ from 'lodash';
 window._ = _;
 
-import 'bootstrap';
+//import 'bootstrap';
 import axios from 'axios';
 window.axios = axios;
 

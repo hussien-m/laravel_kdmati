@@ -570,14 +570,14 @@
                             <!-- <a class="dropdown-item " href="https://kdmati.com/tickets"><i class="fa fa-fw fa-life-ring"></i> مساعدة <span class="badge badge-danger badge-pill tickets-alert  float-right none ">0</span></a>
                                -->
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{{ route("logout") }}"
+                            <a class="dropdown-item" href="{{ route("user.logout") }}"
                             onclick="event.preventDefault();
                                               document.getElementById('logout-form').submit();"
                             ><i
                                     class="fa fa-fw fa-sign-out"></i> خروج
                             </a>
 
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            <form id="logout-form" action="{{ route("user.logout") }}" method="POST" class="d-none">
                                 @csrf
                             </form>
 

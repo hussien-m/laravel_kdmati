@@ -10,6 +10,7 @@ use App\Http\Controllers\Dashboard\ServicesController;
 use App\Http\Controllers\Dashboard\UserController;
 use App\Models\Admin;
 use App\Models\User;
+use App\Notifications\Frontend\AcceptUserService;
 use App\Notifications\NewUserRegister;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Notification;
@@ -19,7 +20,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('n',function(){
 
     Notification::send(\App\Models\Admin::all(),new NewUserRegister('تم تسجيل مستخدم جديد'));
-    //Notification::send(\App\Models\User::all(),new NewUserRegister('تم تسجيل مستخدم جديد'));
+    $user = User::findOrFail(4214);
+    $user->notify(new AcceptUserService("Hello","Serive"));
 
 });
 

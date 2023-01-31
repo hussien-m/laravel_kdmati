@@ -15,7 +15,7 @@ class NotificationsComponent extends Component
     public function getListeners():array
     {
 
-        $userId = auth()->user()->id;
+        $userId = Auth::guard('web')->user()->id;
         //dd($userId);
         return [
             "echo-notification:App.Models.User.{$userId},notification" => 'mount'

@@ -149,7 +149,7 @@
 
 
 <script type="module">
-    var user_id = "{{ Auth::user()->id }}";
+    var user_id = "{{ Auth::guard('web')->user()->id }}";
 Echo.private('App.Models.User.'+user_id)
             .notification((notification) => {
             console.log(notification.message);

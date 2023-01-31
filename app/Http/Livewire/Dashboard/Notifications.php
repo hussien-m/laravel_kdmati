@@ -14,7 +14,7 @@ class Notifications extends Component
 
     public function getListeners():array
     {
-       $userId = auth()->user()->id;
+       $userId = Auth::guard('admin')->user()->id;
 
         return [
 

@@ -154,6 +154,6 @@ Echo.private('App.Models.User.'+user_id)
             .notification((notification) => {
             console.log(notification.message);
         });
-<script>
+</script>
 
 

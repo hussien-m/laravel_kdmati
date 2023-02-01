@@ -7,27 +7,25 @@ use Livewire\Component;
 
 class NotificationsComponent extends Component
 {
-    protected $listeners = ['refreshComponent' => '$refresh'];
 
-    public $unreadnotificationCount='';
-    public $unreadnotification;
+    public $unreadnotificationsCount = '';
+    public $unreadnotifications;
 
     public function getListeners():array
     {
-
-        $userId = Auth::guard('web')->user()->id;
-        //dd($userId);
+        $user = Auth::user()->id;
         return [
-            "echo-notification:App.Models.User.{$userId},notification" => 'mount'
+            "echo-notification:App.Models.User.{$user},notification" => 'mount'
         ];
     }
 
     public function mount()
     {
-        $this->unreadnotificationCount = Auth::user()->unreadNotifications()->count();
-        $this->unreadnotification = Auth::user()->unreadNotifications;
-    }
+        $user = Auth::user();
+        $this->unreadnotificationsCount = $user->unreadNotifications->count();
+        $this->unreadnotifications = $user->unreadNotifications;
 
+    }
     public function render()
     {
         return view('livewire.frontend.notifications-component');

@@ -35,9 +35,10 @@ class AcceptUserService extends Notification implements ShouldBroadcast
      * @param  mixed  $notifiable
      * @return array
      */
+
     public function via($notifiable)
     {
-        return ['database','broadcast'];
+        return ['broadcast','database'];
     }
 
     /**
@@ -61,13 +62,7 @@ class AcceptUserService extends Notification implements ShouldBroadcast
      * @return array
      */
 
-    public function toDatabase($notifiable)
-    {
-        return [
-            'message' => $this->message,
-            'service_title' => $this->service_title,
-        ];
-    }
+
 
     public function toArray($notifiable)
     {
@@ -75,13 +70,18 @@ class AcceptUserService extends Notification implements ShouldBroadcast
             //
         ];
     }
-
+    public function toDatabase($notifiable)
+    {
+        return [
+            'message' => $this->message,
+            'serive_title' => $this->service_title,
+        ];
+    }
     public function toBroadcast($notifiable)
     {
         return new BroadcastMessage([
-            'message'       => "$this->message",
-            'service_title' => "$this->service_title",
-            'time'    => date("H:i:s"),
+                'message' => $this->message,
+                'serive_title' => $this->service_title,
         ]);
     }
 }

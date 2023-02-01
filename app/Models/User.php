@@ -64,9 +64,10 @@ class User extends Authenticatable
         return $this->hasMany(Service::class,'user_id');
     }
 
-    public function receivesBroadcastNotificationsOn():string
+
+    public function receivesBroadcastNotificationsOn()
     {
-        return "App.Models.User.".$this->id;
+        return 'App.Models.User.'.$this->id;
     }
 
 }

@@ -42,4 +42,16 @@ if(!function_exists('getAdminpageWithFloder'))
     }
 }
 
+if(!function_exists('printMsg'))
+{
+    function printMsg()
+    {
+       if(\Illuminate\Support\Facades\Auth::guard('web')->check()){
+           return "User";
+       } else {
+           return "Admin";
+       }
+    }
+}
+
 

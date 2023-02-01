@@ -147,7 +147,7 @@
 @yield('scripts')
 <script src="{{ asset('frontend/assets/js/custom.js') }}" defer></script>
 
-
+<livewire:scripts/>
 
 
 

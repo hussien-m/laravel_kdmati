@@ -60,4 +60,5 @@
             color:#ffffff;
         }
     </style>
+    <livewire:styles/>
 </head>

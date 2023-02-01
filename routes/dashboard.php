@@ -20,8 +20,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('n',function(){
 
     Notification::send(\App\Models\Admin::all(),new NewUserRegister('تم تسجيل مستخدم جديد'));
-    $user = User::findOrFail(4214);
-    $user->notify(new AcceptUserService("Hello","Serive"));
+    //$user = User::findOrFail(4214);
+    //$user->notify(new AcceptUserService("Hello","Serive"));
 
 });
 

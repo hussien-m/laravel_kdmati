@@ -2,12 +2,12 @@
     <a class="nav-link " href="#" role="button" id="notificationMenu" data-toggle="dropdown"
         aria-haspopup="true" aria-expanded="false">
         <i class=" fa fa-bell"></i> <span
-            class="notification notifications-alert"><div id="n-count">{{ $unreadnotificationCount ?? 0 }}</div></span>
+            class="notification notifications-alert"><div id="n-count">{{ $unreadnotificationsCount ?? 0 }}</div></span>
     </a>
 
     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
         <ul class="hsoub-list-group" id="notifications-dropdown">
-            @forelse($unreadnotification as  $notification)
+            @forelse($unreadnotifications as  $notification)
             <li class="hsoub-list-item ">
                 <a href="https://kdmati.com/user/admin"><img loading="lazy"
                         class="hsoub-list-item-img" alt="إدارة خدماتي"

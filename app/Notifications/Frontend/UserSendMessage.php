@@ -20,12 +20,14 @@ class UserSendMessage extends Notification implements ShouldBroadcast
      */
     public $url;
     public $service_name;
+    public $conv_id;
 
 
-    public function __construct($url,$service_name)
+    public function __construct($url,$service_name,$conv_id)
     {
         $this->url = $url;
         $this->service_name = $service_name;
+        $this->conv_id = $conv_id;
     }
 
     /**
@@ -72,6 +74,7 @@ class UserSendMessage extends Notification implements ShouldBroadcast
 
             'url' => $this->url,
             'service_name' => $this->service_name,
+            'conv_id' => $this->conv_id,
         ];
     }
     public function toBroadcast($notifiable)
@@ -79,6 +82,7 @@ class UserSendMessage extends Notification implements ShouldBroadcast
         return new BroadcastMessage([
                 'url' => $this->url,
                 'service_name' => $this->service_name,
+                'conv_id' => $this->conv_id,
         ]);
     }
 }

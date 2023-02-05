@@ -31,19 +31,25 @@
     <link rel="icon" type="image/png" sizes="32x32" href="https://kdmati.com/assets/images/favicons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="96x96" href="https://kdmati.com/assets/images/favicons/favicon-96x96.png">
     <link rel="icon" type="image/png" sizes="16x16" href="https://kdmati.com/assets/images/favicons/favicon-16x16.png">
-    <link rel="stylesheet" media="all" href="{{ asset('frontend/assets/css/bootstrap-rtl.min.css') }}" defer async>
-    <!--fontawesome 5-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
-        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!--style.css-->
-    <link rel="stylesheet" media="all" href="{{ asset('frontend/assets/css/style.css') }}" defer async>
-    <!--responsive.css-->
-    <link rel="stylesheet" href="{{ asset('frontend/assets/css/responsive.css') }}" defer async
-        media="screen and (max-width: 767px)">
-    <link rel="stylesheet" href="{{ asset('frontend/assets/css/responsive-ipad.css') }}" defer async
-        media="screen and (min-device-width : 768px) and (max-device-width : 1024px) ">
+
+
+
+        <!--bootstrap.min.css-->
+        <link rel="stylesheet" media="all"  href="{{ asset('frontend/assets/css/bootstrap-rtl.min.css') }}" defer  async>
+        <!--fontawesome 5-->
+        <link rel="stylesheet" media="all"  href="{{ asset('frontend/assets/css/all.min.css') }}" defer  async>
+
+
+                <!--owl.carousel.min.css-->
+            <link rel="stylesheet" href="{{ asset('frontend/assets/css/owl.carousel.min.css') }}" defer  async>
+                <!--style.css-->
+        <link rel="stylesheet" media="all"  href="{{ asset('frontend/assets/css/style.css?v=184') }}" defer  async>
+
+
+        <!--responsive.css-->
+        <link rel="stylesheet" href="{{ asset('frontend/assets/css/responsive.css?v=86') }}" defer  async media="screen and (max-width: 767px)">
+        <link rel="stylesheet" href="{{ asset('frontend/assets/css/responsive-ipad.css?v=11') }}"
+
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/cus.css') }}" />
 
     @yield('styles')
@@ -61,5 +67,5 @@
         }
     </style>
     <livewire:styles/>
-    
+
 </head>

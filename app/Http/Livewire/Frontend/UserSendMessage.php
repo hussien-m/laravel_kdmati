@@ -25,7 +25,7 @@ class UserSendMessage extends Component
     {
         $notify = Auth::user()->Notifications->where('id',$id)->first();
         if($notify->read_at == null){
-            $notify->markAsRead();
+            $notify->delete();
         }
 
         return redirect()->to($notify->data['url']);

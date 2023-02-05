@@ -7,12 +7,6 @@
 
 </style>
 @section('content')
-<div id="sidebar500">
-
-    <div class="text-center">حسين</div>
-
-  </div>
-
 <section id="page" class="page">
     <div class="container">
         <div class="row commnunity-row">

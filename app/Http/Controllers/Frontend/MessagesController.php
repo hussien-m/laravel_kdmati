@@ -145,6 +145,7 @@ class MessagesController extends Controller
 
     public function sendMessageNow(Request $request)
     {
+        $user = Auth::user();
         if($request->ajax()){
             //dd($request->all());
             $conversation  = $request->conversation_id;
@@ -166,15 +167,28 @@ class MessagesController extends Controller
 
                 if($conv->sender_id == Auth::user()->id ){
 
-                    $conv->receiver->notify(new UserSendMessage($url,$service_name));
-                    $conv->sender->notify(new UserSendMessage($url,$service_name));
+                    $conv->receiver->notify(new UserSendMessage($url,$service_name,$conv->id));
+                    $conv->sender->notify(new UserSendMessage($url,$service_name,$conv->id));
                 }
 
                 if($conv->receiver_id == Auth::user()->id ){
 
-                    $conv->receiver->notify(new UserSendMessage($url,$service_name));
-                    $conv->sender->notify(new UserSendMessage($url,$service_name));
+                    $conv->receiver->notify(new UserSendMessage($url,$service_name,$conv->id));
+                    $conv->sender->notify(new UserSendMessage($url,$service_name,$conv->id));
                 }
+
+                $unread = $user->unreadNotifications->where('type','App\Notifications\Frontend\UserSendMessage');
+
+                foreach($unread as $read)
+                {
+                    if($read->data['conv_id'] == $conv->id){
+                        $read->markAsRead();
+                    }
+                }
+
+
+
+
 
 
 

@@ -130,23 +130,46 @@
             </div>
         </div>
     </div>
-
+    <audio autoplay="true" id="notification" src="{{ asset('notification.mp3') }}" muted></audio>
 </footer>
-<audio autoplay="true" id="notification" src="{{ asset('notification.mp3') }}" muted></audio>
+
 <!--Top Arrow area End-->
 <!-- Jquery.min.js-->
 <script src="{{ asset('build/assets/app-e11ae48c.js') }}"></script>
 
-<script src="{{ asset('frontend/assets/js/jquery-3.5.1.slim.min.js') }}"></script>
+<script src="{{ asset('frontend/assets/js/jquery-3.5.1.slim.min.js') }}" ></script>
 <!--bootstrap.min.js-->
-<script src="{{ asset('frontend/assets/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ asset('frontend/assets/js/bootstrap.bundle.min.js') }}" ></script>
 
+<script src="{{ asset('frontend/assets/js/owl.carousel.min.js') }}" ></script>
+
+<!--custom.js-->
+
+<script src="{{ asset('frontend/assets/js/custom.js') }}" defer></script>
 <!--custom.js-->
 
 
 @yield('scripts')
-<script src="{{ asset('frontend/assets/js/custom.js') }}" defer></script>
 
+<script type="module">
+    var user = "{{ Auth::user()->id }}";
+    Echo.private('App.Models.User.'+user)
+        .notification((notification) => {
+
+            var promise = document.getElementById('notification').play();
+
+            if (promise !== undefined) {
+                promise.then(_ => {
+                    document.getElementById('notification').muted = false;
+                    document.getElementById('notification').play();
+                }).catch(error => {
+                    console.log("Erro Sound "+ error.message);
+
+                });
+            }
+
+        });
+</script>
 <livewire:scripts/>
 
 

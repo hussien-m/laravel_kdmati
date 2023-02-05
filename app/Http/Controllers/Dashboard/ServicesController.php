@@ -29,7 +29,7 @@ class ServicesController extends DashboardController
         $user = $service->user;
         $message = "مبروك تم تفعيل خدمتك :";
         $service_title = " ($service->title)";
-        Notification::send($user,new AcceptUserService($message,$service_title));
+        Notification::send($user,new AcceptUserService($message,$service_title,route('service.show',$service->slug)));
 
         $service->status = 1;
         $service->save();
@@ -40,12 +40,7 @@ class ServicesController extends DashboardController
     public function deActivate($id)
     {
         $service = $this->service($id);
-
         $service->status = 0;
-        $user = $service->user;
-        $message = "مبروك تم تفعيل خدمتك :";
-        $service_title = " ($service->title)";
-        Notification::send($user,new AcceptUserService($message,$service_title));
         $service->save();
         toast("تم تعطيل الخدمة",'success');
         return back();

@@ -30,4 +30,9 @@ class Service extends Model
     {
         return $this->hasMany(Addon::class,'service_id');
     }
+
+    public function Conversation()
+    {
+        return $this->hasMany(Conversation::class,'service_id');
+    }
 }

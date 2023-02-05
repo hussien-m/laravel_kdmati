@@ -5,7 +5,7 @@ var gumStream; 						//stream from getUserMedia()
 var rec; 							//Recorder.js object
 var input; 							//MediaStreamAudioSourceNode we'll be recording
 
-// shim for AudioContext when it's not avb. 
+// shim for AudioContext when it's not avb.
 var AudioContext = window.AudioContext || window.webkitAudioContext;
 var audioContext //audio context to help us record
 
@@ -16,15 +16,15 @@ function startRecording() {
 		Simple constraints object, for more advanced audio features see
 		https://addpipe.com/blog/audio-constraints-getusermedia/
 	*/
-    
+
     var constraints = { audio: true, video:false }
 
  	/*
-    	Disable the record button until we get a success or fail from getUserMedia() 
+    	Disable the record button until we get a success or fail from getUserMedia()
 	*/
 
 	/*
-    	We're using the standard promise based getUserMedia() 
+    	We're using the standard promise based getUserMedia()
     	https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia
 	*/
 
@@ -42,11 +42,11 @@ function startRecording() {
 
 		/*  assign to gumStream for later use  */
 		gumStream = stream;
-		
+
 		/* use the stream */
 		input = audioContext.createMediaStreamSource(stream);
 
-		/* 
+		/*
 			Create the Recorder object and configure to record mono sound (1 channel)
 			Recording 2 channels  will double the file size
 		*/
@@ -78,7 +78,7 @@ function stopRecording() {
 }
 
 function createDownloadLink(blob) {
-	
+
 	var url = URL.createObjectURL(blob);
 	var au = document.createElement('audio');
 
@@ -106,7 +106,7 @@ function createDownloadLink(blob) {
 	*/
 
 	$.ajax({
-		url : '../upload.php',
+		url : '/upload/record',
 		type : 'POST',
 		data : fd,
 		processData: false,  // tell jQuery not to process the data
@@ -122,12 +122,12 @@ function createDownloadLink(blob) {
 
 	//add the li element to the ol
 	recordingsList.appendChild(au);
-		
-	
+
+
      const player = new Plyr('#player');
       player.language = "ar";
       // Expose
       window.player = player;
-      
+
 
 }

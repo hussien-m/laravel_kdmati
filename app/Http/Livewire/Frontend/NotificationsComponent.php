@@ -22,10 +22,21 @@ class NotificationsComponent extends Component
     public function mount()
     {
         $user = Auth::user();
-        $this->unreadnotificationsCount = $user->unreadNotifications->count();
-        $this->unreadnotifications = $user->unreadNotifications;
+        $this->unreadnotificationsCount = $user->unreadNotifications->where('type','App\Notifications\Frontend\AcceptUserService')->count();
+        $this->unreadnotifications = $user->notifications->where('type','App\Notifications\Frontend\AcceptUserService');
 
     }
+
+    public function markAsRead($id)
+    {
+        $notify = Auth::user()->Notifications->where('id',$id)->first();
+        if($notify->read_at == null){
+            $notify->markAsRead();
+        }
+
+        return redirect()->to($notify->data['url']);
+    }
+
     public function render()
     {
         return view('livewire.frontend.notifications-component');

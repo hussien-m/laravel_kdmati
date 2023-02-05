@@ -12,17 +12,17 @@
                 <a href="https://kdmati.com/user/admin"><img loading="lazy"
                         class="hsoub-list-item-img" alt="إدارة خدماتي"
                         src="https://kdmati.com/admin/uploads/16365706541673189984.png"></a>
+
                 <div class="hsoub-list-item-content">
-                    <p class="hsoub-notification-item"> مبروك <a
-                            href='https://kdmati.com/user/kdmati'>{{Auth::user()->first_name}}</a>
-                        ربحت مسابقة <a
-                            href='https://kdmati.com/contest/13-فقط-تجربة-جديدة-لمسابقة'>فقط
-                            تجربة جديدة لمسابقة </a> </p>
+                    <p class="hsoub-notification-item">{{ $notification->data['message'] }}
+                        <a wire:click="markAsRead('{{ $notification->id }}')">{{ $notification->data['service_title'] }}</a>
+                    </p>
                     <div class="hsoub-list-item-date">
-                        <time datetime="2023-01-08 16:56:46 " title="2023-01-08 16:56:46"> <i
-                                class="far fa-clock"></i> منذ 3 يوم </time>
+                        <time> <i
+                                class="far fa-clock"></i>{{ $notification->created_at->diffForHumans() }}</time>
                     </div>
                 </div>
+
             </li>
             @empty
              <div class="text-center">لاتوجد إشعارات حتى الأن</div>

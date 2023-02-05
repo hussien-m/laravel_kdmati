@@ -2,12 +2,13 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Frontend\FrontendController;
+use App\Http\Controllers\Frontend\MessagesController;
 use App\Http\Controllers\Frontend\ServicesController;
 use Illuminate\Support\Facades\Route;
 
 Route::name('user.')->group(function(){
 
-        Route::get('/',[FrontendController::class,'index']);
+        Route::get('/',[FrontendController::class,'index'])->name('index.page');
         Route::get('/test',[FrontendController::class,'test']);
 });
 
@@ -29,8 +30,18 @@ Route::middleware(['auth'])->group(function(){
     })->name('get-sub-category');
 
     Route::get('category/{slug}',[ServicesController::class,'categorySlug'])->name('categorySlug');
+    Route::get('services/{slug}',[ServicesController::class,'service'])->name('service.show');
 
-    //Route::get('category/target/app/{slug}',[ServicesController::class,'categoryTargetSlug'])->name('categoryTagetSlug');
+    Route::get('new/message/{service_id}',[MessagesController::class,'showFormMessage'])->name('message.new');
+
+    Route::get('messages/{conv_id}',[MessagesController::class,'showmessage'])->name('show.messages');
+
+
+
+    Route::post('front/send/message',[MessagesController::class,'sendMessage'])->name('user.sendMessage');
+    Route::post('now/send/message',[MessagesController::class,'sendMessageNow'])->name('sendMessageNow');
+    Route::post('upload/record',[MessagesController::class,'uploadRecord'])
+    ->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class]);
 
 
 });

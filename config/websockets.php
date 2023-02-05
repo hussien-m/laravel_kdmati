@@ -59,7 +59,7 @@ return [
     /*
      * This path will be used to register the necessary routes for the package.
      */
-    'path' => 'laravel-websockets',
+    'path' => 'server',
 
     /*
      * Dashboard Routes Middleware
@@ -132,6 +132,8 @@ return [
         'verify_peer' => false,
     ],
 
+
+    
     /*
      * Channel Manager
      * This class handles how channel persistence is handled.
@@ -139,5 +141,7 @@ return [
      * The only requirement is that the class should implement
      * `ChannelManager` interface provided by this package.
      */
+
+
     'channel_manager' => \BeyondCode\LaravelWebSockets\WebSockets\Channels\ChannelManagers\ArrayChannelManager::class,
 ];

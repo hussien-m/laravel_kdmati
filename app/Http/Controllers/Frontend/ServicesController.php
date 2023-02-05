@@ -8,6 +8,7 @@ use App\Models\Service;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Str;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Intervention\Image\ImageManagerStatic as Image;
@@ -30,7 +31,12 @@ class ServicesController extends Controller
 
         try{
 
-        //insert to service table
+        //SELECT MAX(id) FROM services
+        $last_id = DB::table('services')->max("id");
+
+        $last_id= ($last_id == null) ? $last_id =1 : $last_id = $last_id+1;
+
+        $slug =str_replace(' ','-',$request->title);
         $new_service = Service::create([
 
             'title'        => $request->title,
@@ -43,6 +49,8 @@ class ServicesController extends Controller
             'tags'         => $request->tags,
             'duration'     => $request->duration,
             'instructions' => $request->instructions,
+            'slug'         => $last_id.'-'.$slug,
+            'status'        =>1,
 
             ]);
 
@@ -112,7 +120,7 @@ class ServicesController extends Controller
 
                     $ex =  end($temp);
 
-                    $allowed = array('png', 'jpg', 'jpeg', 'PNG', 'JPG');
+                    $allowed = array('png', 'jpg', 'jpeg', 'PNG', 'JPG','pdf');
 
                     if (in_array($ex, $allowed) && $ex != '' && !empty($ex)) {
 
@@ -255,6 +263,13 @@ class ServicesController extends Controller
         return view('frontend.categories.cat_slug',$data);
 
       }
+    }
+
+    public function service($slug)
+    {
+        $data['service'] = Service::with(['category','subCategory'])->whereSlug($slug)->first();
+
+        return view("frontend.service.show",$data);
     }
 
 

@@ -23,10 +23,15 @@ class AcceptUserService extends Notification implements ShouldBroadcast
 
     public $service_title;
 
-    public function __construct($message,$service_title)
+    public $url;
+
+    public function __construct($message,$service_title,$url)
     {
         $this->message = $message;
+
         $this->service_title = $service_title;
+
+        $this->url = $url;
     }
 
     /**
@@ -73,8 +78,10 @@ class AcceptUserService extends Notification implements ShouldBroadcast
     public function toDatabase($notifiable)
     {
         return [
+
             'message' => $this->message,
-            'serive_title' => $this->service_title,
+            'service_title' => $this->service_title,
+            'url' => $this->url,
         ];
     }
     public function toBroadcast($notifiable)
@@ -82,6 +89,7 @@ class AcceptUserService extends Notification implements ShouldBroadcast
         return new BroadcastMessage([
                 'message' => $this->message,
                 'serive_title' => $this->service_title,
+                'url' => $this->url,
         ]);
     }
 }

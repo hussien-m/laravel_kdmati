@@ -14,7 +14,7 @@
                     <div class="service-item-container col-md-3">
                         <div class="card service-item  ">
                             <a class="service-item-link"
-                                href="#">
+                                href="{{ route('service.show',$business->slug) }}">
                                 <img loading="lazy"
                                     src="{{ asset('upload/images/'.$image[0]) }}" width="340"
                                     height="190" class=" service-item-image"
@@ -35,7 +35,7 @@
                                 </div>
 
                                 <h5 class="card-title service-item-title"><a class="service-item-link"
-                                        href="#serviceURL">{{ $business->title }}</a></h5>
+                                        href="{{ route('service.show',$business->slug) }}">{{ $business->title }}</a></h5>
                             </div>
                             <div class="card-footer service-item-footer row align-items-baseline">
                                 <div class="col-6  text-left">

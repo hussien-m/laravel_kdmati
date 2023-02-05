@@ -276,7 +276,7 @@ $('#record-btn').clickToggle(function(ev) {
           var c = confirm("هل انت متاكد من حذف هذا العنصر ؟");
     if(c){ //you can just return c because it will be true or false
 
-        $("#delete-record").hide();
+  $("#delete-record").hide();
   $("#recordingsList").html("");
   $("#record-input").val("");
     $("#title-inner").html("اضغط على الميكروفون لتبدأ التسجيل ");

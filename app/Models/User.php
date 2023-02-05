@@ -64,10 +64,19 @@ class User extends Authenticatable
         return $this->hasMany(Service::class,'user_id');
     }
 
-
     public function receivesBroadcastNotificationsOn()
     {
         return 'App.Models.User.'.$this->id;
+    }
+
+    public function receiverMessage()
+    {
+        return $this->hasMany(Message::class,'receiver_id');
+    }
+
+    public function senderConversation()
+    {
+        return $this->hasMany(Conversation::class,'sender_id');
     }
 
 }

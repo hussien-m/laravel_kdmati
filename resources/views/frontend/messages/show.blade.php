@@ -8,26 +8,27 @@
 @endsection
 
 @section('content')
-    <div class="container mt-2">
-        <div class="row">
-            <div class="col-md-9 col-lg-9">
-                <div class="media comment-item-user">
-                    <a href="#"><img src="https://kdmati.com/admin/uploads/18799420301655485487.png"
-                            class="mr-3 subject-item-image" alt="Khaled Fozan"></a>
-                    <div class="media-body">
-                        <h1 class="subject-title">{{ $service->title }}</h1>
-                        <p class="subject-meta"><a class="user" href="#"><i
-                                    class="fa fa-fw fa-user"></i> {{ $service->user->first_name.' '.$service->user->last_name }} </a> <i class="far fa-clock fa-fw"></i> آخر
-                            تفاعل : منذ 3 ساعة</p>
+   <section id="subject-header" class="login subject-header ">
+        <div class="container mt-2">
+            <div class="row">
+                <div class="col-md-9 col-lg-9">
+                    <div class="media comment-item-user">
+                        <a href="#"><img src="https://kdmati.com/admin/uploads/18799420301655485487.png"
+                                class="mr-3 subject-item-image" alt="Khaled Fozan"></a>
+                        <div class="media-body">
+                            <h1 class="subject-title">{{ $service->title }}</h1>
+                            <p class="subject-meta"><a class="user" href="#"><i
+                                        class="fa fa-fw fa-user"></i> {{ $service->user->first_name.' '.$service->user->last_name }} </a> <i class="far fa-clock fa-fw"></i> آخر
+                                تفاعل : منذ 3 ساعة</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-3 text-right">
-                <a href="{{ route('service.show',$service->slug) }}"
-                    class="btn btn-primary form-button"><i class="fa fa-eye"></i> شاهد الخدمة</a>
+                <div class="col-md-3 text-right">
+                    <a href="{{ route('service.show',$service->slug) }}"
+                        class="btn btn-primary form-button"><i class="fa fa-eye"></i> شاهد الخدمة</a>
+                </div>
             </div>
         </div>
-    </div>
     </section>
     <section id="subject-body" class="login  ">
         <div class="container">
@@ -190,6 +191,8 @@ $(function() {
                 conversation_id: conversation_id,
 
           },success: function(data){
+            Livewire.emit('updateMessages');
+            //Livewire.emit('test');
             $("#message").val(" ");
             $(".action-btn").addClass("collapsed");
             $(".multi-collapse").removeClass("show");

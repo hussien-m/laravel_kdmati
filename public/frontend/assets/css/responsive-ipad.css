@@ -4,9 +4,9 @@
 * Autoprefixer: v9.7.6
 * Browsers: last 4 version
 */
-@media only screen 
-and (min-device-width : 768px) 
-and (max-device-width : 1024px){ 
+@media only screen
+and (min-device-width : 768px)
+and (max-device-width : 1024px){
     .col-md-3 {
     -ms-flex: 0 0 50%;
     flex: 0 0 50%;
@@ -16,6 +16,11 @@ and (max-device-width : 1024px){
     -ms-flex: 0 0 50%;
     flex: 0 0 50%;
     max-width: 50%;
+}
+.content-h{
+
+    padding: 0 0 0 0;
+
 }
 #carouselExampleControls .carousel-item {
     min-height: 200px;
@@ -30,7 +35,7 @@ and (max-device-width : 1024px){
         margin-bottom: 15px;
     }
 
-    
+
     .sub-footer .subfooter-list-item
     {
         margin: 0 10px 10px;
@@ -201,7 +206,7 @@ and (max-device-width : 1024px){
     {
         height: 37px;
     }
-    
+
     #subject-header .btn {
         margin-top: 15px;
     }
@@ -384,7 +389,7 @@ and (max-device-width : 1024px){
         font-weight: 500;
         text-align: center !important;
     }
-  
+
     .payment-image {
         width: 100%;
     }
@@ -497,7 +502,7 @@ and (max-device-width : 1024px){
     .home-footer {
         padding: 38px 20px 0;
         background-size: auto;
-    }   
+    }
     .faqs-item-body {
     padding: 9px;
     white-space: pre-line;
@@ -581,7 +586,7 @@ and (max-device-width : 1024px){
     }
     .search-button
     {
-        right: 0;   
+        right: 0;
     }
     .search__box input
     {
@@ -617,7 +622,7 @@ and (max-device-width : 1024px){
     .main-category
     {
         padding: 0;
-    } 
+    }
     .contest-item-meta .text-left
     {
         text-align: center !important;
@@ -650,7 +655,7 @@ and (max-device-width : 1024px){
     }
     .footer-title
     {
-        margin-bottom: 15px;    
+        margin-bottom: 15px;
     }
     .copyright {
         font-size: 15px;
@@ -670,7 +675,7 @@ and (max-device-width : 1024px){
         padding-top: 20px;
     }
     .inner-logo {
-        margin: 42px 18px;      
+        margin: 42px 18px;
         display: block;
     }
     .inner-text {
@@ -713,10 +718,10 @@ and (max-device-width : 1024px){
     .contest-ago,.service-item-price {
         text-align: center;
     }
-    .contests2 .contest-ago,.contests2 .service-item-price 
+    .contests2 .contest-ago,.contests2 .service-item-price
     {
         text-align: right;
-        
+
     }
     .title3
     {
@@ -780,4 +785,4 @@ and (max-device-width : 1024px){
     .sidebar-btn {
         display: inline-block !important;
     }
-}   
+}

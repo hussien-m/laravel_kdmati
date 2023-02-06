@@ -4,7 +4,9 @@
     @include('layouts.frontend.sidebar')
     <!--top-header-->
     <div class="wrapper" id="main">
-        @yield('content')
+
+            @yield('content')
+
     </div>
 @include('layouts.frontend.footer')
 </body>

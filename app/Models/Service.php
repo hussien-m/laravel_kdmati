@@ -35,4 +35,9 @@ class Service extends Model
     {
         return $this->hasMany(Conversation::class,'service_id');
     }
+
+    public function carts()
+    {
+        return $this->hasMany(Service::class,'service_id');
+    }
 }

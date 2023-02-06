@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\MessagesController;
 use App\Http\Controllers\Frontend\ServicesController;
@@ -36,7 +37,7 @@ Route::middleware(['auth'])->group(function(){
 
     Route::get('messages/{conv_id}',[MessagesController::class,'showmessage'])->name('show.messages');
 
-
+    Route::post('add-to/cart',[CartController::class,'addToCart'])->name('user.add.cart');
 
     Route::post('front/send/message',[MessagesController::class,'sendMessage'])->name('user.sendMessage');
     Route::post('now/send/message',[MessagesController::class,'sendMessageNow'])->name('sendMessageNow');

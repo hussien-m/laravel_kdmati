@@ -1056,8 +1056,12 @@ footer a:hover {
 }
 
 .wrapper {
-    padding: 0;
+    /*padding: 0;*/
     margin-top: 70px;
+
+}
+.content-h{
+    padding: 0px 100px 0 100px;
 }
 
 .steps-holder {
@@ -2278,11 +2282,33 @@ a.text-primary:focus, a.text-primary:hover
     font-family:'Noto Naskh Arabic';
 
 }
+.subject-content p{
+    line-height: 2rem;
+    font-size: 16px;
+    font-family: "Noto Naskh Arabic", "Open Sans", "Helvetica Neue", "Helvetica", "Arial", "sans-serif";
+    word-break: break-word;
+}
+.addon label{
+    font-size: 14px;
+    font-family: "Noto Naskh Arabic", "Open Sans", "Helvetica Neue", "Helvetica", "Arial", "sans-serif";
+    color: #777777;
+    cursor: pointer;
+    line-height: inherit;
+}
+.p-rate{
+    margin: 5px 0px 10px 0px;
+    font-size: 14px;
+    line-height: 1.5em;
+
+}
+.a-title{
+    font-size: 14px;
+}
 
 .comment-body,.subject-content,.instructions,.page-content p,.page-content *,.page-content,.faqs-item-body,.hsoub-list-item-content,.contest-item-description,.page-subtitle,#service_upgrades_table td,textarea.form-control,.alert
 {
-        font-family:'Noto Naskh Arabic';
-        font-size: 18px;
+
+        font-size: 15px;
 }
 .hsoub-list-item-content {
     overflow: hidden;
@@ -2343,7 +2369,9 @@ a.text-primary:focus, a.text-primary:hover
 }
 
 .subject-header {
-    padding: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-right: 20px;
     background: white;
 }
 

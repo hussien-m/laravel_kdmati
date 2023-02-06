@@ -79,4 +79,9 @@ class User extends Authenticatable
         return $this->hasMany(Conversation::class,'sender_id');
     }
 
+    public function carts()
+    {
+        return $this->hasMany(Cart::class,'user_id');
+    }
+
 }

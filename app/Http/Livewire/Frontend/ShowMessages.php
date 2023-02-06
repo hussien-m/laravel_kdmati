@@ -11,6 +11,13 @@ class ShowMessages extends Component
 {
     public $messages;
     public $conversation_id;
+    public static $user;
+
+    public function updateMessages()
+    {
+        $this->messages = Message::where('conversation_id',$this->conversation_id)->get();
+    }
+
 
     public function getListeners():array
     {
@@ -19,6 +26,7 @@ class ShowMessages extends Component
 
         return
         [
+            'updateMessages' => 'updateMessages',
             "echo-notification:App.Models.User.$user,notification" => 'mount',
 
         ];

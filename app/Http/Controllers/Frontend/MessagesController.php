@@ -21,7 +21,10 @@ class MessagesController extends Controller
 
         $data['service']->load('user');
 
-        return view("frontend.messages.form",$data);
+       if(Auth::user()->id != $data['service']->user_id){
+           return view("frontend.messages.form",$data);
+        }
+        return abort(404);
     }
 
     public function sendMessage(Request $request)
@@ -56,6 +59,7 @@ class MessagesController extends Controller
 
         DB::beginTransaction();
         try{
+            dd($request->all());
 
                 $conv = new Conversation();
                 $conv->sender_id   = Auth::user()->id;
@@ -76,9 +80,9 @@ class MessagesController extends Controller
                 $sender_user = User::findOrfail($request->sender_id);
 
 
-                $sender_user->notify(new UserSendMessage($url2,$service_name));
+                $sender_user->notify(new UserSendMessage($url2,$service_name,$conv->id));
 
-                $receiver_user->notify(new UserSendMessage($url2,$service_name));
+                $receiver_user->notify(new UserSendMessage($url2,$service_name,$conv->id));
 
 
                 DB::commit();

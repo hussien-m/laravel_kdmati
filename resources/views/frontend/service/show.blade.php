@@ -98,6 +98,7 @@ background-color: #ffffffad;
                         </div>
                     </div>
                     <div class="col-md-4 text-left text-lg-right text-md-right">
+                        @if(Auth::user()->id != $service->user_id)
                         <div class="btn-group">
                             <a href="#add-to-cart" type="button" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>
                                 اشتري الخدمة</a>
@@ -113,6 +114,12 @@ background-color: #ffffffad;
                                         المفضلة</span></a>
                             </div>
                         </div>
+                        @else
+                        <a href="#add-to-cart" type="button" class="btn btn-primary"><i class="fa fa-edit"></i>
+                            تعديل الخدمة
+                        </a>
+                        @endif
+
 
                     </div>
                 </div>
@@ -160,19 +167,17 @@ background-color: #ffffffad;
 
                         </div>
                     </div>
-                    @endif
+
+
                     <div class="card  subject-card comment-form-card" id="add-to-cart">
                         <div class="card-header form-card-header">
-                            <h2 class="card-header-title">اشتري الخدمة <a class="color-primary float-right contact-link"
+                            <h2 class="card-header-title">اشتري الخدمة
+                                <a class="color-primary float-right contact-link"
                                     href="{{ route('message.new',$service->id) }}">تواصل مع البائع</a></h2>
                         </div>
                         <div class="card-body p-lg-3">
                             <form method="POST" action="javascript:void(0)" class="comment-form">
-                                <input type="hidden" id="id" value="7267" name="id">
-                                <input type="hidden" id="title" value="إنشاء مدونة بلوجر بدقة عالية و قالب مميز في أي مجال تريده" name="title">
-                                <input type="hidden" id="slug"
-                                    value="https://kdmati.com/service/7267-انشا--مدونة-بلوجر-blogger-باللغة-العربية-أو-الانجليزية"
-                                    name="slug">
+
                                 <input type="hidden" id="amount" value="5" name="amount">
                                 <input type="hidden" id="addon_ids" value="" name="addon_ids">
                                 <h3 class="u-margin-bottom mb-2 text-center">
@@ -203,7 +208,7 @@ background-color: #ffffffad;
                             </form>
                         </div>
                     </div>
-
+                    @endif
 
                     <div class="card  subject-card subject-comments-card" id="review-list">
                         <div class="card-header form-card-header">
@@ -218,6 +223,7 @@ background-color: #ffffffad;
 
                         </div>
                     </div>
+                    @if(Auth::user()->id != $service->user_id)
                     <div class="card subject-card  ">
                         <div class="card-header form-card-header">
                             <h2 class="card-header-title">اعزمني على كوب من القهوة</h2>
@@ -263,6 +269,7 @@ background-color: #ffffffad;
                         </div>
 
                     </div>
+                    @endif
                     <div class="card subject-card ">
                         <div class="card-header form-card-header">
                             <h2 class="card-header-title">خدمات مقترحة</h2>
@@ -395,19 +402,41 @@ background-color: #ffffffad;
                         </div>
 
                         <div class="card-footer bg-white">
+                            @if(Auth::user()->id != $service->user_id)
                             <div class="media comment-item-user">
                                 <a href="https://kdmati.com/user/Aimad1710"><img
                                         src="https://kdmati.com/admin/avatars/16381207751660819112.jpg"
                                         class="mr-3 comment-item-image" alt="{{ $service->user->first_name }}"></a>
                                 <div class="media-body">
+
                                     <h5 class="comment-user-name"><a class="comment-user-link"
                                             href="https://kdmati.com/user/Aimad1710">{{ $service->user->first_name.' '.$service->user->last_name  }} </a> <a
                                             class="btn btn-primary btn-outline float-right"
                                             href="{{ route('message.new',$service->id) }}">تواصل</a></h5>
 
+
                                     <small class="comment-meta"><i class="fa fa-fw fa-briefcase"></i> بائع نشيط</small>
+
                                 </div>
                             </div>
+                            @else
+                            <div class="media comment-item-user">
+                                <a href="https://kdmati.com/user/Aimad1710"><img
+                                        src="https://kdmati.com/admin/avatars/16381207751660819112.jpg"
+                                        class="mr-3 comment-item-image" alt="{{ $service->user->first_name }}"></a>
+                                <div class="media-body">
+
+                                    <h5 class="comment-user-name"><a class="comment-user-link"
+                                            href="https://kdmati.com/user/Aimad1710">{{ $service->user->first_name.' '.$service->user->last_name  }} </a>
+
+                                    </h5>
+
+
+                                    <small class="comment-meta"><i class="fa fa-fw fa-briefcase"></i> بائع نشيط</small>
+
+                                </div>
+                            </div>
+                            @endif
                         </div>
                     </div>
                     <div class="card subject-card subject-side-card mb-4">

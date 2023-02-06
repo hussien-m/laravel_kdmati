@@ -38,8 +38,6 @@
 
                                 <livewire:frontend.show-messages :conversation_id="$conversation->id"/>
 
-
-
                             <div class="card-footer service-footer">
                                 <div id="respond" style="display: none;"></div>
                                 <form method="POST"  enctype="multipart/form-data" class="message-form"

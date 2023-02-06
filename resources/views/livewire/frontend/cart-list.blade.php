@@ -11,9 +11,16 @@
                 <ul class="hsoub-list-group" id="cartlist">
 
                     @forelse ($carts as $cart)
+                    @php
+                        $image =explode(',',$cart->service->images);
+                    @endphp
                     <li class="hsoub-list-item ">
-                        <div class="hsoub-list-item-content" >
-                        <a class="hsoub-list-item-link">{{ $cart->service->title }}</a>
+                        <a href="#"><img loading="lazy" class="hsoub-list-item-img" alt="معمر" src="{{ asset("upload/images/".$image[0]) }}"></a>
+                        <div class="hsoub-list-item-content">
+                             تم اضافة : <a class="hsoub-list-item-link">{{ $cart->service->title }}</a> الى السلة
+                            <div class="hsoub-list-item-date">
+                                <time> <i class="far fa-clock"></i>{{ $cart->created_at->diffForHumans() }}</time>
+                            </div>
                         </div>
                     </li>
                     @empty

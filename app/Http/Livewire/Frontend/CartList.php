@@ -17,13 +17,13 @@ class CartList extends Component
 
     public function updateCart()
     {
-        $this->carts = Cart::where('user_id',Auth::user()->id)->get();
+        $this->carts = Cart::where('user_id',Auth::user()->id)->latest()->get();
     }
 
     public function mount()
     {
 
-        $this->carts = Cart::where('user_id',Auth::user()->id)->get();
+        $this->carts = Cart::where('user_id',Auth::user()->id)->latest()->get();
     }
 
     public function render()

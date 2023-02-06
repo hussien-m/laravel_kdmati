@@ -30,135 +30,137 @@
             </div>
         </div>
     </section>
-    <section id="subject-body" class="login  ">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 col-lg-12  ">
-                    <div class="card  subject-card subject-comments-card" id="review-list">
+    <div class="content-h">
+        <section id="subject-body" class="login  ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-lg-12  ">
+                        <div class="card  subject-card subject-comments-card" id="review-list">
 
-                            <livewire:frontend.show-messages :conversation_id="$conversation->id"/>
-
-
-
-                        <div class="card-footer service-footer">
-                            <div id="respond" style="display: none;"></div>
-                            <form method="POST"  enctype="multipart/form-data" class="message-form"
-                                id="message-form">
-                                <input id="conversation_id" name="conversation_id" type="hidden" value="{{ $conversation->id ?? old('conversation_id') }}">
-
-                                <input id="files" name="files" type="hidden" value="">
-                                <input type="hidden" name="record" id="record-input" value="">
-                                <div class="form-group  ">
-                                    <textarea class="form-control" rows="5" name="message" placeholder="" id="message"></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <button type="button" data-toggle="collapse" href="#fileAccordion" role="button" aria-expanded="false" aria-controls="fileAccordion" class="btn btn-default btn-sm  action-btn"><i class="fa fa-paperclip"></i> <span> أرفق ملفات</span></button>
-                                    <button type="button" data-toggle="collapse" href="#audioAccordion" role="button" aria-expanded="false" aria-controls="audioAccordion" class="btn btn-default btn-sm  action-btn"><i class="fa fa-microphone"></i> <span> أضف رسالة صوتية</span></button>
+                                <livewire:frontend.show-messages :conversation_id="$conversation->id"/>
 
 
-                                            <div class="collapse multi-collapse mt-2" id="fileAccordion" style="height: 128px;">
-                                                <div class="card card-body  file-card-body">
-                                                   <div class="inner-page">
-                                                      <div class="uploader-container">
-                                                         <div action="{{ route("image.upload") }}" class="dropzone2">
-                                                            <div class="fallback">
-                                                               <input name="file" type="file" multiple />
+
+                            <div class="card-footer service-footer">
+                                <div id="respond" style="display: none;"></div>
+                                <form method="POST"  enctype="multipart/form-data" class="message-form"
+                                    id="message-form">
+                                    <input id="conversation_id" name="conversation_id" type="hidden" value="{{ $conversation->id ?? old('conversation_id') }}">
+
+                                    <input id="files" name="files" type="hidden" value="">
+                                    <input type="hidden" name="record" id="record-input" value="">
+                                    <div class="form-group  ">
+                                        <textarea class="form-control" rows="5" name="message" placeholder="" id="message"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="button" data-toggle="collapse" href="#fileAccordion" role="button" aria-expanded="false" aria-controls="fileAccordion" class="btn btn-default btn-sm  action-btn"><i class="fa fa-paperclip"></i> <span> أرفق ملفات</span></button>
+                                        <button type="button" data-toggle="collapse" href="#audioAccordion" role="button" aria-expanded="false" aria-controls="audioAccordion" class="btn btn-default btn-sm  action-btn"><i class="fa fa-microphone"></i> <span> أضف رسالة صوتية</span></button>
+
+
+                                                <div class="collapse multi-collapse mt-2" id="fileAccordion" style="height: 128px;">
+                                                    <div class="card card-body  file-card-body">
+                                                    <div class="inner-page">
+                                                        <div class="uploader-container">
+                                                            <div action="{{ route("image.upload") }}" class="dropzone2">
+                                                                <div class="fallback">
+                                                                <input name="file" type="file" multiple />
+                                                                </div>
                                                             </div>
-                                                         </div>
-                                                         <div class="media recorder">
-                                                            <div class="align-self-center mr-2 file-btn-container" id="file-btn">
-                                                               <div class="file-icon">
-                                                                  <i class="fa fa-fw fa-cloud-upload"></i>
-                                                               </div>
+                                                            <div class="media recorder">
+                                                                <div class="align-self-center mr-2 file-btn-container" id="file-btn">
+                                                                <div class="file-icon">
+                                                                    <i class="fa fa-fw fa-cloud-upload"></i>
+                                                                </div>
+                                                                </div>
+                                                                <div class="media-body record-body">
+                                                                <p class="mt-2 record-title" style="font-size:14px"> اسحب الملفات هنا
+                                                                </p>
+                                                                <p class="record-description"  style="font-size:14px">أو انقر للاختيار يدويا</p>
+                                                                </div>
                                                             </div>
-                                                            <div class="media-body record-body">
-                                                               <p class="mt-2 record-title" style="font-size:14px"> اسحب الملفات هنا
-                                                               </p>
-                                                               <p class="record-description"  style="font-size:14px">أو انقر للاختيار يدويا</p>
+                                                        </div>
+                                                        <!-- Preview collection of uploaded documents -->
+                                                        <div class="preview-container dz-preview uploaded-files">
+                                                            <div id="previews">
+                                                                <div id="onyx-dropzone-template">
+                                                                <div class="onyx-dropzone-info">
+                                                                    <div class="thumb-container">
+                                                                        <img data-dz-thumbnail />
+                                                                    </div>
+                                                                    <div class="details">
+                                                                        <div>
+                                                                            <span class="text-primary"><i class="far fa-check-circle"></i></span>
+                                                                            <span data-dz-name></span> حجم الملف: <span data-dz-size></span>
+                                                                        </div>
+                                                                        <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
+                                                                        <div class="dz-error-message"><span data-dz-errormessage></span></div>
+                                                                        <div class="actions">
+                                                                            <a href="#!" data-dz-remove class="delete-file confirm">
+                                                                            <i class="fa fa-times"></i> حذف
+                                                                            </a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                </div>
                                                             </div>
-                                                         </div>
-                                                      </div>
-                                                      <!-- Preview collection of uploaded documents -->
-                                                      <div class="preview-container dz-preview uploaded-files">
-                                                         <div id="previews">
-                                                            <div id="onyx-dropzone-template">
-                                                               <div class="onyx-dropzone-info">
-                                                                  <div class="thumb-container">
-                                                                     <img data-dz-thumbnail />
-                                                                  </div>
-                                                                  <div class="details">
-                                                                     <div>
-                                                                        <span class="text-primary"><i class="far fa-check-circle"></i></span>
-                                                                        <span data-dz-name></span> حجم الملف: <span data-dz-size></span>
-                                                                     </div>
-                                                                     <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
-                                                                     <div class="dz-error-message"><span data-dz-errormessage></span></div>
-                                                                     <div class="actions">
-                                                                        <a href="#!" data-dz-remove class="delete-file confirm">
-                                                                        <i class="fa fa-times"></i> حذف
-                                                                        </a>
-                                                                     </div>
-                                                                  </div>
-                                                               </div>
-                                                            </div>
-                                                         </div>
-                                                      </div>
-                                                   </div>
-                                                </div>
-                                             </div>
-
-                                    <div class="collapse multi-collapse" id="audioAccordion">
-                                        <div class="card card-body audio-card-body">
-                                            <div class="media recorder">
-                                                <div class="align-self-center mr-2 recorder-btn-container"
-                                                    id="record-btn">
-                                                    <div class="record-icon">
-                                                        <i class="fa fa-fw fa-microphone"></i>
+                                                        </div>
+                                                    </div>
                                                     </div>
                                                 </div>
-                                                <div class="media-body record-body">
-                                                    <h5 class="mt-2 record-title"><span id="title-inner"
-                                                            style="font-size:14px">اضغط على الميكروفون لتبدأ التسجيل
-                                                        </span> <span class="float-right">
-                                                            <a class="btn btn-danger btn-sm delete-record confirm"
-                                                                id="delete-record">
-                                                                <i class="fa fa-times"></i> حذف
-                                                            </a>
-                                                        </span>
-                                                    </h5>
-                                                    <p class="record-description" style="font-size:14px">ستتمكن من مراجعة
-                                                        الرسالة قبل إرسالها</p>
+
+                                        <div class="collapse multi-collapse" id="audioAccordion">
+                                            <div class="card card-body audio-card-body">
+                                                <div class="media recorder">
+                                                    <div class="align-self-center mr-2 recorder-btn-container"
+                                                        id="record-btn">
+                                                        <div class="record-icon">
+                                                            <i class="fa fa-fw fa-microphone"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="media-body record-body">
+                                                        <h5 class="mt-2 record-title"><span id="title-inner"
+                                                                style="font-size:14px">اضغط على الميكروفون لتبدأ التسجيل
+                                                            </span> <span class="float-right">
+                                                                <a class="btn btn-danger btn-sm delete-record confirm"
+                                                                    id="delete-record">
+                                                                    <i class="fa fa-times"></i> حذف
+                                                                </a>
+                                                            </span>
+                                                        </h5>
+                                                        <p class="record-description" style="font-size:14px">ستتمكن من مراجعة
+                                                            الرسالة قبل إرسالها</p>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="playlist">
-                                                <div class="plyr" id="recordingsList">
+                                                <div class="playlist">
+                                                    <div class="plyr" id="recordingsList">
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="form-group text-left">
-                                    <button  type="button" href="#" id="submit-btn"
-                                        class="text-center btn btn-primary form-button">أرسل</button>
-                                </div>
-                            </form>
+                                    <div class="form-group text-left">
+                                        <button  type="button" href="#" id="submit-btn"
+                                            class="text-center btn btn-primary form-button">أرسل</button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
-                    </div>
-                    <div class="card  subject-card comment-form-card">
-                        <div class="card-header form-card-header">
-                            <h2 class="card-header-title text-danger">ملاحظات هامة لحماية حسابك</h2>
-                        </div>
-                        <div class="card-body p-lg-3">
-                            <div class="pre instructions">- الحفاظ على معلومات وبياناتك الشخصية مسؤوليتك وعليك الانتباه إلى
-                                أدق التفاصيل.
-                                - بيانات تسجيل الدخول وحساباتك المالية يجب أن تظل قيد السرية ولا يعرفها أي شخص.
-                                - في حالة مخالفة التعليمات وأرسلت أي معلومات تخصك تقع نتيجة ذلك على مسؤوليتك.</div>
+                        <div class="card  subject-card comment-form-card">
+                            <div class="card-header form-card-header">
+                                <h2 class="card-header-title text-danger">ملاحظات هامة لحماية حسابك</h2>
+                            </div>
+                            <div class="card-body p-lg-3">
+                                <div class="pre instructions">- الحفاظ على معلومات وبياناتك الشخصية مسؤوليتك وعليك الانتباه إلى
+                                    أدق التفاصيل.
+                                    - بيانات تسجيل الدخول وحساباتك المالية يجب أن تظل قيد السرية ولا يعرفها أي شخص.
+                                    - في حالة مخالفة التعليمات وأرسلت أي معلومات تخصك تقع نتيجة ذلك على مسؤوليتك.</div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </div>
 @stop
 
 @section('scripts')

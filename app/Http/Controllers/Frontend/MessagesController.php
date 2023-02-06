@@ -59,7 +59,7 @@ class MessagesController extends Controller
 
         DB::beginTransaction();
         try{
-            dd($request->all());
+            //dd($request->all());
 
                 $conv = new Conversation();
                 $conv->sender_id   = Auth::user()->id;

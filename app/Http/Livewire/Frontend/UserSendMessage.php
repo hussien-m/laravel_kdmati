@@ -48,6 +48,7 @@ class UserSendMessage extends Component
         $this->unreadnotifications = Conversation::with('messages')
                 ->where('receiver_id',Auth::user()->id)
                 ->orWhere('sender_id',Auth::user()->id)
+                ->latest()
                 ->get();
 
 

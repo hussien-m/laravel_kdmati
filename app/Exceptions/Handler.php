@@ -5,6 +5,8 @@ namespace App\Exceptions;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Auth;
+use SebastianBergmann\CodeCoverage\Report\Html\Renderer;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 use Throwable;
 
@@ -73,9 +75,11 @@ class Handler extends ExceptionHandler
 
     public function render($request, Throwable $e)
     {
+
         if($e instanceof MethodNotAllowedHttpException){
-           return redirect()->route('admin.login');
+            return response()->view('welcome');
         }
+
         return parent::render($request,  $e);
     }
 }

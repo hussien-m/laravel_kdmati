@@ -227,11 +227,11 @@
 
     var target = $(this).attr('href');
 
-    var url = "{{ route('categorySlug','') }}"+"/"+target ;
+    var url = "{{ route('ajaxSubCat','') }}"+"/"+target ;
 
 
 
-   // window.history.replaceState({urlPath:url}, "Title", url);
+   window.history.replaceState({urlPath:url}, "Title", url);
 
     $.ajax({
         url:url,

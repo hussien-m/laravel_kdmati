@@ -32,6 +32,9 @@ Route::middleware(['auth'])->group(function(){
     })->name('get-sub-category');
 
     Route::get('category/{slug}',[ServicesController::class,'categorySlug'])->name('categorySlug');
+
+    Route::get('sub/category/{slug}',[ServicesController::class,'ajaxManinCategory'])->name('ajaxSubCat');
+
     Route::get('services/{slug}',[ServicesController::class,'service'])->name('service.show');
 
     Route::get('new/message/{service_id}',[MessagesController::class,'showFormMessage'])->name('message.new');

@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
+use function React\Promise\Stream\all;
 
 class ServicesController extends Controller
 {
@@ -82,7 +83,25 @@ class ServicesController extends Controller
 
     public function categorySlug(Request $request,$slug)
     {
-      if($request->ajax()){
+
+
+
+
+        $slug_id            = Category::whereSlug($slug)->select('id','slug')->firstOrFail();
+
+        $data['categories'] = Category::with('parent','services')->whereHas('parent')->latest()->get();
+
+        $data['services']   = Service::where('category_id',$slug_id->id)->where('status',1)->get();
+
+        return view('frontend.categories.cat_slug',$data);
+
+
+
+    }
+
+    public function ajaxManinCategory(Request $request,$slug)
+    {
+       if($request->ajax()){
 
         $slug_id            = Category::whereSlug($slug)->select('id','slug')->firstOrFail();
 
@@ -92,16 +111,9 @@ class ServicesController extends Controller
 
         return view('frontend.categories._row_serives',$data);
 
-      } else {
+       }
+       return back();
 
-        $slug_id            = Category::whereSlug($slug)->select('id','slug')->firstOrFail();
-
-        $data['categories'] = Category::with('parent','services')->whereHas('parent')->latest()->get();
-
-        $data['services']   = Service::where('category_id',$slug_id->id)->where('status',1)->get();
-        return view('frontend.categories.cat_slug',$data);
-
-      }
     }
 
     public function service($slug)

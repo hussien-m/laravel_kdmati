@@ -5,12 +5,15 @@ namespace App\Http\Livewire\Frontend;
 use App\Models\Conversation;
 use App\Models\Message;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class UserSendMessage extends Component
 {
     public $unreadnotificationsCount = '';
     public $unreadnotifications;
+    public $unread;
+    public $notiyDate="";
 
     public function getListeners():array
     {
@@ -35,9 +38,17 @@ class UserSendMessage extends Component
     {
         //$user    = Auth::user()->id;
 
-        $user    = Auth::user();
+        $user      = Auth::user();
+       // $this->unreadnotificationsCount = $user->unreadNotifications->where('type','App\Notifications\Frontend\UserSendMessage')->count();
+       $this->unread = $user->notifications->where('type','App\Notifications\Frontend\UserSendMessage');
+
+        $this->notiyDate = Message::where('sender_id','!=',Auth::user()->id)->select('created_at')->latest('created_at')->first();
+
         $this->unreadnotificationsCount = $user->unreadNotifications->where('type','App\Notifications\Frontend\UserSendMessage')->count();
-        $this->unreadnotifications = $user->notifications->where('type','App\Notifications\Frontend\UserSendMessage');
+        $this->unreadnotifications = Conversation::with('messages')
+                ->where('receiver_id',Auth::user()->id)
+                ->orWhere('sender_id',Auth::user()->id)
+                ->get();
 
 
 

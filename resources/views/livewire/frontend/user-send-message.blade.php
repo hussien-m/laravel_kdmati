@@ -8,19 +8,23 @@
         <ul class="hsoub-list-group" id="messages-dropdown">
             @forelse ($unreadnotifications as $notify )
 
+
                 <li class="hsoub-list-item ">
                     <a href="#"><img loading="lazy"
                             class="hsoub-list-item-img" alt="{{ Auth::user()->first_name }}"
                             src="https://kdmati.com/admin/uploads/17428114511649424104.jpeg"></a>
                     <div class="hsoub-list-item-content">
-                        استفسار عن : <a class="hsoub-list-item-link"
-                        wire:click="markAsRead('{{ $notify->id }}')">{{ $notify->data['service_name'] }}</a>
+                        استفسار عن : <a class="hsoub-list-item-link" href="{{ route('show.messages',$notify->id) }}">{{ $notify->service->title }}</a>
                         <div class="hsoub-list-item-date">
+                            @php
+                                $data = \App\Models\Message::where('conversation_id',$notify->id)->select('created_at')->latest('created_at')->first()
+                            @endphp
                             <time> <i
-                                    class="far fa-clock"></i> {{ $notify->created_at->diffForHumans() }}</time>
+                                    class="far fa-clock"></i> {{ $data->created_at->diffForHumans() }}</time>
                         </div>
                     </div>
                 </li>
+
                 @empty
                 لاتوجد رسائل
             @endforelse

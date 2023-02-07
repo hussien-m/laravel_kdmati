@@ -8,8 +8,10 @@ use App\Models\Message;
 use App\Models\Service;
 use App\Models\User;
 use App\Notifications\Frontend\UserSendMessage;
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -101,6 +103,8 @@ class MessagesController extends Controller
 
     public function showMessage($conv_id)
     {
+        $user= Auth::user()->id;
+        $notify =DB::table('notifications')->where('type','App\Notifications\Frontend\UserSendMessage')->latest('created_at')->update(['read_at'=>Carbon::now()]);
 
         $data['conversation']  = Conversation::where('id',$conv_id)->with('service')->firstOrfail();
         $data['service']= $data['conversation']->service;

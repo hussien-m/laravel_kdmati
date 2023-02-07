@@ -195,6 +195,13 @@ $(function() {
             $(".action-btn").addClass("collapsed");
             $(".multi-collapse").removeClass("show");
             $("#previews,#recordingsList").html("");
+
+            if ($('div.plyr').length) {
+                const players = {};
+                Array.from(document.querySelectorAll('.audio-player')).forEach(video => {
+                players[video.id] = new Plyr(video);
+                });
+            }
           },
         });
 

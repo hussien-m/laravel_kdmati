@@ -18,17 +18,18 @@
                             </div>
                         </div>
                         <div class="pre comment-body">{{ $message->message }}</div>
-                        <div class="show-audio">
 
+                            @if($message->record)
                             <div class="form-group">
-                                @if($message->record)
-                                <audio controls style="width:100%;border-radius:none !important;">
-                                    <source class="plyr" src="{{ asset("records/".$message->record) }}" type="audio/wav">
-                                  </audio>
-                                @endif
-                             </div>
 
-                        </div>
+                                    <audio class="" style="width: 100%;" controls src="{{ asset("records/".$message->record) }}" >
+                                        <source  src="{{ asset("records/".$message->record) }}" type="audio/wav">
+                                    </audio>
+
+
+                             </div>
+                             @endif
+
                         @if($message->files)
                         <div class="attachments">
                             <ul class="attachments-list list-inline">
@@ -41,7 +42,7 @@
                          </div>
                          @endif
                         </div>
-     
+
 
 
             @empty

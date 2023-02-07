@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\FileUploader;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\MessagesController;
@@ -21,7 +22,7 @@ Route::middleware(['auth'])->group(function(){
     Route::get('new/service',[ServicesController::class,'create'])->name('add-service');
     Route::post('post/service',[ServicesController::class,'post'])->name('post-service');
 
-    Route::post('post/service/upload',[ServicesController::class,'upload'])->name('image.upload')
+    Route::post('post/service/upload',[FileUploader::class,'uploadImage'])->name('image.upload')
     ->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class]);
 
     Route::get('/get-sub-category',function (){
@@ -41,7 +42,7 @@ Route::middleware(['auth'])->group(function(){
 
     Route::post('front/send/message',[MessagesController::class,'sendMessage'])->name('user.sendMessage');
     Route::post('now/send/message',[MessagesController::class,'sendMessageNow'])->name('sendMessageNow');
-    Route::post('upload/record',[MessagesController::class,'uploadRecord'])
+    Route::post('upload/record',[FileUploader::class,'uploadRecord'])
     ->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class]);
 
 

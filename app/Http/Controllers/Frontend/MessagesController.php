@@ -118,39 +118,6 @@ class MessagesController extends Controller
         return redirect()->route('user.index.page');
     }
 
-    public function uploadRecord(Request $request)
-    {
-
-        define('RECORDPATH', $_SERVER['DOCUMENT_ROOT']);
-
-        $size = $_FILES['audio_data']['size'];
-
-        $input = $_FILES['audio_data']['tmp_name'];
-
-        $output = $_FILES['audio_data']['name'].".wav";
-
-        $target_path = DIRECTORY_SEPARATOR.'records'.DIRECTORY_SEPARATOR;
-
-                $temp = explode('.', $_FILES['audio_data']['name']);
-                $ex =strtolower(end($temp));
-
-                $allowed = array('php', 'exe', 'jpg','zip','mp4','jpeg','PNG','JPG','mp3','pdf','doc','docs','excel','xlsx','wav','webp','WEBP','jfif','gif','GIF');
-
-                if (!in_array($ex, $allowed) && $ex != '' && !empty($ex)) {
-
-                $rand = rand();
-
-                $newfilename = $rand . round(microtime(true)) . '.wav';
-
-                $target_path = $target_path . $newfilename;
-
-                move_uploaded_file($input, RECORDPATH . $target_path);
-
-                echo $newfilename;
-
-                }
-    }
-
     public function sendMessageNow(Request $request)
     {
         $user = Auth::user();

@@ -187,7 +187,7 @@
                 </div>
                 <div class="row row-eq-height services-row read-more-services" id="table_data">
                      @include('frontend.categories._row_serives')
-                    @if($services->count() > 9)
+                    @if($services->count() > 8)
                     <div class="text-center col-md-12 clearfix cleax-fix my-3">
                         <button type="button" class="btn btn-primary btn-custom " id="read-more">عرض المزيد</button>
                     </div>
@@ -227,7 +227,7 @@
 
     var target = $(this).attr('href');
 
-    var url = "{{ route('ajaxSubCat','') }}"+"/"+target ;
+    var url = "{{ route('categorySlug','') }}"+"/"+target ;
 
 
 

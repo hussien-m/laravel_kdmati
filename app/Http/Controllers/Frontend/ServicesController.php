@@ -8,9 +8,10 @@ use App\Models\Service;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Str;
 use Illuminate\Support\Facades\DB;
-
-use function React\Promise\Stream\all;
+use Illuminate\Support\Facades\File;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class ServicesController extends Controller
 {
@@ -83,36 +84,45 @@ class ServicesController extends Controller
 
     public function categorySlug(Request $request,$slug)
     {
-
-
-
-
         $slug_id            = Category::whereSlug($slug)->select('id','slug')->firstOrFail();
 
         $data['categories'] = Category::with('parent','services')->whereHas('parent')->latest()->get();
 
-        $data['services']   = Service::where('category_id',$slug_id->id)->where('status',1)->get();
+        if($request->ajax()){
 
-        return view('frontend.categories.cat_slug',$data);
+            $data['services']   = Service::where('sub_category_id',$slug_id->id)->where('status',1)->get();
 
+            return view('frontend.categories._row_serives',$data);
 
+        } else {
 
+            $data['services']   = Service::where('category_id',$slug_id->id)->where('status',1)->get();
+
+            return view('frontend.categories.cat_slug',$data);
+
+      }
     }
 
-    public function ajaxManinCategory(Request $request,$slug)
+    public function ajaxManinCategory(Request $request, $slug)
     {
-       if($request->ajax()){
 
-        $slug_id            = Category::whereSlug($slug)->select('id','slug')->firstOrFail();
 
-        $data['categories'] = Category::with('parent')->whereHas('parent')->latest()->get();
+            $slug_id            = Category::whereSlug($slug)->select('id','slug')->firstOrFail();
 
-        $data['services']   = Service::where('sub_category_id',$slug_id->id)->where('status',1)->get();
+            $data['categories'] = Category::with('parent')->whereHas('parent')->latest()->get();
 
-        return view('frontend.categories._row_serives',$data);
+            $data['services']   = Service::where('sub_category_id',$slug_id->id)->where('status',1)->get();
 
-       }
-       return back();
+
+            if($request->ajax()) {
+
+                return view('frontend.categories._row_serives',$data);
+            } else {
+
+                return view('frontend.categories.cat_slug',$data);
+            }
+
+
 
     }
 

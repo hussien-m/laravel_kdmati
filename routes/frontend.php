@@ -6,6 +6,7 @@ use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\MessagesController;
 use App\Http\Controllers\Frontend\ServicesController;
+use App\Http\Livewire\Frontend\FillterSection;
 use Illuminate\Support\Facades\Route;
 
 Route::name('user.')->group(function(){

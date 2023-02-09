@@ -14,7 +14,7 @@
                         @foreach($category->parent as $category)
                         <ul class="menu-list">
                             <li class="menu-list-item">
-                                <a href="{{ route("categorySlug",$category->slug) }}" class="menu-list-link">{{ $category->name }}</a>
+                                <a href="{{ route("ajaxSubCat",$category->slug) }}" class="menu-list-link">{{ $category->name }}</a>
                             </li>
                         </ul>
                         @endforeach

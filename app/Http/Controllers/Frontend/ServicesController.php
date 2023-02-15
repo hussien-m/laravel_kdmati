@@ -86,12 +86,19 @@ class ServicesController extends Controller
     {
         $slug_id            = Category::whereSlug($slug)->select('id','slug')->firstOrFail();
 
-        $data['categories'] = Category::with('parent','services')->whereHas('parent')->latest()->get();
+        $data['categories'] = Category::with('servicesSub','parent','services')
+                                ->withCount('servicesSub','parent','services')
+                                ->whereHas('parent')
+                                ->latest()
+                                ->get();
+
+         //dd($data);
 
         if($request->ajax()){
 
-            $data['services']   = Service::where('sub_category_id',$slug_id->id)->where('status',1)->get();
-
+            $data['services']   = Service::where('sub_category_id',$slug_id->id)
+                                    ->where('status',1)
+                                    ->get();
             return view('frontend.categories._row_serives',$data);
 
         } else {

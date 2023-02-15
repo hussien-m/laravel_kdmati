@@ -75,11 +75,11 @@ class Handler extends ExceptionHandler
 
     public function render($request, Throwable $e)
     {
-
+        /*
         if($e instanceof MethodNotAllowedHttpException){
             return response()->view('welcome');
         }
-
+*/
         return parent::render($request,  $e);
     }
 }

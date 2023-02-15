@@ -11,13 +11,21 @@
                     <div class="col-md-3 menu-widget">
                         <h4 class="menu-head-title"><a class="menu-head-link"
                                 href="{{ route("categorySlug",$category->slug) }}">{{ $category->name }}</a></h4>
-                        @foreach($category->parent as $category)
+                        @php
+                            $sub = DB::table('categories')
+                                    ->where('parent_id',$category->id)
+                                    ->select('name','slug')
+                                    ->get();
+                        @endphp
                         <ul class="menu-list">
+                            @foreach ($sub as $subcategory )
                             <li class="menu-list-item">
-                                <a href="{{ route("ajaxSubCat",$category->slug) }}" class="menu-list-link">{{ $category->name }}</a>
+                                <a href="{{ route("categorySlug",$subcategory->slug) }}" class="menu-list-link">{{ $subcategory->name }}</a>
                             </li>
+                            @endforeach
+
                         </ul>
-                        @endforeach
+
                     </div>
                     @endforeach
 

@@ -3,28 +3,27 @@
 namespace App\View\Components\Frontend;
 
 use App\Models\Category;
+use Illuminate\Support\Facades\DB;
 use Illuminate\View\Component;
 
 class MainCategoryComponent extends Component
 {
-    /**
-     * Create a new component instance.
-     *
-     * @return void
-     */
+
+    public $categories;
+
     public function __construct()
     {
-        //
+        //$this->categories= Category::whereHas('parent')->latest()->get();
+        $this->categories= DB::table('categories')
+                            ->where('parent_id',0)
+                            ->select('id','name','slug','image')
+                            ->latest()
+                            ->get();
     }
 
-    /**
-     * Get the view / contents that represent the component.
-     *
-     * @return \Illuminate\Contracts\View\View|\Closure|string
-     */
+
     public function render()
     {
-        $data['categories']= Category::whereHas('parent')->latest()->get();
-        return view('components.frontend.main-category-component',$data);
+        return view('components.frontend.main-category-component');
     }
 }

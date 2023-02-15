@@ -1,20 +1,23 @@
 <section class="main-services">
     <div class="container">
+
+        @foreach ( $categories_services as $category)
         <div class="row">
             <div class="col-md-12">
-                <h2 class="home-category-title"><a href="{{ route('categorySlug',$slug) }}"
-                        class="home-category-link">أعمال</a> <a href="{{ route('categorySlug',$slug) }}"
+                <h2 class="home-category-title"><a href="{{ route('categorySlug',$category->slug) }}"
+                        class="home-category-link">{{ $category->name }}</a> <a href="{{ route('categorySlug',$category->slug) }}"
                         class="btn btn-primary btn-outline float-right">عرض الجميع</a></h2>
                 <div class="row">
 
-                    @forelse($business_service as  $business)
-                    @php
-                       $image =explode(',',$business->images);
-                    @endphp
+
+                    @forelse ( $category->services as $service )
+                        @php
+                        $image =explode(',',$service->images);
+                        @endphp
                     <div class="service-item-container col-md-3">
                         <div class="card service-item  ">
                             <a class="service-item-link"
-                                href="{{ route('service.show',$business->slug) }}">
+                                href="{{ route('service.show',$service->slug) }}">
                                 <img loading="lazy"
                                     src="{{ asset('upload/images/'.$image[0]) }}" width="340"
                                     height="190" class=" service-item-image"
@@ -35,7 +38,7 @@
                                 </div>
 
                                 <h5 class="card-title service-item-title"><a class="service-item-link"
-                                        href="{{ route('service.show',$business->slug) }}">{{ $business->title }}</a></h5>
+                                        href="{{ route('service.show',$service->slug) }}">{{ $service->title }}</a></h5>
                             </div>
                             <div class="card-footer service-item-footer row align-items-baseline">
                                 <div class="col-6  text-left">
@@ -51,15 +54,14 @@
 
                         </div>
                     </div>
-
                     @empty
-                       <div class="text-center">
+                    <div class="text-center">
                         <b>لاتوجد خدمات حتى الان</b>
                        </div>
                     @endforelse
-
                 </div>
             </div>
         </div>
+        @endforeach
     </div>
 </section>

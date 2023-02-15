@@ -37,11 +37,11 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+        //$this->middleware('guest')->except('logout');
     }
 
-    public function destroy(Request $request)
-    {
+    public function destroy()
+    {   //dd(Auth::user()->id);
         Auth::guard('web')->logout();
         return redirect()->route('login');
     }

@@ -44,6 +44,12 @@ Route::middleware(['auth'])->group(function(){
 
     Route::post('add-to/cart',[CartController::class,'addToCart'])->name('user.add.cart');
 
+    //Route::post('add-to/cart',[CartController::class,'cartRefresh'])->name('cart-refresh');
+
+    Route::resource('cart', CartController::class);
+
+    Route::put('/cart/addons/add/{item_id}',[CartController::class,'updateAddons']);
+
     Route::post('front/send/message',[MessagesController::class,'sendMessage'])->name('user.sendMessage');
     Route::post('now/send/message',[MessagesController::class,'sendMessageNow'])->name('sendMessageNow');
     Route::post('upload/record',[FileUploader::class,'uploadRecord'])

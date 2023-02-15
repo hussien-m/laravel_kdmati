@@ -42,9 +42,12 @@ class UserSendMessage extends Component
        // $this->unreadnotificationsCount = $user->unreadNotifications->where('type','App\Notifications\Frontend\UserSendMessage')->count();
        $this->unread = $user->notifications->where('type','App\Notifications\Frontend\UserSendMessage');
 
-        $this->notiyDate = Message::where('sender_id','!=',Auth::user()->id)->select('created_at')->latest('created_at')->first();
+        //$this->notiyDate = Message::where('sender_id','!=',Auth::user()->id)->select('created_at')->latest('created_at')->first();
 
         $this->unreadnotificationsCount = $user->unreadNotifications->where('type','App\Notifications\Frontend\UserSendMessage')->count();
+
+
+
         $this->unreadnotifications = Conversation::with('messages')
                 ->where('receiver_id',Auth::user()->id)
                 ->orWhere('sender_id',Auth::user()->id)
@@ -52,7 +55,23 @@ class UserSendMessage extends Component
                 ->get();
 
 
+                /*
 
+        $this->unreadnotifications = DB::table('conversations')
+                ->join('messages','conversations.id','messages.conversation_id')
+                ->join('services','services.id','conversations.service_id')
+                ->where('messages.receiver_id',Auth::user()->id)
+                ->orWhere('messages.sender_id',Auth::user()->id)
+                ->select(
+                    'conversations.id as conv_id','conversations.sender_id as conv_sender_id', 'conversations.receiver_id as conv_receiver_id','conversations.service_id as conv_service_id',
+                    'services.id as serv_id','services.title as serv_title','services.slug as serv_slug',
+                    'messages.id as msg_id','messages.created_at as msg_created_at'
+                )
+                //->latest()
+                ->get();
+
+              // dd( $this->unreadnotifications);
+              */
     }
 
     public function render()

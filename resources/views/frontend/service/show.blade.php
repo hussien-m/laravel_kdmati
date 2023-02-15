@@ -1,55 +1,63 @@
 @extends('layouts.frontend.front-app')
 
 @section('styles')
-<style>
-.swal2-title {
-    position: relative;
-    max-width: 100%;
-    margin: 0;
-    padding: 0.8em 1em 0;
-    color: inherit;
-    font-size: 20px !important;
-    font-weight: 600;
-    text-align: center;
-    text-transform: none;
-    word-wrap: break-word;
-}
-    .cups-group
-    {
+    <style>
+        .swal2-title {
+            position: relative;
+            max-width: 100%;
+            margin: 0;
+            padding: 0.8em 1em 0;
+            color: inherit;
+            font-size: 20px !important;
+            font-weight: 600;
+            text-align: center;
+            text-transform: none;
+            word-wrap: break-word;
+        }
+
+        .cups-group {
             flex: 0 0 62.666667%;
-    max-width: 62.666667%;
-    text-align: center;
-    margin-bottom:0;
-    }
-    #cups
-    {
+            max-width: 62.666667%;
+            text-align: center;
+            margin-bottom: 0;
+        }
+
+        #cups {
             font-size: 19px;
-    padding: 0px 10px;
-    height: auto;
-    text-align: center;
-    width: 100%;
-    }
-    .carousel-control-next, .carousel-control-prev,.carousel-control-next:focus, .carousel-control-next:hover, .carousel-control-prev:focus, .carousel-control-prev:hover
-    {
-        opacity:1;
-    }
-    .carousel-control-next-icon, .carousel-control-prev-icon
-    {
-background-color: #ffffffad;
-    width: 45px;
-    height: 45px;
-    background-position: center center;
-    background-repeat: no-repeat;
-    border-radius: 50%;
-    background-size: 40%;
-    }
-    .carousel-control-prev-icon {
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' width='8' height='8' viewBox='0 0 8 8'%3e%3cpath d='M2.75 0l-1.5 1.5L3.75 4l-2.5 2.5L2.75 8l4-4-4-4z'/%3e%3c/svg%3e")
-}
-.carousel-control-next-icon {
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' width='8' height='8' viewBox='0 0 8 8'%3e%3cpath d='M5.25 0l-4 4 4 4 1.5-1.5L4.25 4l2.5-2.5L5.25 0z'/%3e%3c/svg%3e");
-}
-</style>
+            padding: 0px 10px;
+            height: auto;
+            text-align: center;
+            width: 100%;
+        }
+
+        .carousel-control-next,
+        .carousel-control-prev,
+        .carousel-control-next:focus,
+        .carousel-control-next:hover,
+        .carousel-control-prev:focus,
+        .carousel-control-prev:hover {
+            opacity: 1;
+        }
+
+        .carousel-control-next-icon,
+        .carousel-control-prev-icon {
+            background-color: #ffffffad;
+            width: 45px;
+            height: 45px;
+            background-position: center center;
+            background-repeat: no-repeat;
+            border-radius: 50%;
+            background-size: 40%;
+        }
+
+        .carousel-control-prev-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' width='8' height='8' viewBox='0 0 8 8'%3e%3cpath d='M2.75 0l-1.5 1.5L3.75 4l-2.5 2.5L2.75 8l4-4-4-4z'/%3e%3c/svg%3e")
+        }
+
+        .carousel-control-next-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' width='8' height='8' viewBox='0 0 8 8'%3e%3cpath d='M5.25 0l-4 4 4 4 1.5-1.5L4.25 4l2.5-2.5L5.25 0z'/%3e%3c/svg%3e");
+        }
+    </style>
 @endsection
 
 
@@ -78,29 +86,30 @@ background-color: #ffffffad;
     </div>
 
     <section id="subject-header" class="login subject-header ">
-            <div class="content-h">
-                <div class="row">
-                    <div class="col-md-8 col-lg-8">
-                        <div class="media comment-item-user">
-                            <a href="#{{ $service->user->first_name }}"><img
-                                    src="https://kdmati.com/admin/avatars/16381207751660819112.jpg"
-                                    class="mr-3 subject-item-image" alt="{{ $service->user->first_name }}"></a>
-                            <div class="media-body">
-                                <h1 class="subject-title">{{ $service->title }}</h1>
-                                <p class="subject-meta"> <i class="fa fa-bars fa-fw"></i> <a class="cat-meta"
-                                        href="{{ route('categorySlug', $service->category->slug) }}">
-                                        <span>{{ $service->category->name }}</span>
-                                    </a> <span class="cat-seperator">&nbsp;/&nbsp;</span> <a class="cat-meta"
-                                        href="{{ route('categorySlug', $service->category->slug) }}">
-                                        <span>{{ $service->subCategory->name }}</span> </a> <i class="far fa-clock fa-fw"></i>
-                                    مدة التسليم: {{ config('duration.'.$service->duration) }}</p>
-                            </div>
+        <div class="content-h">
+            <div class="row">
+                <div class="col-md-8 col-lg-8">
+                    <div class="media comment-item-user">
+                        <a href="#{{ $service->user->first_name }}"><img
+                                src="https://kdmati.com/admin/avatars/16381207751660819112.jpg"
+                                class="mr-3 subject-item-image" alt="{{ $service->user->first_name }}"></a>
+                        <div class="media-body">
+                            <h1 class="subject-title">{{ $service->title }}</h1>
+                            <p class="subject-meta"> <i class="fa fa-bars fa-fw"></i> <a class="cat-meta"
+                                    href="{{ route('categorySlug', $service->category->slug) }}">
+                                    <span>{{ $service->category->name }}</span>
+                                </a> <span class="cat-seperator">&nbsp;/&nbsp;</span> <a class="cat-meta"
+                                    href="{{ route('categorySlug', $service->category->slug) }}">
+                                    <span>{{ $service->subCategory->name }}</span> </a> <i class="far fa-clock fa-fw"></i>
+                                مدة التسليم: {{ config('duration.' . $service->duration) }}</p>
                         </div>
                     </div>
-                    <div class="col-md-4 text-left text-lg-right text-md-right">
-                        @if(Auth::user()->id != $service->user_id)
+                </div>
+                <div class="col-md-4 text-left text-lg-right text-md-right">
+                    @if (Auth::user()->id != $service->user_id)
                         <div class="btn-group">
-                            <a href="#add-to-cart" type="button" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>
+                            <a href="#add-to-cart" type="button" class="btn btn-primary"><i
+                                    class="fa fa-shopping-cart"></i>
                                 اشتري الخدمة</a>
                             <button type="button" class="btn btn btn-primary dropdown-toggle dropdown-toggle-split"
                                 id="dropdownMenuReference" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
@@ -108,22 +117,23 @@ background-color: #ffffffad;
                                 <span class="sr-only"> </span>
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuReference">
-                                <a class="dropdown-item" href="{{ route('message.new',$service->id) }}"><i class="fa fa-fw fa-envelope"></i> تواصل مع البائع</a>
+                                <a class="dropdown-item" href="{{ route('message.new', $service->id) }}"><i
+                                        class="fa fa-fw fa-envelope"></i> تواصل مع البائع</a>
                                 <a class="dropdown-item" id="add-to-favourite" data-id="7267" href="#"><i
                                         class="fa fa-briefcase fa-fw"></i> <span class="favourite_text">اضافة الى
                                         المفضلة</span></a>
                             </div>
                         </div>
-                        @else
+                    @else
                         <a href="#add-to-cart" type="button" class="btn btn-primary"><i class="fa fa-edit"></i>
                             تعديل الخدمة
                         </a>
-                        @endif
+                    @endif
 
 
-                    </div>
                 </div>
             </div>
+        </div>
 
 
     </section>
@@ -139,76 +149,89 @@ background-color: #ffffffad;
                             <img src="{{ asset('upload/images/' . $image[0]) }}"
                                 class="service-image img-fluid w-100 img-responsive">
 
-                            <div class="subject-content"><p>{{ $service->description }}</p></div>
-                        </div>
-                    </div>
-                    @if($service->addons->count() >= 1)
-                    <div class="card subject-card subject-addon-services-card">
-
-                        <div class="card-header form-card-header">
-                            <h2 class="">تطويرات متوفرة لهذه الخدمة</h2>
-                        </div>
-
-                        <div class="card-body py-3 px-0 comments2">
-                            @forelse ($service->addons as $addons)
-                            <div class="comment-item comment-body">
-                                <label for="upgrade-{{ $addons->id }}" class="u-no--margin a-title">
-                                    <input type="checkbox" class="service_upgrade_check service_addon" id="upgrade-{{ $addons->id }}"
-                                        name="service_upgrade_check" value="{{ $addons->id }}" data-price="{{ $addons->price }}"> {{ $addons->title }}
-                                </label>
-                                <p class="addon ml-4" >
-                                    <label for="upgrade-{{ $addons->id }}">
-                                        مقابل {{ $addons->price }}$ على سعر الخدمة. سيزيد مدة التنفيذ {{ config('duration.'.$addons->duration) }} {{ $addons->duration > 1 ? "إضافية":"إضافي" }}.
-                                    </label>
-                                </p>
+                            <div class="subject-content">
+                                <p>{{ $service->description }}</p>
                             </div>
-                            @empty
-                            @endforelse
-
                         </div>
                     </div>
 
+                    @if ($service->addons->count() >= 1)
+                        <div class="card subject-card subject-addon-services-card">
 
-                    <div class="card  subject-card comment-form-card" id="add-to-cart">
-                        <div class="card-header form-card-header">
-                            <h2 class="card-header-title">اشتري الخدمة
-                                <a class="color-primary float-right contact-link"
-                                    href="{{ route('message.new',$service->id) }}">تواصل مع البائع</a></h2>
-                        </div>
-                        <div class="card-body p-lg-3">
-                            <form method="POST" action="javascript:void(0)" class="comment-form">
+                            <div class="card-header form-card-header">
+                                <h2 class="">تطويرات متوفرة لهذه الخدمة</h2>
+                            </div>
 
-                                <input type="hidden" id="amount" value="5" name="amount">
-                                <input type="hidden" id="addon_ids" value="" name="addon_ids">
-                                <h3 class="u-margin-bottom mb-2 text-center">
-                                    <span>عدد مرات الطلب</span>
-                                    <div class="form-group amount-selector">
-                                        <select id="service_quantity" name="quantity" required="required"
-                                            class="form-control">
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                            <option value="6">6</option>
-                                            <option value="7">7</option>
-                                            <option value="8">8</option>
-                                            <option value="9">9</option>
-                                            <option value="10">10</option>
-                                        </select>
+                            <div class="card-body py-3 px-0 comments2">
+                                @forelse ($service->addons as $addons)
+                                    <div class="comment-item comment-body">
+                                        <label for="upgrade-{{ $addons->id }}" class="u-no--margin a-title">
+                                            <input type="checkbox" class="service_upgrade_check service_addon adns"
+                                                id="upgrade-{{ $addons->id }}" name="addons[]"
+                                                value="{{ $addons->id }}" data-price="{{ $addons->price }}"
+                                                data-ids="{{ $addons->id }}">
+                                            {{ $addons->title }}
+                                        </label>
+                                        <p class="addon ml-4">
+                                            <label for="upgrade-{{ $addons->id }}">
+                                                مقابل {{ $addons->price }}$ على سعر الخدمة. سيزيد مدة التنفيذ
+                                                {{ config('duration.' . $addons->duration) }}
+                                                {{ $addons->duration > 1 ? 'إضافية' : 'إضافي' }}.
+                                            </label>
+                                        </p>
                                     </div>
-                                    <span>المبلغ النهائي</span>
-                                    <strong class="total_order_price" id="total_price">5</strong><strong>$</strong>
-                                </h3>
-                                <div class="form-group text-center">
-                                    <button type="submit" id="add_to_cart" class="text-center btn btn-primary  ">
-                                        <i class="fa fa-shopping-cart"></i> أضف الى
-                                        سلة المشتريات</button>
-                                </div>
-                            </form>
+                                @empty
+                                @endforelse
+
+                            </div>
                         </div>
-                    </div>
                     @endif
+                    @if (Auth::user()->id != $service->user_id)
+                        <div class="card  subject-card comment-form-card" id="add-to-cart">
+                            <div class="card-header form-card-header">
+                                <h2 class="card-header-title">اشتري الخدمة
+                                    <a class="color-primary float-right contact-link"
+                                        href="{{ route('message.new', $service->id) }}">تواصل مع البائع</a>
+                                </h2>
+                            </div>
+                            <div class="card-body p-lg-3">
+                                <form method="POST" action="javascript:void(0)" class="comment-form">
+                                    @csrf
+                                    <input type="hidden" id="amount" value="5" name="amount">
+                                    <input type="hidden" id="service_id" value="{{ $service->id }}" name="service_id">
+                                    <input type="hidden" id="user_id" value="{{ Auth::id() }}"   name="user_id">
+                                    <input type="hidden" id="addon_ids" value="" name="addon_ids">
+                                    <h3 class="u-margin-bottom mb-2 text-center">
+                                        <span>عدد مرات الطلب</span>
+                                        <div class="form-group amount-selector">
+                                            <select id="service_quantity" name="quantity" required="required"
+                                                class="form-control">
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                                <option value="7">7</option>
+                                                <option value="8">8</option>
+                                                <option value="9">9</option>
+                                                <option value="10">10</option>
+                                            </select>
+                                        </div>
+                                        <span>المبلغ النهائي</span>
+                                        <strong class="total_order_price" id="total_price">5</strong><strong>$</strong>
+                                    </h3>
+                                    <div class="form-group text-center">
+                                        <button type="submit" id="add_to_cart" class="text-center btn btn-primary  ">
+                                            <i class="fa fa-shopping-cart"></i> أضف الى
+                                            سلة المشتريات</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    @endif
+
+
 
                     <div class="card  subject-card subject-comments-card" id="review-list">
                         <div class="card-header form-card-header">
@@ -223,53 +246,58 @@ background-color: #ffffffad;
 
                         </div>
                     </div>
-                    @if(Auth::user()->id != $service->user_id)
-                    <div class="card subject-card  ">
-                        <div class="card-header form-card-header">
-                            <h2 class="card-header-title">اعزمني على كوب من القهوة</h2>
+
+
+                    @if (Auth::user()->id != $service->user_id)
+                        <div class="card subject-card  ">
+                            <div class="card-header form-card-header">
+                                <h2 class="card-header-title">اعزمني على كوب من القهوة</h2>
+                            </div>
+
+                            <div class="card-body">
+                                <form id="edit_user_register" class="login-form" name="registerform"
+                                    action="https://kdmati.com/coffee" method="POST" enctype="multipart/form-data">
+                                    <input type="hidden" name="uid" value="17814">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <label> <strong>عدد الاكواب</strong> (x5$): </label>
+                                        <label><strong>المجموع : </strong><span id="coffee-total">5$</span></label>
+
+                                    </div>
+
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fa fa-coffee"></i></span>
+                                        </div>
+                                        <div class="form-group cups-group">
+                                            <select id="cups" name="cups" required="required"
+                                                class="form-control">
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                                <option value="7">7</option>
+                                                <option value="8">8</option>
+                                                <option value="9">9</option>
+                                                <option value="10">10</option>
+                                            </select>
+                                        </div>
+                                        <div class="input-group-append">
+                                            <button type="submit"
+                                                class="text-center btn btn-primary btn-inline btn-sm">اشتري</button>
+
+                                        </div>
+                                    </div>
+
+                                </form>
+
+                            </div>
+
                         </div>
-
-                        <div class="card-body">
-                            <form id="edit_user_register" class="login-form" name="registerform"
-                                action="https://kdmati.com/coffee" method="POST" enctype="multipart/form-data">
-                                <input type="hidden" name="uid" value="17814">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <label> <strong>عدد الاكواب</strong> (x5$): </label>
-                                    <label><strong>المجموع : </strong><span id="coffee-total">5$</span></label>
-
-                                </div>
-
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fa fa-coffee"></i></span>
-                                    </div>
-                                    <div class="form-group cups-group">
-                                        <select id="cups" name="cups" required="required" class="form-control">
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                            <option value="6">6</option>
-                                            <option value="7">7</option>
-                                            <option value="8">8</option>
-                                            <option value="9">9</option>
-                                            <option value="10">10</option>
-                                        </select>
-                                    </div>
-                                    <div class="input-group-append">
-                                        <button type="submit"
-                                            class="text-center btn btn-primary btn-inline btn-sm">اشتري</button>
-
-                                    </div>
-                                </div>
-
-                            </form>
-
-                        </div>
-
-                    </div>
                     @endif
+
+
                     <div class="card subject-card ">
                         <div class="card-header form-card-header">
                             <h2 class="card-header-title">خدمات مقترحة</h2>
@@ -312,7 +340,8 @@ background-color: #ffffffad;
                                             </div>
                                             <div class="col-6 text-right">
                                                 <h5 class="service-item-rate text-primary"><i class="fas fa-star"></i> 0
-                                                    <span class="text-gray">( 0 )</span></h5>
+                                                    <span class="text-gray">( 0 )</span>
+                                                </h5>
                                             </div>
 
                                         </div>
@@ -325,6 +354,7 @@ background-color: #ffffffad;
 
                         </div>
                     </div>
+
                     <div class="card  subject-card comment-form-card">
                         <div class="card-header form-card-header">
                             <h2 class="card-header-title">كلمات افتتاحية</h2>
@@ -333,14 +363,17 @@ background-color: #ffffffad;
                         <div class="card-body p-lg-3">
                             <ul class="tags-list list-inline">
                                 <li class="tag-item list-inline-item">
-                                    @for($i = 0; $i < count($tags); $i++)
-                                    <a href="#" class="tag-link btn btn-primary btn-outline">{{ $tags[$i] }}</a>
-                                    </li>
-                                    @endfor
+                                    @for ($i = 0; $i < count($tags); $i++)
+                                        <a href="#"
+                                            class="tag-link btn btn-primary btn-outline">{{ $tags[$i] }}</a>
+                                </li>
+                                @endfor
                             </ul>
                         </div>
                     </div>
                 </div>
+
+
                 <div class="col-md-4">
                     <div class="card subject-card subject-side-card ">
                         <div class="card-header form-card-header">
@@ -350,7 +383,7 @@ background-color: #ffffffad;
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-6  mb-3">
-                                    <p class="p-rate"><i class="fa fa-star"style="color:goldenrod"></i> التقييمات</p>
+                                    <p class="p-rate"><i class="fa fa-star" style="color:goldenrod"></i> التقييمات</p>
 
                                 </div>
 
@@ -365,7 +398,8 @@ background-color: #ffffffad;
                                 </div>
 
                                 <div class="col-6  mb-3">
-                                   </i><p class="p-rate"><i class="fa fa-reply fa-fw"></i> متوسط سرعة الرد</p>
+                                    </i>
+                                    <p class="p-rate"><i class="fa fa-reply fa-fw"></i> متوسط سرعة الرد</p>
                                 </div>
 
                                 <div class="col-6  mb-3">
@@ -402,40 +436,41 @@ background-color: #ffffffad;
                         </div>
 
                         <div class="card-footer bg-white">
-                            @if(Auth::user()->id != $service->user_id)
-                            <div class="media comment-item-user">
-                                <a href="https://kdmati.com/user/Aimad1710"><img
-                                        src="https://kdmati.com/admin/avatars/16381207751660819112.jpg"
-                                        class="mr-3 comment-item-image" alt="{{ $service->user->first_name }}"></a>
-                                <div class="media-body">
+                            @if (Auth::user()->id != $service->user_id)
+                                <div class="media comment-item-user">
+                                    <a href="#"><img src="https://kdmati.com/admin/avatars/16381207751660819112.jpg"
+                                            class="mr-3 comment-item-image" alt="{{ $service->user->first_name }}"></a>
+                                    <div class="media-body">
 
-                                    <h5 class="comment-user-name"><a class="comment-user-link"
-                                            href="https://kdmati.com/user/Aimad1710">{{ $service->user->first_name.' '.$service->user->last_name  }} </a> <a
-                                            class="btn btn-primary btn-outline float-right"
-                                            href="{{ route('message.new',$service->id) }}">تواصل</a></h5>
+                                        <h5 class="comment-user-name"><a class="comment-user-link"
+                                                href="#">{{ $service->user->first_name . ' ' . $service->user->last_name }}
+                                            </a> <a class="btn btn-primary btn-outline float-right"
+                                                href="{{ route('message.new', $service->id) }}">تواصل</a></h5>
 
 
-                                    <small class="comment-meta"><i class="fa fa-fw fa-briefcase"></i> بائع نشيط</small>
+                                        <small class="comment-meta"><i class="fa fa-fw fa-briefcase"></i> بائع
+                                            نشيط</small>
 
+                                    </div>
                                 </div>
-                            </div>
                             @else
-                            <div class="media comment-item-user">
-                                <a href="https://kdmati.com/user/Aimad1710"><img
-                                        src="https://kdmati.com/admin/avatars/16381207751660819112.jpg"
-                                        class="mr-3 comment-item-image" alt="{{ $service->user->first_name }}"></a>
-                                <div class="media-body">
+                                <div class="media comment-item-user">
+                                    <a href="#"><img src="https://kdmati.com/admin/avatars/16381207751660819112.jpg"
+                                            class="mr-3 comment-item-image" alt="{{ $service->user->first_name }}"></a>
+                                    <div class="media-body">
 
-                                    <h5 class="comment-user-name"><a class="comment-user-link"
-                                            href="https://kdmati.com/user/Aimad1710">{{ $service->user->first_name.' '.$service->user->last_name  }} </a>
+                                        <h5 class="comment-user-name"><a class="comment-user-link"
+                                                href="#">{{ $service->user->first_name . ' ' . $service->user->last_name }}
+                                            </a>
 
-                                    </h5>
+                                        </h5>
 
 
-                                    <small class="comment-meta"><i class="fa fa-fw fa-briefcase"></i> بائع نشيط</small>
+                                        <small class="comment-meta"><i class="fa fa-fw fa-briefcase"></i> بائع
+                                            نشيط</small>
 
+                                    </div>
                                 </div>
-                            </div>
                             @endif
                         </div>
                     </div>
@@ -470,7 +505,7 @@ background-color: #ffffffad;
 
                 </div>
             </div>
-    </section>
+        </section>
     </div>
 
 
@@ -479,95 +514,6 @@ background-color: #ffffffad;
 
 
 @section('scripts')
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
-$("body").on('change', '#cups', function() {
-            let cups = $(this).val();
-            $("#coffee-total").html((cups*5)+"$");
-        });
-        $("body").on('change', '#service_quantity, input[type=checkbox].service_addon', function() {
-            calculate_total();
-        });
-
-        function calculate_total() {
-            var price = 5;
-            var quanitiy = $("#service_quantity").val();
-            var total = price * quanitiy;
-            if ($("input[type=checkbox].service_addon:checkbox:checked").length > 0) {
-                // any one is checked
-
-                $("#ids").val("");
-                var addons_price = 0;
-                var sList = "";
-                $('input[type=checkbox].service_addon').each(function() {
-                    if (this.checked) {
-                        var sThisVal = $(this).val();
-                        addons_price = addons_price + $(this).data("price");
-                        sList += (sList == "" ? sThisVal : "," + sThisVal);
-
-                    }
-                });
-
-
-                $("#addon_ids").val(sList);
-
-                var total = (addons_price * quanitiy) + (price * quanitiy);
-
-                $("#total_price").html(total);
-                $("#amount").val(total);
-
-
-            } else {
-
-                $("#addon_ids").val("");
-                $("#total_price").html(total);
-                $("#amount").val(total);
-
-            }
-        }
-
-        $("#add_to_cart").on('click',function(){
-
-            var service_id =  "{{ $service->id }}";
-            var user_id    =  "{{ Auth::user()->id }}";
-            var quantity   =  $("#service_quantity").val();
-            var total_price=  $("#total_price").text();
-            var service_name= "{{ $service->name }}";
-
-            $.ajax({
-                url: '{{ route('user.add.cart') }}',
-                method: 'POST',
-                dataType : 'json',
-                data  : {
-                            _token: "{{ csrf_token() }}",
-                            service_id: service_id,
-                            user_id: user_id,
-                            quantity: quantity,
-                            total_price: total_price,
-                            service_name: service_name,
-                        },
-                success: function() {
-
-                        Swal.fire({
-                                    type:'success',
-                                    icon:'success',
-                                    text: "تم اضافة الخدمة الى سلة المشتريات",
-                                    type: "warning",
-                                    showCancelButton: true,
-                                    confirmButtonColor: '#DD6B55',
-                                    confirmButtonText: 'ادفع الان',
-                                    cancelButtonText: "اكمل في الموقع"
-                                });
-                                Livewire.emit('updateCart');
-
-                },error: function(){
-                    alert("Error")
-                }
-            })
-
-        });
-
-
-    </script>
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{ asset('frontend/assets/js/cart.js') }}"></script>
 @endsection

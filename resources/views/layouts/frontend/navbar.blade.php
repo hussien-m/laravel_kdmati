@@ -9,7 +9,7 @@
 
                 </li>
             </ul>
-            <a class="navbar-brand" href="https://kdmati.com/">
+            <a class="navbar-brand" href="{{ url('/') }}">
                 <img loading="lazy" height="37" width="147" src="https://kdmati.com/admin/uploads/1656851898.png"
                     class="logo desktop-logo" alt="خدماتي" loading="lazy">
                 <img loading="lazy" height="46" width="46" src="https://kdmati.com/admin/uploads/logo.ico"

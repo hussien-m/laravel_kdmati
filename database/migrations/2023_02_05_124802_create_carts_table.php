@@ -14,13 +14,26 @@ return new class extends Migration
     public function up()
     {
         Schema::create('carts', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignId('service_id')->constrained('services')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->uuid('id')->primary();
+
+            $table->uuid('cookie_id');
+
+            $table->foreignId('user_id')
+                ->nullable()
+                ->constrained('users')
+                ->cascadeOnDelete();
+
+            $table->foreignId('service_id')
+                ->constrained('services')
+                ->cascadeOnDelete();
+
             $table->unsignedSmallInteger('quantity')->default(1);
-            $table->float('total_price')->default(5);
-            $table->unique(['user_id','service_id']);
+
+            $table->json('addons')->nullable();
+
             $table->timestamps();
+
+            $table->unique(['cookie_id', 'service_id']);
         });
     }
 

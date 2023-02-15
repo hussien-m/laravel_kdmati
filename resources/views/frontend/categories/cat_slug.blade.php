@@ -47,7 +47,7 @@
                        <li class="c-list__item" data-filter-id="3" data-sub-filter-id="">
                            <a href="#" class="c-list__link filter closeLink" data-deselect-others="">
                                <span>{{ $category->name }}</span>
-                               <span class="c-badge u-pull--left">{{ $category->services->count() }}</span>
+                               <span class="c-badge u-pull--left">{{ $category->services_count }}</span>
                             </a>
                             <ul class="c-list c-list--vert c-list--sub u-hidden">
                                 @foreach($category->parent as $parent)
@@ -56,7 +56,7 @@
                                         <span>{{ $parent->name }}</span>
 
                                         <span class="c-badge u-pull--left">
-                                            {{ ($parent->servicesSub->count()) }}
+                                            {{ $category->services_sub_count }}
                                         </span>
                                     </a>
                                 </li>

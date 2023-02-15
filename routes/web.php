@@ -20,6 +20,29 @@ use Illuminate\Support\Facades\DB;
 |
 */
 
+Route::get('cat-s',function(){
+
+    $data['categories_services'] = DB::table('services')
+    ->join('categories','services.category_id','categories.id')
+    ->select(
+
+        'categories.id AS cat_id',
+        'categories.name AS cat_name',
+        'categories.slug AS cat_slug',
+        'categories.slug AS cat_image',
+
+        'services.id AS serv_id',
+        'services.title AS serv_title',
+        'services.slug AS serv_slug',
+        'services.images AS serv_images',
+        )
+
+    ->take(8)
+    ->get();
+
+    dd($data);
+});
+
 Route::get('/', function () {
     return view('welcome');
 });

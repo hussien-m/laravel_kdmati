@@ -33,7 +33,7 @@
 
                 </ul>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item footer-dropdown-item" href="https://kdmati.com/cart"><i
+                <a class="dropdown-item footer-dropdown-item" href="{{ route("cart.index") }}"><i
                         class="fa fa-fw fa-shopping-cart"></i> اعرض سلة المشتريات</a>
             </div>
         </div>

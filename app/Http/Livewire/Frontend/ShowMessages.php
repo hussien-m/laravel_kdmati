@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Frontend;
 use App\Models\Conversation;
 use App\Models\Message;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class ShowMessages extends Component
@@ -35,7 +36,11 @@ class ShowMessages extends Component
     public function mount()
     {
 
-        $this->messages = Message::where('conversation_id',$this->conversation_id)->get();
+       $this->messages = Message::where('conversation_id',$this->conversation_id)->get();
+
+        /*$this->messages = DB::table('messages')
+                       ->where('conversation_id','=',$this->conversation_id)
+                        ->get();*/
     }
 
     public function render()

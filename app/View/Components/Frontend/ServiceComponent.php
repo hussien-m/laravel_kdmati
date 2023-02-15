@@ -27,16 +27,14 @@ class ServiceComponent extends Component
      */
     public function render()
     {
-        $data['business_service'] = Service::with(['user','category','addons'])
-                                        ->where('category_id',30)
+
+
+       $data['categories_services'] = Category::with('services')
+                                        ->whereHas('parent')
                                         ->latest()
+
                                         ->get();
 
-        $data['cat-slug'] = DB::table('categories')
-            ->where('id',30)
-            ->select('slug')
-            ->first();
-        $data['slug'] = $data['cat-slug']->slug;
         return view('components.frontend.service-component',$data);
     }
 }

@@ -17,6 +17,8 @@
             </div>
         </div>
     </section>
+
+
     <section id="subject-body content-h" class="cart-body page bg-white py-5">
         <div class="content-h">
         <!-- Modal -->
@@ -166,6 +168,7 @@
     </section>
 
 
+
 @stop
 
 @section('scripts')
@@ -195,6 +198,12 @@ function displayHello() {
                                     method: "delete",
                                     data:{
                                     _token: '{{ csrf_token() }}',
+                                    },beforeSend: function(){
+                                        $('#loader').show();
+
+                                        $('#payNow').attr('disabled','disabled');
+                                        $('#pay').html('');
+
                                     },
                                     success: function () {
                                             $('#cart-item'+id).remove();
@@ -236,7 +245,14 @@ function displayHello() {
             data: {
                 quantity: quantity ,
                 _token: "{{ csrf_token() }}"
-            },success: function(data){
+            },beforeSend: function(){
+                $('#loader').show();
+
+                $('#payNow').attr('disabled','disabled');
+                $('#pay').html('');
+
+            }
+            ,success: function(data){
                 var price       = data.cart[0].service.price;
                 var addon_price = data.cart[0].addons_price;
                 var quan_up     = data.cart[0].quantity;
@@ -290,6 +306,12 @@ function displayHello() {
                  addons: addon_id,
                  addons_price: addons_price,
                 _token: "{{ csrf_token() }}",
+            },beforeSend: function(){
+                $('#loader').show();
+
+                $('#payNow').attr('disabled','disabled');
+                $('#pay').html('');
+
             },success: function(data) {
                 Livewire.emit('updateCart');
                 Livewire.emit('mount');

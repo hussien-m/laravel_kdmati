@@ -8,8 +8,10 @@ $total=0;
 $tax=$total/5;
 
 $final_total = $total+$tax;
+
 @endphp
 
+                        @if($final_total >0)
                         <div class="card  new-card p-0">
                             <div class="card-header form-card-header">
                                 <h2 class="card-header-title text-center">ملخص الطلب</h2>
@@ -39,9 +41,17 @@ $final_total = $total+$tax;
                                 <div class="text-center">
 
 
-                                    <button class="btn btn-primary btn-block btn-custom2 my-2" data-toggle="modal" data-target="#addModal">ادفع الآن</button>
+                                    <button id="payNow" class="btn btn-primary btn-block btn-custom2 my-2" data-toggle="modal" data-target="#addModal">
+                                        <div id='loader' style='display:none' class="text-center">
+                                            <div class="spinner-border text-warning" role="status">
+                                                <span class="sr-only">Loading...</span>
+                                              </div>
+                                        </div>
+                                        <span id='pay'>ادفع الان</span>
+                                    </button>
 
 
                                 </div>
                             </div>
                         </div>
+                        @endif

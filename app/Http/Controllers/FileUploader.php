@@ -27,10 +27,6 @@ class FileUploader extends Controller
                 // Check if we can write in the target directory
                 if (is_writable($targetPath)) {
 
-                    /**
-                     * Start dancing
-                     */
-
                     $tempFile = $request->file('file');
 
                     $rand = rand();
@@ -179,7 +175,6 @@ class FileUploader extends Controller
         $newfilename = $rand . round(microtime(true)) . '.wav';
 
         Storage::putFileAs('public/records', $audioFile, $newfilename);
-        
 
         return $newfilename;
     }

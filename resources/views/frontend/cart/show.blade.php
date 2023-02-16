@@ -54,6 +54,7 @@
             </div>
         </div>
 
+        @if(count($cart->get()) !=0)
         <div class="container">
             <div class="row">
 
@@ -79,6 +80,7 @@
                             </div>
                         </div>
                         <div class="card-body ">
+
 
                             @foreach ($cart->get() as $item)
 
@@ -163,6 +165,9 @@
             </div>
 
         </div>
+        @else
+          <div class="text-center">لايوجد شي حتى الان</div>
+        @endif
 
 
     </section>

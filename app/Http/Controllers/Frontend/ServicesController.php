@@ -15,7 +15,7 @@ class ServicesController extends Controller
 {
     public function create()
     {
-        $data['categories']= Category::whereHas('parent')->latest()->get();
+        $data['categories']= Category::whereHas('children')->latest()->get();
         return view('frontend.service.create',$data);
     }
 
@@ -85,12 +85,10 @@ class ServicesController extends Controller
         $slug_id            = Category::whereSlug($slug)->select('id','slug')->firstOrFail();
 
         $data['categories'] = Category::with('servicesSub','parent','services')
-                                ->withCount('servicesSub','parent','services')
-                                ->whereHas('parent')
+                                ->withCount('servicessub','parent','services')
+                                ->whereHas('children')
                                 ->latest()
                                 ->get();
-
-         //dd($data);
 
         if($request->ajax()){
 

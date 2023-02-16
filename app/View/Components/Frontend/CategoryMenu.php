@@ -12,12 +12,7 @@ class CategoryMenu extends Component
 
     public function __construct()
     {
-        /*
-        SELECT     c.id, c.name, parents.name AS `ParentCategoryName`
-            FROM       categories AS c
-            INNER JOIN  categories AS parents ON parents.id = c.parent_id
-            ORDER BY   c.name ASC;
-        */
+
         $this->categories = DB::table('categories AS c')
                                 ->select('c.id','c.name','c.slug',)
                                 ->where('parent_id',0)

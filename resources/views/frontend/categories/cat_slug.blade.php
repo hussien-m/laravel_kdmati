@@ -50,13 +50,13 @@
                                <span class="c-badge u-pull--left">{{ $category->services_count }}</span>
                             </a>
                             <ul class="c-list c-list--vert c-list--sub u-hidden">
-                                @foreach($category->parent as $parent)
+                                @foreach($category->children as $children)
                                 <li data-filter-id="3" data-sub-filter-id="20" class="c-list__item ">
-                                    <a href="{{ $parent->slug }}" class="menu-item c-list__link filter closeLink" data-deselect-others="">
-                                        <span>{{ $parent->name }}</span>
+                                    <a href="{{ $children->slug }}" class="menu-item c-list__link filter closeLink" data-deselect-others="">
+                                        <span>{{ $children->name }}</span>
 
                                         <span class="c-badge u-pull--left">
-                                            {{ $category->services_sub_count }}
+                                            {{ $category->servicessub_count }}
                                         </span>
                                     </a>
                                 </li>

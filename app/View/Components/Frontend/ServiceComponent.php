@@ -13,10 +13,9 @@ class ServiceComponent extends Component
     public function __construct()
     {
         $this->categories_services = Category::with('services')
-        ->whereHas('parent')
-        ->latest()
-
-        ->get();
+                                    ->whereHas('children')
+                                    ->latest()
+                                    ->get();
 
     }
 

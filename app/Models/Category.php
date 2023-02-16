@@ -13,12 +13,12 @@ class Category extends Model
 
     public function parent()
     {
-        return $this->hasMany(Category::class,'parent_id');
+        return $this->belongsTo(Category::class, 'parent_id', 'id');
     }
 
     public function children()
     {
-        return $this->belongsTo(Category::class,'parent_id');
+        return $this->hasMany(Category::class, 'parent_id', 'id');
     }
 
     public function services()
@@ -26,8 +26,8 @@ class Category extends Model
         return $this->hasMany(Service::class,'category_id')->where('status',1);
     }
 
-    public function servicesSub()
+    public function servicessub()
     {
-       return $this->hasMany(Service::class,'sub_category_id')->where('status',1);
+       return $this->hasMany(Service::class,'sub_category_id');
     }
 }

@@ -56,4 +56,14 @@ Route::middleware(['auth'])->group(function(){
     ->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class]);
 
 
+    Route::any('payment/cancel',function(){
+        return "Cancel";
+    })->name('payment.cancel');
+
+    
+    Route::any('payment/return',function(){
+        return "Cancel";
+    })->name('payment.return');
+
+
 });

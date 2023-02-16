@@ -13,7 +13,7 @@ class CategoryController extends DashboardController
     {
         $data['pagename'] = "التصنيفات";
 
-        $data['categories']= Category::whereHas('parent')->latest()->get();
+        $data['categories']= Category::whereHas('children')->latest()->get();
 
        // dd($data['categories']);
 
@@ -22,9 +22,9 @@ class CategoryController extends DashboardController
 
     public function subCategory(Request $request,$slug)
     {
-       $data['categories'] = Category::whereSlug($slug)->with('parent')->first();
+       $data['categories'] = Category::whereSlug($slug)->first();
        $data['pagename']   = $data['categories']->name ;
-       $data['categories'] = $data['categories']->parent;
+       $data['categories'] = $data['categories']->children;
 
        return view('dashboard.categories.sub-category',$data);
     }

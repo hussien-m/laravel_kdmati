@@ -22,9 +22,8 @@ class NotificationsComponent extends Component
     public function mount()
     {
         $user = Auth::user();
-        $this->unreadnotificationsCount = $user->unreadNotifications->where('type','App\Notifications\Frontend\AcceptUserService')->count();
-        $this->unreadnotifications = $user->notifications->where('type','App\Notifications\Frontend\AcceptUserService');
-
+        $this->unreadnotificationsCount = $user->unreadNotifications->where('type', 'App\Notifications\Frontend\AcceptUserService')->count();
+        $this->unreadnotifications = $user->notifications()->where('type', 'App\Notifications\Frontend\AcceptUserService')->latest()->get();
     }
 
     public function markAsRead($id)

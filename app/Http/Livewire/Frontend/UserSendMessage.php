@@ -12,7 +12,7 @@ class UserSendMessage extends Component
 {
     public $unreadnotificationsCount = '';
     public $unreadnotifications;
-    public $unread;
+    protected $unread = null;
     public $notiyDate="";
 
     public function getListeners():array
@@ -36,42 +36,29 @@ class UserSendMessage extends Component
 
     public function mount()
     {
-        //$user    = Auth::user()->id;
 
-        $user      = Auth::user();
-       // $this->unreadnotificationsCount = $user->unreadNotifications->where('type','App\Notifications\Frontend\UserSendMessage')->count();
-       $this->unread = $user->notifications->where('type','App\Notifications\Frontend\UserSendMessage');
+        $user = Auth::user();
+        $userId = $user->id;
 
-        //$this->notiyDate = Message::where('sender_id','!=',Auth::user()->id)->select('created_at')->latest('created_at')->first();
+        // استخدام الكشف المبكر والتعبير الأكثر فعالية
+        $userNotifications = $user->notifications();
+        $this->unread = $userNotifications->where('type', 'App\Notifications\Frontend\UserSendMessage');
 
-        $this->unreadnotificationsCount = $user->unreadNotifications->where('type','App\Notifications\Frontend\UserSendMessage')->count();
+        $userUnreadNotifications = $user->unreadNotifications;
+        $this->unreadnotificationsCount = $userUnreadNotifications->where('type', 'App\Notifications\Frontend\UserSendMessage')->count();
 
-
-
+        // التحقق من وجود فهارس على العمود المستخدم في `latest()`
         $this->unreadnotifications = Conversation::with('messages')
-                ->where('receiver_id',Auth::user()->id)
-                ->orWhere('sender_id',Auth::user()->id)
-                ->latest()
-                ->get();
+                        ->where(function ($query) use ($userId) {
+                            $query->where('receiver_id', $userId)
+                                  ->orWhere('sender_id', $userId);
+                        })
+                        ->latest('created_at')
+                        ->get();
 
 
-                /*
 
-        $this->unreadnotifications = DB::table('conversations')
-                ->join('messages','conversations.id','messages.conversation_id')
-                ->join('services','services.id','conversations.service_id')
-                ->where('messages.receiver_id',Auth::user()->id)
-                ->orWhere('messages.sender_id',Auth::user()->id)
-                ->select(
-                    'conversations.id as conv_id','conversations.sender_id as conv_sender_id', 'conversations.receiver_id as conv_receiver_id','conversations.service_id as conv_service_id',
-                    'services.id as serv_id','services.title as serv_title','services.slug as serv_slug',
-                    'messages.id as msg_id','messages.created_at as msg_created_at'
-                )
-                //->latest()
-                ->get();
 
-              // dd( $this->unreadnotifications);
-              */
     }
 
     public function render()

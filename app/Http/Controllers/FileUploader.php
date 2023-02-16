@@ -5,22 +5,24 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Intervention\Image\ImageManagerStatic as Image;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
+
 class FileUploader extends Controller
 {
-    public function uploadImage()
+    public function uploadImage(Request $request)
     {
         $delete_file = 0;
-        if (isset($_POST['delete_file'])) {
-            $delete_file = $_POST['delete_file'];
+        if ($request->has('delete_file')) {
+            $delete_file = $request->input('delete_file');
         }
 
-        $targetPath = public_path('upload'.DIRECTORY_SEPARATOR.'images'.DIRECTORY_SEPARATOR);
+        $targetPath = public_path('upload/images');
 
         // Check if it's an upload or delete and if there is a file in the form
-        if (!empty($_FILES) && $delete_file == 0) {
+        if ($request->hasFile('file') && $delete_file == 0) {
 
             // Check if the upload folder is exists
-            if (file_exists($targetPath) && is_dir($targetPath)) {
+            if (is_dir($targetPath)) {
 
                 // Check if we can write in the target directory
                 if (is_writable($targetPath)) {
@@ -29,23 +31,16 @@ class FileUploader extends Controller
                      * Start dancing
                      */
 
-
-                    $tempFile = $_FILES['file']['tmp_name'];
-
-                    $target_path = public_path('upload'.DIRECTORY_SEPARATOR.'images'.DIRECTORY_SEPARATOR);
+                    $tempFile = $request->file('file');
 
                     $rand = rand();
-                    $temp = explode('.', $_FILES['file']['name']);
-                    $newfilename = $rand . round(microtime(true)) . '.' . end($temp);
+                    $newfilename = $rand . round(microtime(true)) . '.' . $tempFile->getClientOriginalExtension();
 
-                    $target_path = $target_path . $newfilename;
+                    $targetFile = $targetPath . '/' . $newfilename;
 
-                    $targetFile = $targetPath . $newfilename;
+                    $ex = $tempFile->getClientOriginalExtension();
 
-
-                    $ex =  end($temp);
-
-                    $allowed = array('png', 'jpg', 'jpeg', 'PNG', 'JPG','pdf');
+                    $allowed = array('png', 'jpg', 'jpeg', 'pdf');
 
                     if (in_array($ex, $allowed) && $ex != '' && !empty($ex)) {
 
@@ -57,25 +52,25 @@ class FileUploader extends Controller
                             $width = Image::make($tempFile)->width();
                             if ($width >= 800 && $height >= 470) {
                                 // Upload the file
-                                move_uploaded_file($tempFile, $targetFile);
+                                $tempFile->move($targetPath, $newfilename);
 
                                 // Be sure that the file has been uploaded
                                 if (file_exists($targetFile)) {
                                     $response = array(
                                         'status'    => 'success',
                                         'info'      => 'Your file has been uploaded successfully.',
-                                        'file_link' =>  $newfilename, //$target_path
+                                        'file_link' =>  $newfilename,
                                     );
                                 } else {
                                     $response = array(
                                         'status' => 'error',
-                                        'info'   => 'Couldn\'t upload the requested file :(, a mysterious error happend.'
+                                        'info'   => 'Couldn\'t upload the requested file :(, a mysterious error happend.',
                                     );
                                 }
                             } else {
                                 $response = array(
                                     'status' => 'error',
-                                    'info'   => 'يرجى رفع صورة بالابعاد المطلوبة'
+                                    'info'   => 'يرجى رفع صورة بالابعاد المطلوبة',
                                 );
                             }
                         } else {
@@ -83,36 +78,33 @@ class FileUploader extends Controller
                             $response = array(
                                 'status'    => 'error',
                                 'info'      => 'A file with the same name is exists.',
-                                'file_link' => $targetFile
+                                'file_link' => $targetFile,
                             );
                         }
                     } else {
                         $response = array(
                             'status' => 'error',
-                            'info'   => 'صيغة الملف غير مدعومة'
+                            'info'   => 'صيغة الملف غير مدعومة',
                         );
                     }
                 } else {
                     $response = array(
                         'status' => 'error',
-                        'info'   => 'The specified folder for upload isn\'t writeable.'
+                        'info'   => 'The specified folder for upload isn\'t writeable.',
                     );
                 }
             } else {
                 $response = array(
                     'status' => 'error',
-                    'info'   => 'No folder to upload to :(, Please create one.'
+                    'info'   => 'No folder to upload to :(, Please create one.',
                 );
             }
 
             // Return the response
-            echo json_encode($response);
-            exit;
+            return json_encode($response);
         }
 
-        $file_path = $_POST['target_file'];
-
-        // Remove file
+        $file_path = $request->input('target_file');
         if ($delete_file == 2) {
             // Check if file is exists
             if (file_exists($file_path)) {
@@ -142,18 +134,18 @@ class FileUploader extends Controller
             }
 
             // Return the response
-            echo json_encode($response);
-            exit;
+            return json_encode($response);
         }
         if ($delete_file == 1) {
-            $del_file=public_path("upload".DIRECTORY_SEPARATOR.'images'.DIRECTORY_SEPARATOR.$file_path);
-            if(File::exists($del_file)){
+            $del_file = public_path("upload" . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . $file_path);
+            if (File::exists($del_file)) {
 
-               File::delete($del_file);
+                File::delete($del_file);
 
-               echo "Founded". $file_path."<br>";
-
-            } else{ echo "no file <br>";}
+                echo "Founded" . $file_path . "<br>";
+            } else {
+                echo "no file <br>";
+            }
 
             $response = array(
                 'status' => 'success',
@@ -161,41 +153,34 @@ class FileUploader extends Controller
                 'filePath' => $file_path,
             );
             // Return the response
-            echo json_encode($response);
-            exit;
+            return json_encode($response);
         }
     }
 
     public function uploadRecord(Request $request)
     {
 
-        define('RECORDPATH', $_SERVER['DOCUMENT_ROOT']);
+        $allowed = array('php', 'exe', 'jpg', 'zip', 'mp4', 'jpeg', 'PNG', 'JPG', 'mp3', 'pdf', 'doc', 'docs', 'excel', 'xlsx', 'wav', 'webp', 'WEBP', 'jfif', 'gif', 'GIF');
 
-        $size = $_FILES['audio_data']['size'];
+        $validatedData = $request->validate([
+            'audio_data' => 'required|file|mimetypes:audio/*|max:10240',
+        ]);
 
-        $input = $_FILES['audio_data']['tmp_name'];
+        $audioFile = $validatedData['audio_data'];
 
-        $output = $_FILES['audio_data']['name'].".wav";
+        $extension = $audioFile->extension();
 
-        $target_path = DIRECTORY_SEPARATOR.'records'.DIRECTORY_SEPARATOR;
+        if (!in_array($extension, $allowed)) {
+            return response()->json(['error' => 'Invalid file extension'], 400);
+        }
 
-                $temp = explode('.', $_FILES['audio_data']['name']);
-                $ex =strtolower(end($temp));
+        $rand = rand();
 
-                $allowed = array('php', 'exe', 'jpg','zip','mp4','jpeg','PNG','JPG','mp3','pdf','doc','docs','excel','xlsx','wav','webp','WEBP','jfif','gif','GIF');
+        $newfilename = $rand . round(microtime(true)) . '.wav';
 
-                if (!in_array($ex, $allowed) && $ex != '' && !empty($ex)) {
+        Storage::putFileAs('public/records', $audioFile, $newfilename);
+        
 
-                $rand = rand();
-
-                $newfilename = $rand . round(microtime(true)) . '.wav';
-
-                $target_path = $target_path . $newfilename;
-
-                move_uploaded_file($input, RECORDPATH . $target_path);
-
-                echo $newfilename;
-
-                }
+        return $newfilename;
     }
 }

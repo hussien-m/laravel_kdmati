@@ -1,8 +1,4 @@
-
-
-
-
-    <div id="message-list" class="card-body py-3 px-0 comments2 comments3">
+<div id="message-list" class="card-body py-3 px-0 comments2 comments3">
 
             @forelse ( $messages as $message )
 
@@ -13,8 +9,8 @@
                                     class="mr-3 comment-item-image" alt="Bo-MeSHaL"></a>
                             <div class="media-body">
                                 <h5 class="comment-user-name mb-1"> <a class="comment-user-link"
-                                        href="https://kdmati.com/user/kdmati">{{ $message->sender->first_name.' '.$message->sender->last_name }}</a></h5>
-                                <small class="comment-meta"><i class="far fa-clock fa-fw"></i>{{ $message->created_at->diffForHumans() }} </small>
+                                        href="https://kdmati.com/user/kdmati">{{ $message->first_name.' '.$message->last_name }}</a></h5>
+                                <small class="comment-meta"><i class="far fa-clock fa-fw"></i>{{ $message->created_at}} </small>
                             </div>
                         </div>
                         <div class="pre comment-body">{{ $message->message }}</div>
@@ -22,8 +18,8 @@
                             @if($message->record)
                             <div class="form-group">
 
-                                    <audio class="" style="width: 100%;" controls src="{{ asset("records/".$message->record) }}" >
-                                        <source  src="{{ asset("records/".$message->record) }}" type="audio/wav">
+                                    <audio class="" style="width: 100%;" controls src="{{ asset("storage/records/".$message->record) }}" >
+                                        <source  src="{{ asset("storage/records/".$message->record) }}" type="audio/wav">
                                     </audio>
 
 

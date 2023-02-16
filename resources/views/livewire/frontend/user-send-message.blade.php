@@ -20,7 +20,7 @@
                                 $data = \App\Models\Message::where('conversation_id',$notify->id)->select('created_at')->latest('created_at')->first()
                             @endphp
                             <time> <i
-                                    class="far fa-clock"></i> {{ $data->created_at->diffForHumans() }}</time>
+                                    class="far fa-clock"></i> </time>
                         </div>
                     </div>
                 </li>

@@ -36,11 +36,18 @@ class ShowMessages extends Component
     public function mount()
     {
 
-       $this->messages = Message::where('conversation_id',$this->conversation_id)->get();
-
-        /*$this->messages = DB::table('messages')
-                       ->where('conversation_id','=',$this->conversation_id)
+       /*$this->messages = Message::where('conversation_id',$this->conversation_id)
+                        ->with(['sender'])
                         ->get();*/
+
+       $this->messages = DB::table('messages')
+                          ->where('conversation_id',$this->conversation_id)
+                          ->join('users as user','messages.sender_id','=','user.id')
+                          ->select('messages.*','user.first_name','user.last_name')
+                          ->get();
+
+
+        //dd($this->messages);
     }
 
     public function render()

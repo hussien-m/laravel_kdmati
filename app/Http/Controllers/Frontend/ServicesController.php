@@ -8,10 +8,8 @@ use App\Models\Service;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Str;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\File;
-use Intervention\Image\ImageManagerStatic as Image;
+
 
 class ServicesController extends Controller
 {
@@ -124,6 +122,7 @@ class ServicesController extends Controller
             if($request->ajax()) {
 
                 return view('frontend.categories._row_serives',$data);
+
             } else {
 
                 return view('frontend.categories.cat_slug',$data);

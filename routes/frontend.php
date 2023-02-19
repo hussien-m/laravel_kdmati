@@ -3,10 +3,12 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\FileUploader;
 use App\Http\Controllers\Frontend\CartController;
+use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\MessagesController;
 use App\Http\Controllers\Frontend\ServicesController;
 use App\Http\Livewire\Frontend\FillterSection;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::name('user.')->group(function(){
@@ -56,14 +58,12 @@ Route::middleware(['auth'])->group(function(){
     ->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class]);
 
 
-    Route::any('payment/cancel',function(){
-        return "Cancel";
-    })->name('payment.cancel');
 
-    
-    Route::any('payment/return',function(){
-        return "Cancel";
-    })->name('payment.return');
+    Route::any('payment/{slug}/return/',[CheckoutController::class ,'callback'])->name('payment.return');
+    Route::any('payment/{slug}/cancel',[CheckoutController::class ,'cancel'])->name('payment.cancel');
+
+
+    Route::post('checkout',[CheckoutController::class,'store'])->name('checkout');
 
 
 });

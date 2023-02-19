@@ -23,34 +23,7 @@
         <div class="content-h">
         <!-- Modal -->
             <div class="modal fade modal-custom" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModal" aria-hidden="true">
-                <div class="modal-dialog modal-lg" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="addModalLabel">طرق الدفع</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true"><i class="fal fa-times"></i></span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form method="POST" action="" class="">
-                                <button type="submit" class="btn btn-primary btn-block khadamaty-btn payment-btn" name="confirm" value="1">رصيد خدماتي</button>
-                            </form>
-                            <div id="smart-button-container" class="btn btn-primary form-button payment-btn mx-auto paypal-button-container">
-                                <img src="https://kdmati.com/assets/images/paypal.png" alt="باى بال" class="payment-btn-image">
-                                <div style="text-align: center;" class="form-button paypal-button">
-                                    <div id="paypal-button-container">
-                                        <div id="zoid-paypal-buttons-uid_3eb25ff47c_mtk6mju6mdq" class="paypal-buttons paypal-buttons-context-iframe paypal-buttons-label-paypal paypal-buttons-layout-horizontal" data-paypal-smart-button-version="5.0.352" style="height: 0px; transition: all 0.2s ease-in-out 0s;">
-                                            <div id="smart-menu" class="smart-menu"></div>
-                                            <div id="installments-modal" class="installments-modal"></div><iframe name="__detect_close_uid_d76470e2eb_mtk6mju6mdq__" style="display: none;"></iframe>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <a href="https://kdmati.com/hesabe" class="btn btn-primary form-button payment-btn"><img alt="فيزا / ماستركارد" src="https://kdmati.com/assets/images/visa.png" class="payment-btn-image"> </a>
-                        </div>
-                    </div>
-                </div>
+                <x-frontend.show-payment-methods />
             </div>
         </div>
 

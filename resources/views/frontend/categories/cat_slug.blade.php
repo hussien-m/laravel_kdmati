@@ -206,7 +206,16 @@
 @stop
 
 @section('scripts')
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    var offcanvasElement = document.querySelector('#sidebar');
+    var offcanvas = new bootstrap.Offcanvas(offcanvasElement);
 
+    var offcanvasToggle = document.querySelector('[data-toggle="offcanvas"]');
+    offcanvasToggle.addEventListener('click', function() {
+      offcanvas.toggle();
+    });
+  </script>
 <script>
     $('.c-list__link.filter').click(function(e) {
         //alert("sd");

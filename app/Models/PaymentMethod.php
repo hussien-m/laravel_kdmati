@@ -10,4 +10,24 @@ class PaymentMethod extends Model
     use HasFactory;
 
     protected $guarded=[];
+
+    protected $casts = [
+
+        'options'=> 'json',
+    ];
+
+    public function enable()
+    {
+        $this->update(['status' => 'active']);
+    }
+
+    public function disable()
+    {
+        $this->update(['status' => 'inactive']);
+    }
+
+    public function getEnabledAttribute()
+    {
+        return $this->staus === 'active';
+    }
 }

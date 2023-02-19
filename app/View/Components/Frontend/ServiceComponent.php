@@ -14,6 +14,7 @@ class ServiceComponent extends Component
     {
         $this->categories_services = Category::with('services')
                                     ->whereHas('children')
+                                    ->withCount('services')
                                     ->latest()
                                     ->get();
 

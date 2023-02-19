@@ -3,21 +3,24 @@
 namespace App\PaymentGateways;
 
 use App\Models\Payment;
+use App\Models\PaymentMethod;
 use PayPalCheckoutSdk\Orders\OrdersCreateRequest;
 use Exception;
 use PayPalCheckoutSdk\Core\PayPalHttpClient;
 use PayPalCheckoutSdk\Core\SandboxEnvironment;
 use PayPalCheckoutSdk\Orders\OrdersCaptureRequest;
+use Illuminate\Contracts\Support\Responsable;
+use Illuminate\Support\Facades\Redirect;
 
-class PaypalGateway implements PaymentGateways
+class Strip implements PaymentGateways
 {
-    protected array $options;
+    protected $paymentMethod;
 
     protected $client;
 
-    public function __construct($options)
+    public function __construct()
     {
-        $this->options = $options;
+        $this->paymentMethod = PaymentMethod::where('slug','strip')->first();
     }
 
     protected function client()
@@ -26,8 +29,8 @@ class PaypalGateway implements PaymentGateways
 
             $this->client = new PayPalHttpClient(
                 new SandboxEnvironment(
-                    $this->options['client_id'],
-                    $this->options['client_secret']
+                    $this->paymentMethod->options['client_id'],
+                    $this->paymentMethod->options['client_secret']
                 )
             );
         }
@@ -36,7 +39,7 @@ class PaypalGateway implements PaymentGateways
     }
 
     //createPayment
-    public function create($order):string
+    public function create($order,$user)
     {
 
         $request = new OrdersCreateRequest();
@@ -62,10 +65,25 @@ class PaypalGateway implements PaymentGateways
 
             $response = $this->client()->execute($request);
 
+            //Create Payment Row
+            $payment = Payment::create([
+
+                'payment_method_id'   => $this->paymentMethod->id,
+                'paymentable_id'      => $order->id,
+                'paymentable_type'    => get_class($order),
+                'payer_id'            => get_class($user),
+                'amount'              => $order->aomunt,
+                'currency_code'       => $order->currency_code,
+                'type'                => 'payment',
+                'status'              => 'pending',
+                'transaction_id'      => $response->result->id,
+
+            ]);
+
             foreach ($response->result->links as $link) {
 
                 if ($link->rel == 'approve') {
-                    return $link->href;
+                    return Redirect::away($link->href);  //$link->href;
                 }
             }
         } catch (Exception $ex) {
@@ -84,13 +102,22 @@ class PaypalGateway implements PaymentGateways
 
             $response = $this->client->execute($request);
 
-            $payment = new Payment();
-            
+            if($response->result->status == 'COMPLETED'){
+                $payment = Payment::where('transaction_id',$id)
+                                ->where('payment_method_id',$this->paymentMethod->id)
+                                ->first();
+            }
+
             return $payment;
 
         } catch (Exception $ex) {
 
             return $ex->getMessage();
         }
+    }
+
+    public function formOptions():array
+    {
+        return [];
     }
 }

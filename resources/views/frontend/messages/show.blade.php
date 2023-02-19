@@ -47,7 +47,7 @@
                                     <input id="files" name="files" type="hidden" value="">
                                     <input type="hidden" name="record" id="record-input" value="">
                                     <div class="form-group  ">
-                                        <textarea class="form-control" rows="5" name="message" placeholder="" id="message"></textarea>
+                                        <textarea required class="form-control" rows="5" name="message" placeholder="" id="message" ></textarea>
                                     </div>
                                     <div class="form-group">
                                         <button type="button" data-toggle="collapse" href="#fileAccordion" role="button" aria-expanded="false" aria-controls="fileAccordion" class="btn btn-default btn-sm  action-btn"><i class="fa fa-paperclip"></i> <span> أرفق ملفات</span></button>
@@ -202,7 +202,9 @@ $(function() {
                 players[video.id] = new Plyr(video);
                 });
             }
-          },
+          },error: function(){
+            alert('54');
+          }
         });
 
     });

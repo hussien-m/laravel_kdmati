@@ -10,4 +10,9 @@ class Payment extends Model
     use HasFactory;
 
     protected $guarded=[];
+
+    protected $casts = [
+
+        'payment_response' => 'json',
+    ];
 }

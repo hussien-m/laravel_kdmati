@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('description')->nullable();
             $table->string('icon');
             $table->enum('status',['active','inactive'])->default('active');
-            $table->json('option')->nullable();
+            $table->json('options')->nullable();
             $table->timestamps();
         });
     }

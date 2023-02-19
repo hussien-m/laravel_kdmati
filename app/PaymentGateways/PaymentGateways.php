@@ -5,13 +5,15 @@ namespace App\PaymentGateways;
 
 use App\Models\Payment;
 
+
 interface PaymentGateways
 {
     //createPayment
-    public function create($order):string;
+    public function create($order,$user);
 
     //verifyPayment
-    public function verify($id):Payment;
+    public function verify($id);
 
-    //public function getPayment($id);
+    //Form Options For PaymentGateways
+    public function formOptions():array;
 }

@@ -102,6 +102,18 @@
                                 </ul>
                             </li>
 
+                            <li class="mm-active">
+                                <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                    <i class="mdi mdi-cash-multiple"></i>
+
+                                    <span>بوابات الدفع</span>
+                                </a>
+                                <ul class="sub-menu" aria-expanded="false">
+                                    <li><a href="{{ route("admin.payment-methods.create") }}"><i class="dripicons-checkmark"></i>أضف جديد</a></li>
+                                    <li><a href="{{ route("admin.payment-methods.index") }}"><i class="dripicons-list"></i>جميع البوابات</a></li>
+                                </ul>
+                            </li>
+
 
                         </ul>
                     </div>

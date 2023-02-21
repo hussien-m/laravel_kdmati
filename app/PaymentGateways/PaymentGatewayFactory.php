@@ -13,7 +13,9 @@ class PaymentGatewayFactory
         try{
 
             return new $class();
+
         } catch(Exception $ex){
+            
             throw new Exception("Payment Gateway [{$name}] Notfound .");
         }
     }
